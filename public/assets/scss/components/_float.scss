@@ -1,0 +1,158 @@
+@use '../utils' as *;
+
+/*=============================
+   Euro Bangla product spacing
+=============================*/
+.ebt-section {
+   padding-top: 100px;
+   padding-bottom: 100px;
+   @media #{$md,$sm,$xs} {
+      padding-top: 70px;
+      padding-bottom: 70px;
+   }
+}
+
+.ebt-section-sm {
+   padding-top: 80px;
+   padding-bottom: 80px;
+   @media #{$md,$sm,$xs} {
+      padding-top: 55px;
+      padding-bottom: 55px;
+   }
+}
+
+.ebt-section-sm.pb-0 {
+   padding-bottom: 0;
+}
+
+.ebt-page-content {
+   padding-top: 100px;
+   padding-bottom: 100px;
+   @media #{$md,$sm,$xs} {
+      padding-top: 70px;
+      padding-bottom: 70px;
+   }
+}
+
+.ebt-footer {
+   padding-top: 100px;
+   @media #{$md,$sm,$xs} {
+      padding-top: 70px;
+   }
+}
+
+.ebt-legal-doc {
+   color: #344054;
+   font-size: 15px;
+   line-height: 1.75;
+}
+
+.ebt-legal-updated {
+   font-size: 14px;
+   font-weight: 500;
+   color: #667085;
+}
+
+.ebt-legal-section {
+   margin-top: 32px;
+   padding-top: 8px;
+}
+
+.ebt-legal-heading {
+   font-family: var(--tg-ff-outfit);
+   font-size: 20px;
+   font-weight: 700;
+   color: var(--tg-common-black);
+   margin-bottom: 14px;
+   line-height: 1.35;
+}
+
+.ebt-legal-list {
+   padding-left: 1.25rem;
+   margin-bottom: 1rem;
+
+   li {
+      margin-bottom: 6px;
+      padding-left: 4px;
+   }
+}
+
+.ebt-legal-list-ol {
+   list-style: decimal;
+}
+
+.ebt-whatsapp-float {
+   position: fixed;
+   right: 24px;
+   bottom: 100px;
+   z-index: 98;
+   width: 56px;
+   height: 56px;
+   border-radius: 50%;
+   background: #05AB13;
+   color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 28px;
+   @media #{$xs} {
+      right: 14px;
+      bottom: 80px;
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+   }
+}
+
+.ebt-cookie-banner {
+   position: fixed;
+   left: 20px;
+   right: 20px;
+   bottom: 20px;
+   z-index: 1000;
+   max-width: 720px;
+   margin: 0 auto;
+   background: var(--tg-common-white);
+   border: 1px solid rgba(0, 71, 171, 0.12);
+   border-radius: 10px;
+   padding: 16px 18px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 16px;
+   flex-wrap: wrap;
+}
+
+.ebt-cookie-actions {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   flex-wrap: wrap;
+
+   button,
+   a {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: transparent;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-family: var(--tg-ff-outfit);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--tg-common-black);
+   }
+
+   .accept {
+      background: var(--tg-theme-primary);
+      border-color: var(--tg-theme-primary);
+      color: var(--tg-common-white);
+   }
+}
+
+.tg-booking-form-parent-inner select.input,
+.tg-tour-about-review-form select.input {
+   width: 100%;
+   min-height: 50px;
+   border: 1px solid #e5e5e5;
+   padding: 0 15px;
+   background: #fff;
+}
