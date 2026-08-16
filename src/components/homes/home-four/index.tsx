@@ -1,6 +1,10 @@
 import Hero from "./Hero"
 import Destination from "./Destination"
+import Listing from "./Listing"
 import Process from "./Process"
+import HomeReviews from "./HomeReviews"
+import HomeFaq from "./HomeFaq"
+import HomeBlog from "./HomeBlog"
 import HeaderFour from "@/layouts/headers/HeaderFour"
 import BannerFormFour from "@/components/common/banner-form/BannerFormFour"
 import Cta from "./Cta"
@@ -8,9 +12,7 @@ import FooterThree from "@/layouts/footers/FooterThree"
 
 /**
  * Live homepage composition for Euro Bangla Travels.
- * Listing (tour/holiday packages) kept in codebase but hidden from home UI.
- * Template sections Brand / Counter / Testimonial / Blog / App CTA
- * remain available for future use.
+ * Listing uses template tour package cards (still in codebase).
  */
 const HomeFour = () => {
   return (
@@ -20,8 +22,12 @@ const HomeFour = () => {
         <Hero />
         <BannerFormFour />
         <Destination />
+        <Listing />
         <Cta />
         <Process />
+        <HomeReviews />
+        <HomeFaq />
+        <HomeBlog />
       </main>
       <FooterThree />
     </>

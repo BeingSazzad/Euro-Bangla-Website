@@ -1,9 +1,12 @@
 import Link from "next/link"
+import { X } from "lucide-react"
 import SiteLogo from "@/components/common/SiteLogo"
 import MobileMenu from "./MobileMenu";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import { useT } from "@/i18n/LanguageProvider";
+import { COMPANY } from "@/data/company";
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/common/SocialIcons";
 
 interface MobileSidebarProps {
    offCanvas: boolean;
@@ -29,7 +32,9 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
       <div className={offCanvas ? "mobile-menu-visible" : ""}>
          <div className="tgmobile__menu">
             <nav className="tgmobile__menu-box">
-               <div onClick={() => setOffCanvas(false)} className="close-btn"><i className="fa-solid fa-xmark"></i></div>
+               <div onClick={() => setOffCanvas(false)} className="close-btn" role="button" aria-label="Close">
+                  <X size={22} strokeWidth={1.75} aria-hidden="true" />
+               </div>
                <div className="nav-logo d-flex align-items-center justify-content-between">
                   <Link href="/"><SiteLogo height={44} /></Link>
                   <LanguageSwitcher />
@@ -49,11 +54,21 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                </div>
                <div className="social-links">
                   <ul className="list-wrap">
-                     <li><Link href="#"><i className="fab fa-facebook-f"></i></Link></li>
-                     <li><Link href="#"><i className="fab fa-twitter"></i></Link></li>
-                     <li><Link href="#"><i className="fab fa-instagram"></i></Link></li>
-                     <li><Link href="#"><i className="fab fa-linkedin-in"></i></Link></li>
-                     <li><Link href="#"><i className="fab fa-youtube"></i></Link></li>
+                     <li>
+                        <Link href={COMPANY.facebook} aria-label="Facebook">
+                           <FacebookIcon size={16} />
+                        </Link>
+                     </li>
+                     <li>
+                        <Link href={COMPANY.instagram} aria-label="Instagram">
+                           <InstagramIcon size={16} />
+                        </Link>
+                     </li>
+                     <li>
+                        <Link href={COMPANY.youtube} aria-label="YouTube">
+                           <YoutubeIcon size={16} />
+                        </Link>
+                     </li>
                   </ul>
                </div>
             </nav>

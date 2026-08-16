@@ -4,17 +4,14 @@ import Link from "next/link"
 import { useState } from "react";
 import UseSticky from "@/hooks/UseSticky";
 import Offcanvas from "./Menu/Offcanvas";
-import UserIcon from "@/svg/UserIcon";
 import SiteLogo from "@/components/common/SiteLogo";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import HeaderWhatsApp from "@/components/common/HeaderWhatsApp";
-import { useT } from "@/i18n/LanguageProvider";
 
 const HeaderFour = () => {
 
    const { sticky } = UseSticky();
    const [offCanvas, setOffCanvas] = useState<boolean>(false);
-   const { t } = useT();
 
    return (
       <>
@@ -41,14 +38,6 @@ const HeaderFour = () => {
                         <div className="tg-menu-right-action tg-menu-right-action-2 d-flex align-items-center justify-content-end">
                            <LanguageSwitcher />
                            <HeaderWhatsApp className="ml-20 d-none d-xl-flex" />
-                           <div className="tg-header-btn ml-20 d-none d-sm-block">
-                              <Link className="tg-btn-header" href="/inquiry">
-                                 <span>
-                                    <UserIcon />
-                                 </span>
-                                 {t("header.inquiry")}
-                              </Link>
-                           </div>
                            <div className="tg-header-menu-bar lh-1 p-relative pl-20 d-block d-xl-none">
                               <button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="tgmenu-offcanvas-open-btn mobile-nav-toggler mobile-nav-black">
                                  <span></span>

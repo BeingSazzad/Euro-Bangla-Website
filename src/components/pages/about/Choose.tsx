@@ -1,9 +1,7 @@
 "use client"
-import Choose6 from "@/svg/home-one/Choose6";
-import Choose7 from "@/svg/home-one/Choose7";
-import Choose8 from "@/svg/home-one/Choose8";
 import Image from "next/image";
 import { JSX } from "react";
+import { CalendarDays, Users, Award } from "lucide-react";
 import { useT } from "@/i18n/LanguageProvider";
 
 import shape from "@/assets/img/banner/banner-2/shape.png"
@@ -15,22 +13,24 @@ interface DataType {
    desc: string;
 }
 
+const chooseIcon = { size: 40, strokeWidth: 1.5, "aria-hidden": true as const };
+
 const choose_data: DataType[] = [
    {
       id: 1,
-      icon: (<><Choose6 /></>),
+      icon: <CalendarDays {...chooseIcon} />,
       title: "about.flex",
       desc: "about.flexDesc",
    },
    {
       id: 2,
-      icon: (<><Choose7 /></>),
+      icon: <Users {...chooseIcon} />,
       title: "about.exp",
       desc: "about.expDesc",
    },
    {
       id: 3,
-      icon: (<><Choose8 /></>),
+      icon: <Award {...chooseIcon} />,
       title: "about.award",
       desc: "about.awardDesc",
    },

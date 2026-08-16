@@ -1,20 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Globe } from "lucide-react";
 import { LOCALES } from "@/i18n/locales";
 import { useT } from "@/i18n/LanguageProvider";
-
-const GlobeIcon = () => (
-   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
-      <path
-         d="M3.6 12h16.8M12 3.6c2.4 2.6 3.6 5.4 3.6 8.4s-1.2 5.8-3.6 8.4M12 3.6C9.6 6.2 8.4 9 8.4 12s1.2 5.8 3.6 8.4"
-         stroke="currentColor"
-         strokeWidth="1.6"
-         strokeLinecap="round"
-      />
-   </svg>
-);
 
 const LanguageSwitcher = () => {
    const { locale, setLocale, t } = useT();
@@ -50,7 +39,7 @@ const LanguageSwitcher = () => {
             aria-label={t("header.language")}
          >
             <span className="tg-lang-switcher-globe">
-               <GlobeIcon />
+               <Globe size={18} strokeWidth={1.75} aria-hidden="true" />
             </span>
             <span className="tg-lang-switcher-code">{current.short}</span>
          </button>

@@ -15,26 +15,25 @@ const CookieConsent = () => {
       if (!saved) setVisible(true);
    }, []);
 
-   const choose = (value: "accepted" | "declined") => {
-      window.localStorage.setItem(COOKIE_KEY, value);
-      document.cookie = `${COOKIE_KEY}=${value};path=/;max-age=31536000;SameSite=Lax`;
+   const accept = () => {
+      window.localStorage.setItem(COOKIE_KEY, "accepted");
+      document.cookie = `${COOKIE_KEY}=accepted;path=/;max-age=31536000;SameSite=Lax`;
       setVisible(false);
    };
 
    if (!visible) return null;
 
    return (
-      <div className="ebt-cookie-banner">
-         <p className="mb-0">{t("cookie.text")}</p>
-         <div className="ebt-cookie-actions">
-            <Link href="/cookies">{t("cookie.more")}</Link>
-            <button type="button" onClick={() => choose("declined")}>
-               {t("cookie.decline")}
-            </button>
-            <button type="button" className="accept" onClick={() => choose("accepted")}>
-               {t("cookie.accept")}
-            </button>
-         </div>
+      <div className="ebt-cookie-banner" role="dialog" aria-live="polite" aria-label={t("cookie.accept")}>
+         <p className="ebt-cookie-text mb-0">
+            {t("cookie.text")}{" "}
+            <Link href="/cookies" className="ebt-cookie-link">
+               {t("cookie.more")}
+            </Link>
+         </p>
+         <button type="button" className="ebt-cookie-accept" onClick={accept}>
+            {t("cookie.accept")}
+         </button>
       </div>
    );
 };

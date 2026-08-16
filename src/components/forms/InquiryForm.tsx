@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { COMPANY, whatsappLink } from "@/data/company";
 import { useT } from "@/i18n/LanguageProvider";
@@ -153,9 +152,6 @@ const InquiryForm = ({
                <button type="submit" className="tg-btn">
                   {t("inquiry.submit")}
                </button>
-               <p className="mb-0 pt-15">
-                  <Link href="/privacy">{t("footer.privacy")}</Link>
-               </p>
             </div>
          </div>
       </form>

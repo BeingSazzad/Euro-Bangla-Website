@@ -1,6 +1,7 @@
 "use client";
 import UseSticky from "@/hooks/UseSticky";
 import { useState, useEffect } from "react";
+import { ArrowUp } from "lucide-react";
 
 const ScrollToTop = () => {
    const { sticky }: { sticky: boolean } = UseSticky();
@@ -26,7 +27,7 @@ const ScrollToTop = () => {
          className={`scroll__top scroll-to-target ${sticky && showScroll ? "open" : ""}`}
          data-target="html"
       >
-         <i className="fa-sharp fa-regular fa-arrow-up"></i>
+         <ArrowUp size={18} strokeWidth={1.75} aria-hidden="true" />
       </button>
    );
 };

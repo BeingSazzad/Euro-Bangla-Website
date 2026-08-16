@@ -29,8 +29,8 @@ export const FAQ_ITEMS: FaqItem[] = [
    },
    {
       id: 5,
-      question: "Can I request one-way, round-trip, or multi-city flights?",
-      answer: "Yes. We support one-way, round-trip, and multi-city flight requests, subject to availability.",
+      question: "Can I request one-way or round-trip flights?",
+      answer: "Yes. We support one-way and round-trip flight requests, subject to availability.",
    },
    {
       id: 6,

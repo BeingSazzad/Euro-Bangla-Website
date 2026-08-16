@@ -1,13 +1,18 @@
 "use client"
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { useT } from "@/i18n/LanguageProvider";
 
 interface DataType {
    sub_title: string;
    title: string;
+   /** When true, title/sub_title are shown as raw text (not i18n keys). */
+   raw?: boolean;
 }
-const BreadCrumb = ({ sub_title, title }: DataType) => {
+const BreadCrumb = ({ sub_title, title, raw = false }: DataType) => {
    const { t } = useT();
+   const titleLabel = raw ? title : t(title);
+   const crumbLabel = raw ? sub_title : t(sub_title);
 
    return (
       <div className="tg-breadcrumb-area tg-breadcrumb-spacing-5 fix p-relative z-index-1 include-bg" style={{ backgroundImage: `url(/assets/img/breadcrumb/breadcrumb.jpg)` }}>
@@ -17,12 +22,20 @@ const BreadCrumb = ({ sub_title, title }: DataType) => {
             <div className="row">
                <div className="col-12">
                   <div className="tg-breadcrumb-content text-center">
-                     <h2 className="tg-breadcrumb-title mb-15 fs-40">{t(title)}</h2>
+                     <h2 className="tg-breadcrumb-title mb-15 fs-40">{titleLabel}</h2>
                      <div className="tg-breadcrumb-list-4">
                         <ul>
                            <li><Link href="/">{t("page.home")}</Link></li>
-                           <li><i className="fa-sharp fa-solid fa-angle-right"></i></li>
-                           <li>{t(sub_title)}</li>
+                           <li><ChevronRight size={14} strokeWidth={2} aria-hidden="true" /></li>
+                           {raw ? (
+                              <>
+                                 <li><Link href="/visa">{t("nav.visa")}</Link></li>
+                                 <li><ChevronRight size={14} strokeWidth={2} aria-hidden="true" /></li>
+                                 <li>{crumbLabel}</li>
+                              </>
+                           ) : (
+                              <li>{crumbLabel}</li>
+                           )}
                         </ul>
                      </div>
                   </div>

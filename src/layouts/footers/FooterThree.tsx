@@ -1,6 +1,8 @@
 "use client"
 import { FormEvent, useState } from "react"
 import Link from "next/link"
+import { ArrowRight, MapPin, Phone, Clock } from "lucide-react"
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/common/SocialIcons"
 import SiteLogo from "@/components/common/SiteLogo"
 import { useT } from "@/i18n/LanguageProvider"
 import { COMPANY } from "@/data/company"
@@ -30,10 +32,8 @@ const FooterThree = () => {
                               <div className="tg-footer-form mb-30">
                                  <form onSubmit={onNewsletter}>
                                     <input type="email" placeholder={t("footer.emailPlaceholder")} />
-                                    <button className="tg-footer-form-btn" type="submit">
-                                       <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M1.52514 8.47486H20.4749M20.4749 8.47486L13.5 1.5M20.4749 8.47486L13.5 15.4497" stroke="white" strokeWidth="1.77778" strokeLinecap="round" strokeLinejoin="round" />
-                                       </svg>
+                                    <button className="tg-footer-form-btn" type="submit" aria-label="Submit">
+                                       <ArrowRight size={20} strokeWidth={1.75} color="white" aria-hidden="true" />
                                     </button>
                                  </form>
                                  {newsNote && <p className="mt-10 mb-0">{newsNote}</p>}
@@ -41,13 +41,19 @@ const FooterThree = () => {
                               {(COMPANY.facebook !== "#" || COMPANY.instagram !== "#" || COMPANY.youtube !== "#") && (
                                  <div className="tg-footer-social">
                                     {COMPANY.facebook !== "#" && (
-                                       <Link href={COMPANY.facebook}><i className="fa-brands fa-facebook-f"></i></Link>
+                                       <Link href={COMPANY.facebook} aria-label="Facebook">
+                                          <FacebookIcon size={16} />
+                                       </Link>
                                     )}
                                     {COMPANY.instagram !== "#" && (
-                                       <Link href={COMPANY.instagram}><i className="fa-brands fa-instagram"></i></Link>
+                                       <Link href={COMPANY.instagram} aria-label="Instagram">
+                                          <InstagramIcon size={16} />
+                                       </Link>
                                     )}
                                     {COMPANY.youtube !== "#" && (
-                                       <Link href={COMPANY.youtube}><i className="fa-brands fa-youtube"></i></Link>
+                                       <Link href={COMPANY.youtube} aria-label="YouTube">
+                                          <YoutubeIcon size={16} />
+                                       </Link>
                                     )}
                                  </div>
                               )}
@@ -73,10 +79,7 @@ const FooterThree = () => {
                                  <li>
                                     <Link className="d-flex" href={COMPANY.mapLink}>
                                        <span className="mr-15">
-                                          <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M19.0013 10.0608C19.0013 16.8486 10.3346 22.6668 10.3346 22.6668C10.3346 22.6668 1.66797 16.8486 1.66797 10.0608C1.66797 7.74615 2.58106 5.52634 4.20638 3.88965C5.83169 2.25297 8.03609 1.3335 10.3346 1.3335C12.6332 1.3335 14.8376 2.25297 16.4629 3.88965C18.0882 5.52634 19.0013 7.74615 19.0013 10.0608Z" stroke="white" strokeWidth="1.73333" strokeLinecap="round" strokeLinejoin="round" />
-                                             <path d="M10.3346 12.9699C11.9301 12.9699 13.2235 11.6674 13.2235 10.0608C13.2235 8.45412 11.9301 7.15168 10.3346 7.15168C8.73915 7.15168 7.44575 8.45412 7.44575 10.0608C7.44575 11.6674 8.73915 12.9699 10.3346 12.9699Z" stroke="white" strokeWidth="1.73333" strokeLinecap="round" strokeLinejoin="round" />
-                                          </svg>
+                                          <MapPin size={20} strokeWidth={1.75} color="white" aria-hidden="true" />
                                        </span>
                                        {COMPANY.address}
                                     </Link>
@@ -84,16 +87,14 @@ const FooterThree = () => {
                                  <li>
                                     <Link className="d-flex" href={`tel:${COMPANY.phoneTel}`}>
                                        <span className="mr-15">
-                                          <i className="fa-sharp text-white fa-solid fa-phone"></i>
+                                          <Phone size={18} strokeWidth={1.75} color="white" aria-hidden="true" />
                                        </span>
                                        {COMPANY.phone}
                                     </Link>
                                  </li>
                                  <li className="d-flex">
                                     <span className="mr-15">
-                                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M11.9987 5.60006V12.0001L16.2654 14.1334M22.6654 12.0002C22.6654 17.8912 17.8897 22.6668 11.9987 22.6668C6.10766 22.6668 1.33203 17.8912 1.33203 12.0002C1.33203 6.10912 6.10766 1.3335 11.9987 1.3335C17.8897 1.3335 22.6654 6.10912 22.6654 12.0002Z" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                       </svg>
+                                       <Clock size={20} strokeWidth={1.75} color="white" aria-hidden="true" />
                                     </span>
                                     <p className="mb-0">
                                        {t("footer.hours")}<br />

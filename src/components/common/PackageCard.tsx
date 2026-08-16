@@ -28,7 +28,7 @@ const PackageCard = ({
          <div className="tg-listing-card-content p-relative">
             <div className="tg-listing-2-price-wrap text-center">
                <div className="tg-listing-2-price">
-                  <span className="new">{item.price.toLocaleString()}</span>
+                  <span className="new">BDT {item.price.toLocaleString()}</span>
                   <span className="shift">{priceSuffix}</span>
                </div>
             </div>

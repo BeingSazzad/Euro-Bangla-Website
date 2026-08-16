@@ -2,9 +2,7 @@
 import Image, { StaticImageData } from "next/image";
 import { JSX } from "react";
 import Link from "next/link";
-import Process7 from "@/svg/home-one/Process7";
-import Process8 from "@/svg/home-one/Process8";
-import Process9 from "@/svg/home-one/Process9";
+import { ClipboardList, MessageSquareText, BadgeCheck } from "lucide-react";
 import { useT } from "@/i18n/LanguageProvider";
 
 import process_1 from "@/assets/img/chose/chose-2/thumb-1.jpg"
@@ -20,6 +18,8 @@ interface DataType {
    desc?: string;
 }
 
+const processIcon = { size: 44, strokeWidth: 1.5, "aria-hidden": true as const };
+
 const process_data: DataType[] = [
    {
       id: 1,
@@ -27,7 +27,7 @@ const process_data: DataType[] = [
    },
    {
       id: 2,
-      icon: (<><Process7 /></>),
+      icon: <ClipboardList {...processIcon} />,
       title: "home.process1",
       desc: "home.processDesc1"
    },
@@ -37,7 +37,7 @@ const process_data: DataType[] = [
    },
    {
       id: 4,
-      icon: (<><Process8 /></>),
+      icon: <MessageSquareText {...processIcon} />,
       title: "home.process2",
       desc: "home.processDesc2"
    },
@@ -47,7 +47,7 @@ const process_data: DataType[] = [
    },
    {
       id: 6,
-      icon: (<><Process9 /></>),
+      icon: <BadgeCheck {...processIcon} />,
       title: "home.process3",
       desc: "home.processDesc3"
    },

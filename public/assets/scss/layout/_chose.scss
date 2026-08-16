@@ -313,12 +313,15 @@
             background: var(--tg-common-white);
             & .icon{
                 border-radius: 10px;
-                background: #f0e9ff;
+                background: rgba(0, 71, 171, 0.08);
+                color: #0047AB;
                 width: 60px;
                 height: 60px;
                 text-align: center;
-                display: inline-block;
-                line-height: 60px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
             }
             & p{
                 line-height: 28px;

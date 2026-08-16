@@ -1,16 +1,36 @@
-"use client"
-import { useState } from "react";
+"use client";
+
+import { useRef, useState } from "react";
 import Link from "next/link";
-import { useT } from "@/i18n/LanguageProvider"
-import { FAQ_ITEMS } from "@/data/faqContent"
-import { COMPANY, whatsappLink } from "@/data/company"
+import { ChevronDown } from "lucide-react";
+import { useT } from "@/i18n/LanguageProvider";
+import { FAQ_ITEMS } from "@/data/faqContent";
+import { COMPANY, whatsappLink } from "@/data/company";
+
+const INITIAL_VISIBLE = 6;
 
 const FaqArea = () => {
    const { t } = useT();
-   const [open, setOpen] = useState<number | null>(1);
+   const [open, setOpen] = useState<number | null>(null);
+   const [expanded, setExpanded] = useState(false);
+   const listRef = useRef<HTMLDivElement>(null);
+
+   const hasMore = FAQ_ITEMS.length > INITIAL_VISIBLE;
+   const visibleItems = expanded ? FAQ_ITEMS : FAQ_ITEMS.slice(0, INITIAL_VISIBLE);
+   const hiddenCount = Math.max(FAQ_ITEMS.length - INITIAL_VISIBLE, 0);
 
    const toggle = (id: number) => {
       setOpen((prev) => (prev === id ? null : id));
+   };
+
+   const onToggleList = () => {
+      if (expanded) {
+         setExpanded(false);
+         setOpen(null);
+         listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+         return;
+      }
+      setExpanded(true);
    };
 
    return (
@@ -23,25 +43,30 @@ const FaqArea = () => {
                         <h5 className="tg-section-subtitle mb-15">{t("faq.subtitle")}</h5>
                         <h2 className="mb-0 text-capitalize">{t("faq.title")}</h2>
                      </div>
-                     <div className="ebt-faq-list">
-                        {FAQ_ITEMS.map((item) => {
+
+                     <div className="ebt-faq-list" ref={listRef}>
+                        {visibleItems.map((item) => {
                            const isOpen = open === item.id;
+                           const panelId = `faq-panel-${item.id}`;
                            return (
                               <div key={item.id} className={`ebt-faq-item ${isOpen ? "is-open" : ""}`}>
                                  <button
                                     type="button"
                                     className="ebt-faq-trigger"
                                     aria-expanded={isOpen}
+                                    aria-controls={panelId}
                                     onClick={() => toggle(item.id)}
                                  >
                                     <span className="ebt-faq-question">{item.question}</span>
                                     <span className="ebt-faq-icon" aria-hidden="true">
-                                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                          <path d="M2 5L7 10L12 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                       </svg>
+                                       <ChevronDown size={18} strokeWidth={2.25} />
                                     </span>
                                  </button>
-                                 <div className={`ebt-faq-panel ${isOpen ? "is-open" : ""}`}>
+                                 <div
+                                    id={panelId}
+                                    className={`ebt-faq-panel ${isOpen ? "is-open" : ""}`}
+                                    role="region"
+                                 >
                                     <div className="ebt-faq-answer">
                                        <p className="mb-0">{item.answer}</p>
                                     </div>
@@ -50,6 +75,28 @@ const FaqArea = () => {
                            );
                         })}
                      </div>
+
+                     {hasMore && (
+                        <div className="ebt-faq-more text-center">
+                           <button
+                              type="button"
+                              className="ebt-faq-more-btn"
+                              onClick={onToggleList}
+                              aria-expanded={expanded}
+                           >
+                              {expanded
+                                 ? t("faq.showLess")
+                                 : `${t("faq.showMore")} (${hiddenCount})`}
+                              <ChevronDown
+                                 className={`ebt-faq-more-chevron ${expanded ? "is-up" : ""}`}
+                                 size={16}
+                                 strokeWidth={1.75}
+                                 aria-hidden="true"
+                              />
+                           </button>
+                        </div>
+                     )}
+
                      <div className="ebt-faq-cta text-center mt-60">
                         <h3 className="ebt-faq-cta-title mb-10">{t("faq.helpTitle")}</h3>
                         <p className="ebt-faq-cta-text mb-25">{t("faq.helpText")}</p>
@@ -72,7 +119,7 @@ const FaqArea = () => {
             </div>
          </div>
       </div>
-   )
-}
+   );
+};
 
-export default FaqArea
+export default FaqArea;
