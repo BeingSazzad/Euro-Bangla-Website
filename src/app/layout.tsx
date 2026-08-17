@@ -27,7 +27,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="icon" href="/icons/icon-192.png" type="image/png" sizes="192x192" />
       </head>
-      <body suppressHydrationWarning={true}>
+      <body className="ebt-site" suppressHydrationWarning={true}>
         <Provider store={store}>
           <LanguageProvider>
             {children}

@@ -50,10 +50,12 @@ const BusPage = () => {
                      </div>
                   </div>
                   <div className="col-lg-4">
-                     <h3 className="mb-20">{t("inquiry.title")}</h3>
-                     <Suspense>
-                        <InquiryForm defaultService="bus" />
-                     </Suspense>
+                     <div className="ebt-pkg-side">
+                        <h2>{t("inquiry.title")}</h2>
+                        <Suspense>
+                           <InquiryForm compact defaultService="bus" />
+                        </Suspense>
+                     </div>
                   </div>
                </div>
             </div>

@@ -2,7 +2,6 @@ import Link from "next/link"
 import { X } from "lucide-react"
 import SiteLogo from "@/components/common/SiteLogo"
 import MobileMenu from "./MobileMenu";
-import { useState } from "react";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import { useT } from "@/i18n/LanguageProvider";
 import { COMPANY, whatsappLink } from "@/data/company";
@@ -14,40 +13,27 @@ interface MobileSidebarProps {
 }
 
 const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
-
-   const [searchValue, setSearchValue] = useState("");
    const { t } = useT();
-
-   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchValue(event.target.value);
-   };
-
-   const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-      setSearchValue('');
-      setOffCanvas(false);
-   };
 
    return (
       <div className={offCanvas ? "mobile-menu-visible" : ""}>
          <div className="tgmobile__menu">
             <nav className="tgmobile__menu-box">
-               <div onClick={() => setOffCanvas(false)} className="close-btn" role="button" aria-label="Close">
-                  <X size={22} strokeWidth={1.75} aria-hidden="true" />
-               </div>
-               <div className="nav-logo d-flex align-items-center justify-content-between">
-                  <Link href="/"><SiteLogo height={44} /></Link>
-                  <LanguageSwitcher />
-               </div>
-               <div className="tgmobile__search">
-                  <form onSubmit={handleSubmit}>
-                     <input
-                        type="text"
-                        placeholder={t("header.searchHere")}
-                        value={searchValue}
-                        onChange={handleSearchChange}
-                     />
-                  </form>
+               <div className="ebt-mobile-head">
+                  <Link href="/" onClick={() => setOffCanvas(false)}>
+                     <SiteLogo height={40} />
+                  </Link>
+                  <div className="ebt-mobile-head-actions">
+                     <LanguageSwitcher />
+                     <button
+                        type="button"
+                        className="ebt-mobile-close"
+                        onClick={() => setOffCanvas(false)}
+                        aria-label={t("header.close")}
+                     >
+                        <X size={20} strokeWidth={2} aria-hidden="true" />
+                     </button>
+                  </div>
                </div>
                <div className="tgmobile__menu-outer">
                   <MobileMenu />

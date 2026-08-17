@@ -47,7 +47,7 @@ const ContactArea = () => {
                   </div>
                </div>
                <div className="col-lg-7">
-                  <div className="tg-contact-content-wrap ml-40 mb-40">
+                  <div className="tg-contact-content-wrap mb-40">
                      <h3 className="tg-contact-title mb-15">{t("contact.title")}</h3>
                      <p className="mb-30">{t("contact.text")}</p>
                      <Suspense>

@@ -1,0 +1,432 @@
+@use '../utils' as *;
+
+/*================================================
+   Loaded last so product overrides beat the theme
+================================================*/
+html,
+.ebt-site {
+   overflow-x: clip;
+}
+
+.ebt-process {
+   .tg-chose-2-thumb,
+   .tg-chose-2-content {
+      height: 300px;
+   }
+
+   .tg-chose-2-thumb {
+      position: relative;
+      overflow: hidden;
+   }
+
+   @media (max-width: 1199.98px) {
+      .tg-chose-2-thumb,
+      .tg-chose-2-content {
+         height: 280px;
+      }
+   }
+
+   @media (max-width: 767.98px) {
+      .tg-chose-2-thumb {
+         height: 200px;
+      }
+
+      .tg-chose-2-content {
+         height: auto;
+      }
+   }
+}
+
+.ebt-site img,
+.ebt-site video,
+.ebt-site iframe,
+.ebt-site svg,
+.ebt-site table {
+   max-width: 100%;
+}
+
+.ebt-site iframe {
+   width: 100%;
+}
+
+.container-1545,
+.container-1630 {
+   padding-left: 16px;
+   padding-right: 16px;
+}
+
+.tg-header-logo,
+.tgmenu__wrap .logo,
+.ebt-header-logo {
+   min-width: 0;
+   max-width: 100%;
+
+   img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 48px !important;
+   }
+}
+
+.tg-menu-right-action {
+   min-width: 0;
+   flex-wrap: nowrap;
+}
+
+.tg-contact-content-wrap {
+   margin-left: 0;
+}
+
+.tg-contact-map {
+   overflow: hidden;
+   max-width: 100%;
+}
+
+.tg-hero-2-content {
+   padding-left: 24px;
+   padding-right: 24px;
+}
+
+.tg-hero-2-title,
+.tg-hero-2-subtitle,
+.ebt-pkg-title,
+.ebt-pkg-location,
+.tg-listing-card-title,
+.tg-banner-3-big-content h2,
+.tg-breadcrumb-title {
+   overflow-wrap: anywhere;
+   word-break: break-word;
+}
+
+.tg-booking-form-tabs .nav,
+.tg-booking-form-tabs .nav-tab {
+   flex-wrap: wrap;
+   justify-content: center;
+   row-gap: 8px;
+}
+
+.ebt-pkg-head {
+   @media (max-width: 991.98px) {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+}
+
+.ebt-pkg-location {
+   flex-wrap: wrap;
+   white-space: normal;
+}
+
+.ebt-pkg-price-block {
+   white-space: normal;
+}
+
+.ebt-pkg-side .ebt-inq-split {
+   grid-template-columns: 1fr;
+}
+
+.ebt-about-collage {
+   overflow: hidden;
+}
+
+.ebt-tour-card .tg-listing-card-duration-tour span {
+   white-space: normal;
+   overflow-wrap: anywhere;
+}
+
+.ebt-booking-wrap .tg-booking-form-title {
+   margin-left: 0;
+}
+
+.ebt-booking-wrap .tg-booking-add-input-date .input,
+.ebt-booking-wrap .tg-booking-add-input-date .flatpickr-input {
+   width: 100% !important;
+}
+
+.ebt-review-text {
+   min-height: 0;
+}
+
+.ebt-reviews-slider {
+   overflow: hidden;
+}
+
+.tg-footer-form {
+   max-width: 100%;
+
+   input {
+      max-width: 100%;
+   }
+}
+
+.tgmobile__menu {
+   width: min(340px, 100%);
+   padding-right: 0;
+}
+
+.tgmobile__menu .ebt-mobile-head .tg-lang-switcher {
+   margin: 0;
+}
+
+.tgmobile__menu .ebt-mobile-head .tg-lang-switcher-menu {
+   left: auto;
+   right: 0;
+}
+
+.ebt-mobile-head img {
+   max-width: min(148px, 46vw);
+   max-height: 40px;
+}
+
+@media (max-width: 1199.98px) {
+   .tg-header-logo img,
+   .tgmenu__wrap .logo img,
+   .ebt-header-logo img {
+      max-height: 40px !important;
+   }
+
+   .tg-lang-switcher {
+      margin-right: 4px;
+   }
+
+   .tg-hero-2-content {
+      padding: 120px 20px 100px;
+      border-radius: 24px;
+   }
+
+   .tg-hero-2-title {
+      font-size: 42px;
+      line-height: 1.15;
+   }
+
+   .tg-banner-3-big-content h2 {
+      font-size: 36px;
+      line-height: 1.1;
+   }
+
+   .tg-banner-3-content {
+      margin-right: 0;
+      border-radius: 30px 30px 0 0;
+   }
+
+   .tg-contact-title {
+      font-size: 28px;
+   }
+
+   .ebt-pkg-gallery--1 {
+      min-height: 240px;
+   }
+
+   .ebt-pkg-gallery-item {
+      min-height: 160px;
+   }
+
+   .ebt-pkg-meta {
+      padding: 14px 16px;
+
+      li {
+         flex: 1 1 calc(50% - 16px);
+         min-width: 140px;
+      }
+   }
+
+   .tg-booking-form-wrap {
+      padding: 18px 18px 22px;
+   }
+
+   .tg-booking-form-tabs .nav-link {
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 14px;
+   }
+}
+
+@media (max-width: 991.98px) {
+   .tg-banner-space {
+      margin-bottom: -72px;
+   }
+
+   .tg-banner-transparent-bg {
+      height: 72px;
+   }
+
+   .tg-banner-3-big-content {
+      border-radius: 0 0 30px 30px;
+      min-height: 240px;
+      padding: 48px 20px;
+   }
+
+   .tg-contact-info-wrap {
+      padding: 28px 24px 24px;
+   }
+
+   .tg-chose-2-content {
+      padding-left: 16px;
+      padding-right: 16px;
+   }
+
+   .ebt-about-copy-text {
+      max-width: none;
+   }
+
+   .tg-booking-form-space {
+      margin-top: -36px;
+   }
+}
+
+@media (max-width: 767.98px) {
+   .tg-header-logo img,
+   .tgmenu__wrap .logo img,
+   .ebt-header-logo img,
+   .ebt-footer .tg-footer-logo img {
+      max-height: 36px !important;
+      max-width: 100% !important;
+   }
+
+   .tg-hero-2-content {
+      padding: 88px 16px 72px;
+      border-radius: 18px;
+   }
+
+   .tg-hero-2-title {
+      font-size: 32px;
+      line-height: 1.15;
+   }
+
+   .tg-hero-2-subtitle {
+      font-size: 15px;
+      padding: 0 4px;
+   }
+
+   .tg-banner-3-big-content {
+      min-height: 200px;
+      padding: 36px 16px;
+
+      h2 {
+         font-size: 28px;
+      }
+   }
+
+   .tg-banner-3-content {
+      padding: 40px 16px;
+   }
+
+   .ebt-pkg-title {
+      font-size: 24px;
+   }
+
+   .ebt-pkg-price-block strong {
+      font-size: 26px;
+   }
+
+   .ebt-pkg-meta li {
+      flex: 1 1 100%;
+      min-width: 0;
+   }
+
+   .ebt-pkg-gallery--3 {
+      grid-template-columns: 1fr;
+      grid-template-rows: 200px 140px 140px;
+
+      .is-hero {
+         grid-column: 1;
+         grid-row: 1;
+      }
+   }
+
+   .ebt-breadcrumb .tg-breadcrumb-title {
+      font-size: 24px;
+      padding: 0 8px;
+   }
+
+   .tg-listing-section-title h2,
+   .tg-destination-section-title h2,
+   .tg-chose-section-title h2,
+   .ebt-home-block-title {
+      font-size: 28px;
+   }
+
+   .tg-booking-form-tabs .nav-link {
+      padding-left: 8px;
+      padding-right: 8px;
+      font-size: 13px;
+   }
+
+   .tg-booking-form-wrap {
+      padding: 16px 12px 18px;
+   }
+
+   .ebt-inq-split {
+      grid-template-columns: 1fr;
+   }
+
+   .tg-contact-form .input,
+   .tg-contact-form .textarea,
+   .tg-contact-form select.input {
+      max-width: 100%;
+   }
+
+   .ebt-visa-cta-box {
+      padding: 24px 18px;
+   }
+
+   .ebt-visa-cta-media {
+      min-height: 220px;
+   }
+
+   .flatpickr-calendar {
+      max-width: calc(100vw - 24px);
+   }
+}
+
+@media (max-width: 575.98px) {
+   .tg-header-lg-space {
+      padding-top: 10px;
+      padding-bottom: 10px;
+   }
+
+   .tg-menu-right-action {
+      gap: 2px;
+   }
+
+   .tg-header-menu-bar.pl-20 {
+      padding-left: 8px;
+   }
+
+   .tgmenu-offcanvas-open-btn span {
+      width: 22px;
+   }
+
+   .tgmobile__menu {
+      width: 100%;
+   }
+
+   .ebt-dest-card {
+      flex-basis: 240px;
+      width: 240px;
+   }
+
+   .tg-booking-form-item {
+      padding-left: 0;
+      padding-right: 0;
+   }
+
+   .tg-hero-2-title {
+      font-size: 28px;
+   }
+
+   .ebt-tour-card .tg-listing-card-content {
+      padding-left: 16px;
+      padding-right: 14px;
+   }
+
+   .ebt-pkg-side {
+      padding: 22px 16px 18px;
+   }
+
+   .ebt-whatsapp-float {
+      right: 12px;
+      bottom: 76px;
+   }
+}

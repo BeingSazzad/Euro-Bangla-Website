@@ -20,7 +20,7 @@ const SiteLogo = ({ height = 52, className, priority = false }: SiteLogoProps) =
          height={height}
          className={className}
          priority={priority}
-         style={{ width: "auto", height: `${height}px` }}
+         style={{ width: "auto", height: `${height}px`, maxWidth: "100%" }}
       />
    );
 };

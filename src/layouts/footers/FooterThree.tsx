@@ -60,7 +60,7 @@ const FooterThree = () => {
                            </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                           <div className="tg-footer-widget tg-footer-link ml-80 mb-40">
+                           <div className="tg-footer-widget tg-footer-link ebt-footer-links mb-40">
                               <h3 className="tg-footer-widget-title mb-25">{t("footer.quickLinks")}</h3>
                               <ul>
                                  <li><Link href="/">{t("footer.home")}</Link></li>
@@ -113,7 +113,6 @@ const FooterThree = () => {
                                  <li><Link href="/faq">{t("footer.faq")}</Link></li>
                                  <li><Link href="/privacy">{t("footer.privacy")}</Link></li>
                                  <li><Link href="/terms">{t("footer.terms")}</Link></li>
-                                 <li><Link href="/cookies">{t("footer.cookies")}</Link></li>
                               </ul>
                            </div>
                         </div>

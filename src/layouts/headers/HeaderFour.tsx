@@ -32,13 +32,13 @@ const HeaderFour = () => {
                            </nav>
                         </div>
                      </div>
-                     <div className="col-xl-2 col-4">
-                        <div className="logo tg-header-logo text-center p-relative z-index-1">
+                     <div className="col-xl-2 col-5">
+                        <div className="logo tg-header-logo ebt-header-logo text-center p-relative z-index-1">
                            <span className="tg-header-logo-bg d-none d-xl-block"></span>
                            <Link href="/"><SiteLogo priority /></Link>
                         </div>
                      </div>
-                     <div className="col-xl-5 col-8">
+                     <div className="col-xl-5 col-7">
                         <div className="tg-menu-right-action tg-menu-right-action-2 d-flex align-items-center justify-content-end">
                            <LanguageSwitcher />
                            <HeaderWhatsApp className="ml-20 d-none d-xl-flex" />

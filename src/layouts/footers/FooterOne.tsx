@@ -59,7 +59,6 @@ const FooterOne = () => {
                               <li><Link href="/faq">{t("footer.faq")}</Link></li>
                               <li><Link href="/privacy">{t("footer.privacy")}</Link></li>
                               <li><Link href="/terms">{t("footer.terms")}</Link></li>
-                              <li><Link href="/cookies">{t("footer.cookies")}</Link></li>
                            </ul>
                         </div>
                      </div>

@@ -19,20 +19,21 @@ const PackageCard = ({
    priceSuffix: string;
 }) => {
    const { locale, t } = useT();
+   const title = tx(item.title, locale);
 
    return (
-      <div className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card mb-25 w-100">
+      <Link href={href} className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card mb-25 w-100" aria-label={title}>
          <div className="tg-listing-card-thumb tg-listing-2-card-thumb ebt-tour-card-thumb fix p-relative">
-            <Link href={href} className="ebt-tour-card-media">
+            <span className="ebt-tour-card-media">
                <Image
                   className="tg-card-border w-100"
                   src={item.thumb}
-                  alt={tx(item.title, locale)}
+                  alt=""
                   sizes="(max-width: 768px) 100vw, 50vw"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                />
                {item.tag && <span className="tg-listing-item-price-discount shape-2">{tx(item.tag, locale)}</span>}
-            </Link>
+            </span>
             <div className="tg-listing-2-mask" aria-hidden="true">
                <Image className="w-100" src={shape} alt="" />
             </div>
@@ -44,9 +45,7 @@ const PackageCard = ({
                   <span className="shift">{priceSuffix}</span>
                </div>
             </div>
-            <h4 className="tg-listing-card-title">
-               <Link href={href}>{tx(item.title, locale)}</Link>
-            </h4>
+            <h4 className="tg-listing-card-title">{title}</h4>
             <p className="ebt-tour-card-summary mb-10">{tx(item.summary, locale)}</p>
             <div className="tg-listing-card-duration-tour">
                <span className="tg-listing-card-duration-map mb-0">
@@ -60,13 +59,8 @@ const PackageCard = ({
                   </span>
                )}
             </div>
-            <div className="ebt-tour-card-cta">
-               <Link href={href} className="tg-btn">
-                  {t("svc.details")}
-               </Link>
-            </div>
          </div>
-      </div>
+      </Link>
    );
 };
 

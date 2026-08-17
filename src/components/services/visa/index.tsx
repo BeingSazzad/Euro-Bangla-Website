@@ -24,36 +24,35 @@ const VisaPage = () => {
                </div>
 
                <div className="row align-items-stretch">
-                  {visaTypes.map((item) => (
-                     <div key={item.slug} className="col-lg-6 d-flex">
-                        <article className="ebt-visa-type-card mb-30 w-100">
-                           <Link href={`/visa/${item.slug}`} className="ebt-visa-type-media">
-                              <Image
-                                 src={item.thumb}
-                                 alt={tx(item.title, locale)}
-                                 fill
-                                 sizes="(max-width: 992px) 100vw, 50vw"
-                              />
-                              <span className="ebt-visa-type-badge">{tx(item.title, locale)}</span>
+                  {visaTypes.map((item) => {
+                     const title = tx(item.title, locale);
+
+                     return (
+                        <div key={item.slug} className="col-lg-6 d-flex">
+                           <Link href={`/visa/${item.slug}`} className="ebt-visa-type-card mb-30 w-100" aria-label={title}>
+                              <span className="ebt-visa-type-media">
+                                 <Image
+                                    src={item.thumb}
+                                    alt=""
+                                    fill
+                                    sizes="(max-width: 992px) 100vw, 50vw"
+                                 />
+                                 <span className="ebt-visa-type-badge">{title}</span>
+                              </span>
+                              <div className="ebt-visa-type-body">
+                                 <h3 className="ebt-visa-type-title">{title}</h3>
+                                 <p className="ebt-visa-type-text">{tx(item.summary, locale)}</p>
+                                 <p className="ebt-visa-type-dest">
+                                    <MapPin size={15} strokeWidth={1.75} aria-hidden="true" />
+                                    <span>
+                                       <strong>{t("svc.destinations")}:</strong> {tx(item.destinations, locale)}
+                                    </span>
+                                 </p>
+                              </div>
                            </Link>
-                           <div className="ebt-visa-type-body">
-                              <h3 className="ebt-visa-type-title">
-                                 <Link href={`/visa/${item.slug}`}>{tx(item.title, locale)}</Link>
-                              </h3>
-                              <p className="ebt-visa-type-text">{tx(item.summary, locale)}</p>
-                              <p className="ebt-visa-type-dest">
-                                 <MapPin size={15} strokeWidth={1.75} aria-hidden="true" />
-                                 <span>
-                                    <strong>{t("svc.destinations")}:</strong> {tx(item.destinations, locale)}
-                                 </span>
-                              </p>
-                              <Link className="tg-btn" href={`/visa/${item.slug}`}>
-                                 {t("svc.details")}
-                              </Link>
-                           </div>
-                        </article>
-                     </div>
-                  ))}
+                        </div>
+                     );
+                  })}
                </div>
 
                <div className="row justify-content-center pt-30">

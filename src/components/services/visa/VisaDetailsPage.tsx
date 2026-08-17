@@ -67,7 +67,7 @@ const VisaDetailsPage = ({ slug }: { slug: string }) => {
 
                   <div className="row justify-content-center">
                      {visaDestinations.map((dest) => (
-                        <div key={dest.id} className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div key={dest.id} className="col-6 col-md-4 col-lg-3">
                            <Link
                               href={`/inquiry?service=visa&destination=${encodeURIComponent(tx(dest.name, locale))}&message=${encodeURIComponent(title)}`}
                               className="ebt-visa-country"

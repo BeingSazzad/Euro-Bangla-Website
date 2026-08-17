@@ -56,7 +56,7 @@ const process_data: DataType[] = [
 const Process = () => {
    const { t } = useT();
    return (
-      <div className="tg-chose-area p-relative z-index-9 ebt-section">
+      <div className="tg-chose-area ebt-process p-relative z-index-9 ebt-section">
          <Image className="tg-chose-2-shape d-none d-lg-block" src={shape} alt="shape" />
          <div className="container">
             <div className="col-12">
@@ -70,8 +70,14 @@ const Process = () => {
                {process_data.map((item) => (
                   item.thumb ? (
                      <div key={item.id} className="col-lg-4 col-md-6 col-sm-6 mb-25">
-                        <div className="tg-chose-2-thumb h-100 wow fadeInLeft" data-wow-delay=".4s" data-wow-duration=".6s">
-                           <Image className="w-100 h-100" src={item.thumb} alt="" style={{ objectFit: "cover" }} />
+                        <div className="tg-chose-2-thumb wow fadeInLeft" data-wow-delay=".4s" data-wow-duration=".6s">
+                           <Image
+                              src={item.thumb}
+                              alt=""
+                              fill
+                              sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
+                              style={{ objectFit: "cover" }}
+                           />
                         </div>
                      </div>
                   ) : (

@@ -165,10 +165,10 @@ const InquiryForm = ({
                      <div className="col-lg-6 mb-25">
                         <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
                      </div>
-                     <div className="col-lg-3 mb-25">
+                     <div className="col-md-6 mb-25">
                         <input className="input" name="dates" type="text" defaultValue={initial.dates} placeholder={t("inquiry.dates")} />
                      </div>
-                     <div className="col-lg-3 mb-25">
+                     <div className="col-md-6 mb-25">
                         <input className="input" name="passengers" type="text" defaultValue={initial.passengers} placeholder={t("inquiry.passengers")} />
                      </div>
                   </>

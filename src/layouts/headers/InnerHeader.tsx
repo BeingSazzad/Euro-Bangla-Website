@@ -25,7 +25,7 @@ const InnerHeader = () => {
                      <div className="row align-items-center">
                         <div className="col-lg-8 col-5">
                            <div className="tgmenu__wrap d-flex align-items-center">
-                              <div className="logo flex-auto">
+                              <div className="logo ebt-header-logo">
                                  <Link href="/"><SiteLogo priority /></Link>
                               </div>
                               <nav className="tgmenu__nav ml-90 d-none d-xl-block">
@@ -43,7 +43,7 @@ const InnerHeader = () => {
                                  <button
                                     type="button"
                                     onClick={() => setSidebar(true)}
-                                    className="tgmenu-offcanvas-open-btn menu-tigger"
+                                    className="tgmenu-offcanvas-open-btn menu-tigger mobile-nav-black"
                                     aria-label={t("header.contactInfo")}
                                  >
                                     <span></span>
@@ -52,7 +52,7 @@ const InnerHeader = () => {
                                  </button>
                               </div>
                               <div className="tg-header-menu-bar lh-1 p-relative ml-10 d-block d-xl-none">
-                                 <button onClick={() => setOffCanvas(true)} className="tgmenu-offcanvas-open-btn mobile-nav-toggler">
+                                 <button onClick={() => setOffCanvas(true)} className="tgmenu-offcanvas-open-btn mobile-nav-toggler mobile-nav-black">
                                     <span></span>
                                     <span></span>
                                     <span></span>

@@ -12,6 +12,55 @@
    }
 }
 
+.ebt-dest-scroll {
+   overflow-x: auto;
+   overflow-y: hidden;
+   padding: 4px 2px 14px;
+   margin: 0 -2px;
+   scroll-snap-type: x mandatory;
+   -webkit-overflow-scrolling: touch;
+   scrollbar-width: thin;
+   scrollbar-color: #0047AB #e8eef8;
+
+   &::-webkit-scrollbar {
+      height: 8px;
+   }
+
+   &::-webkit-scrollbar-track {
+      background: #e8eef8;
+      border-radius: 999px;
+   }
+
+   &::-webkit-scrollbar-thumb {
+      background: #0047AB;
+      border-radius: 999px;
+   }
+}
+
+.ebt-dest-track {
+   display: flex;
+   align-items: stretch;
+   gap: 24px;
+   width: max-content;
+   min-width: 100%;
+}
+
+.ebt-dest-card {
+   flex: 0 0 300px;
+   width: 300px;
+   scroll-snap-align: start;
+
+   .tg-destination-item {
+      height: 100%;
+      margin-bottom: 0;
+   }
+
+   @media #{$xs} {
+      flex-basis: 260px;
+      width: 260px;
+   }
+}
+
 .ebt-section-sm {
    padding-top: 80px;
    padding-bottom: 80px;
@@ -188,6 +237,40 @@
    display: inline-flex;
    align-items: center;
    justify-content: center;
+}
+
+.ebt-mobile-head {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 12px;
+   padding: 22px 20px 18px;
+}
+
+.ebt-mobile-head-actions {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   flex-shrink: 0;
+}
+
+.ebt-mobile-close {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 36px;
+   height: 36px;
+   border: 1px solid #0047AB;
+   border-radius: 50%;
+   background: transparent;
+   color: #0047AB;
+   padding: 0;
+   cursor: pointer;
+   line-height: 1;
+}
+
+.tgmobile__menu .close-btn {
+   display: none;
 }
 
 .scroll__top {
@@ -1180,12 +1263,14 @@ body:has(.ebt-cookie-banner) {
 
    span {
       display: inline-flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 6px;
       margin-bottom: 0;
       color: #475467;
       font-size: 13px;
       line-height: 1.4;
+      white-space: normal;
+      overflow-wrap: anywhere;
 
       svg {
          flex-shrink: 0;
@@ -1933,6 +2018,73 @@ body:has(.ebt-cookie-banner) {
 
 .ebt-inq-split {
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-template-columns: 1fr;
    gap: 12px;
+}
+
+.ebt-filter-row {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+}
+
+.ebt-filter-row .tg-btn {
+   margin: 0;
+}
+
+.tg-hero-2-content {
+   position: relative;
+   isolation: isolate;
+   background-size: cover;
+   background-position: 62% 42%;
+   background-repeat: no-repeat;
+
+   &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(
+         ellipse at 50% 42%,
+         rgba(8, 24, 56, 0.42) 0%,
+         rgba(8, 24, 56, 0.18) 52%,
+         rgba(8, 24, 56, 0.32) 100%
+      );
+   }
+
+   > * {
+      position: relative;
+      z-index: 1;
+   }
+}
+
+.tg-hero-2-title,
+.tg-hero-2-subtitle {
+   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+.tg-hero-2-subtitle {
+   color: #fff;
+   max-width: 520px;
+   margin-left: auto;
+   margin-right: auto;
+   font-size: 1.05rem;
+}
+
+.ebt-footer-links {
+   margin-left: 0;
+}
+
+@media #{$xl} {
+   .ebt-footer-links {
+      margin-left: 24px;
+   }
+}
+
+@media (min-width: 1400px) {
+   .ebt-footer-links {
+      margin-left: 64px;
+   }
 }

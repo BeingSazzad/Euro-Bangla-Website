@@ -38,7 +38,7 @@ const PackageListing = ({
    const Chip = ({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) => (
       <button
          type="button"
-         className={`tg-btn mb-10 mr-10 ${active ? "" : "tg-btn-transparent"}`}
+         className={`tg-btn ${active ? "" : "tg-btn-transparent"}`}
          onClick={onClick}
          style={{ padding: "8px 16px", minHeight: 0 }}
       >
@@ -59,16 +59,20 @@ const PackageListing = ({
                   {showTourFilters && (
                      <div className="mb-40">
                         <p className="mb-15">{t("svc.filterType")}</p>
-                        <Chip active={category === "all"} onClick={() => setCategory("all")} label={t("svc.all")} />
-                        <Chip active={category === "family"} onClick={() => setCategory("family")} label={t("svc.family")} />
-                        <Chip active={category === "honeymoon"} onClick={() => setCategory("honeymoon")} label={t("svc.honeymoon")} />
-                        <Chip active={category === "group"} onClick={() => setCategory("group")} label={t("svc.group")} />
-                        <p className="mb-15 mt-25">{t("svc.filterRegion")}</p>
-                        <Chip active={region === "all"} onClick={() => setRegion("all")} label={t("svc.all")} />
-                        <Chip active={region === "europe"} onClick={() => setRegion("europe")} label={t("svc.europe")} />
-                        <Chip active={region === "dubai"} onClick={() => setRegion("dubai")} label={t("svc.dubai")} />
-                        <Chip active={region === "turkey"} onClick={() => setRegion("turkey")} label={t("svc.turkey")} />
-                        <Chip active={region === "ksa"} onClick={() => setRegion("ksa")} label={t("svc.ksa")} />
+                        <div className="ebt-filter-row mb-15">
+                           <Chip active={category === "all"} onClick={() => setCategory("all")} label={t("svc.all")} />
+                           <Chip active={category === "family"} onClick={() => setCategory("family")} label={t("svc.family")} />
+                           <Chip active={category === "honeymoon"} onClick={() => setCategory("honeymoon")} label={t("svc.honeymoon")} />
+                           <Chip active={category === "group"} onClick={() => setCategory("group")} label={t("svc.group")} />
+                        </div>
+                        <p className="mb-15 mt-10">{t("svc.filterRegion")}</p>
+                        <div className="ebt-filter-row mb-0">
+                           <Chip active={region === "all"} onClick={() => setRegion("all")} label={t("svc.all")} />
+                           <Chip active={region === "europe"} onClick={() => setRegion("europe")} label={t("svc.europe")} />
+                           <Chip active={region === "dubai"} onClick={() => setRegion("dubai")} label={t("svc.dubai")} />
+                           <Chip active={region === "turkey"} onClick={() => setRegion("turkey")} label={t("svc.turkey")} />
+                           <Chip active={region === "ksa"} onClick={() => setRegion("ksa")} label={t("svc.ksa")} />
+                        </div>
                      </div>
                   )}
                   <div className="row align-items-stretch">
@@ -80,10 +84,10 @@ const PackageListing = ({
                   </div>
                </div>
                <div className="col-lg-4">
-                  <div className="tg-contact-content-wrap">
-                     <h3 className="mb-20">{t("inquiry.title")}</h3>
+                  <div className="ebt-pkg-side">
+                     <h2>{t("inquiry.title")}</h2>
                      <Suspense>
-                        <InquiryForm defaultService={service} />
+                        <InquiryForm compact defaultService={service} />
                      </Suspense>
                   </div>
                </div>
