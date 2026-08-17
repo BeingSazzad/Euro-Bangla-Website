@@ -17,6 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cookies",
     "/terms",
     "/faq",
+    "/blog",
+    "/blog/umrah-preparation",
+    "/blog/visa-documents",
+    "/blog/flight-inquiry-tips",
+    "/blog/europe-family-tour",
+    "/blog/dubai-hotel-quote",
+    "/blog/bus-ticket-inquiry",
   ];
   return routes.map((route) => ({
     url: `${base}${route}`,

@@ -8,28 +8,33 @@ interface DataType {
    title: string;
    /** When true, title/sub_title are shown as raw text (not i18n keys). */
    raw?: boolean;
+   parentHref?: string;
+   parentKey?: string;
 }
-const BreadCrumb = ({ sub_title, title, raw = false }: DataType) => {
+const BreadCrumb = ({ sub_title, title, raw = false, parentHref, parentKey }: DataType) => {
    const { t } = useT();
    const titleLabel = raw ? title : t(title);
    const crumbLabel = raw ? sub_title : t(sub_title);
+   const parentLabel = parentKey ? t(parentKey) : null;
+   const resolvedParent = parentHref || (raw ? "/visa" : "");
+   const resolvedParentLabel = parentLabel || (raw ? t("nav.visa") : "");
 
    return (
-      <div className="tg-breadcrumb-area tg-breadcrumb-spacing-5 fix p-relative z-index-1 include-bg" style={{ backgroundImage: `url(/assets/img/breadcrumb/breadcrumb.jpg)` }}>
+      <div className="tg-breadcrumb-area tg-breadcrumb-spacing-5 ebt-breadcrumb fix p-relative z-index-1 include-bg" style={{ backgroundImage: `url(/assets/img/breadcrumb/breadcrumb.jpg)` }}>
          <div className="tg-hero-top-shadow"></div>
          <div className="tg-breadcrumb-shadow"></div>
          <div className="container">
             <div className="row">
                <div className="col-12">
                   <div className="tg-breadcrumb-content text-center">
-                     <h2 className="tg-breadcrumb-title mb-15 fs-40">{titleLabel}</h2>
+                     <h2 className="tg-breadcrumb-title">{titleLabel}</h2>
                      <div className="tg-breadcrumb-list-4">
                         <ul>
                            <li><Link href="/">{t("page.home")}</Link></li>
                            <li><ChevronRight size={14} strokeWidth={2} aria-hidden="true" /></li>
-                           {raw ? (
+                           {resolvedParent ? (
                               <>
-                                 <li><Link href="/visa">{t("nav.visa")}</Link></li>
+                                 <li><Link href={resolvedParent}>{resolvedParentLabel}</Link></li>
                                  <li><ChevronRight size={14} strokeWidth={2} aria-hidden="true" /></li>
                                  <li>{crumbLabel}</li>
                               </>

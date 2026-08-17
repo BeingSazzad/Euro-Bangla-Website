@@ -71,9 +71,9 @@ const PackageListing = ({
                         <Chip active={region === "ksa"} onClick={() => setRegion("ksa")} label={t("svc.ksa")} />
                      </div>
                   )}
-                  <div className="row">
+                  <div className="row align-items-stretch">
                      {filtered.map((item) => (
-                        <div key={item.slug} className="col-xl-6 col-md-6">
+                        <div key={item.slug} className="col-xl-6 col-md-6 d-flex">
                            <PackageCard item={item} href={`${hrefBase}/${item.slug}`} priceSuffix={priceSuffix} />
                         </div>
                      ))}

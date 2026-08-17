@@ -243,7 +243,7 @@ const GuestField = ({
    title,
    rooms,
    adults,
-   children,
+   childCount,
    showRooms,
    onRooms,
    onAdults,
@@ -253,7 +253,7 @@ const GuestField = ({
    title: string;
    rooms: number;
    adults: number;
-   children: number;
+   childCount: number;
    showRooms: boolean;
    onRooms: (n: number) => void;
    onAdults: (n: number) => void;
@@ -275,15 +275,15 @@ const GuestField = ({
    }, []);
 
    const summary = showRooms
-      ? `${rooms} ${t("search.rooms")}, ${adults} ${t("search.adults")}${children ? `, ${children} ${t("search.children")}` : ""}`
-      : `${adults + children} ${t("inquiry.passengers")}`;
+      ? `${rooms} ${t("search.rooms")}, ${adults} ${t("search.adults")}${childCount ? `, ${childCount} ${t("search.children")}` : ""}`
+      : `${adults + childCount} ${t("inquiry.passengers")}`;
 
    const rows = [
       ...(showRooms
          ? [{ key: "rooms", label: t("search.rooms"), value: rooms, set: onRooms, min: 1 }]
          : []),
       { key: "adults", label: t("search.adults"), value: adults, set: onAdults, min: 1 },
-      { key: "children", label: t("search.children"), value: children, set: onChildren, min: 0 },
+      { key: "children", label: t("search.children"), value: childCount, set: onChildren, min: 0 },
    ];
 
    return (
@@ -291,8 +291,8 @@ const GuestField = ({
          <span className="tg-booking-form-title mb-5">{title}</span>
          {showRooms && <input type="hidden" name="rooms" value={rooms} />}
          <input type="hidden" name="adults" value={adults} />
-         <input type="hidden" name="children" value={children} />
-         <input type="hidden" name="passengers" value={String(adults + children)} />
+         <input type="hidden" name="children" value={childCount} />
+         <input type="hidden" name="passengers" value={String(adults + childCount)} />
          <button
             type="button"
             className={`tg-booking-add-input-field tg-booking-quantity-toggle ${open ? "active" : ""}`}
@@ -473,7 +473,7 @@ const BannerFormFour = () => {
                                              title={t("search.guest")}
                                              rooms={rooms}
                                              adults={adults}
-                                             children={children}
+                                             childCount={children}
                                              showRooms={false}
                                              onRooms={setRooms}
                                              onAdults={setAdults}
@@ -505,7 +505,7 @@ const BannerFormFour = () => {
                                              title={t("search.guest")}
                                              rooms={rooms}
                                              adults={adults}
-                                             children={children}
+                                             childCount={children}
                                              showRooms
                                              onRooms={setRooms}
                                              onAdults={setAdults}
@@ -530,7 +530,7 @@ const BannerFormFour = () => {
                                              title={t("search.guest")}
                                              rooms={rooms}
                                              adults={adults}
-                                             children={children}
+                                             childCount={children}
                                              showRooms={false}
                                              onRooms={setRooms}
                                              onAdults={setAdults}
@@ -555,7 +555,7 @@ const BannerFormFour = () => {
                                              title={t("search.pax")}
                                              rooms={rooms}
                                              adults={adults}
-                                             children={children}
+                                             childCount={children}
                                              showRooms={false}
                                              onRooms={setRooms}
                                              onAdults={setAdults}
@@ -588,7 +588,7 @@ const BannerFormFour = () => {
                                              title={t("search.pax")}
                                              rooms={rooms}
                                              adults={adults}
-                                             children={children}
+                                             childCount={children}
                                              showRooms={false}
                                              onRooms={setRooms}
                                              onAdults={setAdults}

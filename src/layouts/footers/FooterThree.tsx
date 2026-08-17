@@ -120,10 +120,12 @@ const FooterThree = () => {
                      </div>
                   </div>
                </div>
-               <div className="tg-footer-copyright text-center">
-                  <span>
-                     {t("footer.copyright")} <Link href="/">©Euro Bangla Travels</Link> |  {t("footer.reserved")}
-                  </span>
+               <div className="tg-footer-copyright">
+                  <div className="container">
+                     <div className="ebt-footer-copy">
+                        <span>© {new Date().getFullYear()} Euro Bangla Travels</span>
+                     </div>
+                  </div>
                </div>
             </div>
          </footer>

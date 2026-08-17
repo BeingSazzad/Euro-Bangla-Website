@@ -188,6 +188,30 @@
     gap: 12px;
 }
 
+.tg-btn.ebt-btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366;
+    color: #fff;
+    border: 1px solid #25D366;
+    font-family: var(--tg-ff-body);
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+
+    svg {
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        background: #1ebe57;
+        border-color: #1ebe57;
+        color: #fff;
+    }
+}
+
 .ebt-faq-more {
     margin-top: 28px;
 }

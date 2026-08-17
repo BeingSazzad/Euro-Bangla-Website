@@ -56,7 +56,7 @@ const VisaDetailsPage = ({ slug }: { slug: string }) => {
       <>
          <InnerHeader />
          <main>
-            <BreadCrumb title={title} sub_title={title} raw />
+            <BreadCrumb title={title} sub_title={title} raw parentHref="/visa" parentKey="nav.visa" />
 
             <section className="ebt-visa-dest ebt-page-content">
                <div className="container">

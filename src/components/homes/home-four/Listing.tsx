@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
+import { Clock3, MapPin } from "lucide-react"
 
 import shape_1 from "@/assets/img/listing/listing-2/shape-1.png"
 import shape_2 from "@/assets/img/listing/listing-2/shape-2.png"
@@ -29,42 +30,42 @@ const Listing = () => {
                   </div>
                </div>
             </div>
-            <div className="row">
+            <div className="row align-items-stretch">
                {tourPackages.map((item) => (
-                  <div key={item.slug} className="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
-                     <div className="tg-listing-card-item tg-listing-2-card-item mb-25">
-                        <div className="tg-listing-card-thumb tg-listing-2-card-thumb fix p-relative">
-                           <Link href={`/tours/${item.slug}`}>
-                              <Image className="tg-card-border w-100" src={item.thumb} alt={tx(item.title, locale)} />
+                  <div key={item.slug} className="col-xl-3 col-lg-4 col-md-6 col-sm-6 d-flex wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
+                     <div className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card mb-25 w-100">
+                        <div className="tg-listing-card-thumb tg-listing-2-card-thumb ebt-tour-card-thumb fix p-relative">
+                           <Link href={`/tours/${item.slug}`} className="ebt-tour-card-media">
+                              <Image
+                                 className="tg-card-border w-100"
+                                 src={item.thumb}
+                                 alt={tx(item.title, locale)}
+                                 sizes="(max-width: 768px) 50vw, 25vw"
+                                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                              />
                               {item.tag && <span className="tg-listing-item-price-discount shape-2">{tx(item.tag, locale)}</span>}
                            </Link>
-                           <div className="tg-listing-2-mask">
+                           <div className="tg-listing-2-mask" aria-hidden="true">
                               <Image className="w-100" src={shape_4} alt="" />
                            </div>
                         </div>
                         <div className="tg-listing-card-content p-relative">
                            <div className="tg-listing-2-price-wrap text-center">
                               <div className="tg-listing-2-price">
-                                 <span className="new">BDT {item.price.toLocaleString()}</span>
+                                 <span className="new">BDT {item.price.toLocaleString("en-US")}</span>
                                  <span className="shift">{t("svc.perPerson")}</span>
                               </div>
                            </div>
-                           <h4 className="tg-listing-card-title"><Link href={`/tours/${item.slug}`}>{tx(item.title, locale)}</Link></h4>
-                           <div className="tg-listing-card-review mb-5">
-                              <span className="tg-listing-rating-percent">{tx(item.location, locale)}</span>
-                           </div>
+                           <h4 className="tg-listing-card-title">
+                              <Link href={`/tours/${item.slug}`}>{tx(item.title, locale)}</Link>
+                           </h4>
                            <div className="tg-listing-card-duration-tour">
-                              <span className="tg-listing-card-duration-map mb-5">
-                                 <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.3329 6.7071C12.3329 11.2324 6.55512 15.1111 6.55512 15.1111C6.55512 15.1111 0.777344 11.2324 0.777344 6.7071C0.777344 5.16402 1.38607 3.68414 2.46962 2.59302C3.55316 1.5019 5.02276 0.888916 6.55512 0.888916C8.08748 0.888916 9.55708 1.5019 10.6406 2.59302C11.7242 3.68414 12.3329 5.16402 12.3329 6.7071Z" stroke="currentColor" strokeWidth="1.15556" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M6.55512 8.64649C7.61878 8.64649 8.48105 7.7782 8.48105 6.7071C8.48105 5.636 7.61878 4.7677 6.55512 4.7677C5.49146 4.7677 4.6292 5.636 4.6292 6.7071C4.6292 7.7782 5.49146 8.64649 6.55512 8.64649Z" stroke="currentColor" strokeWidth="1.15556" strokeLinecap="round" strokeLinejoin="round" />
-                                 </svg>
+                              <span className="tg-listing-card-duration-map mb-0">
+                                 <MapPin size={14} strokeWidth={1.75} aria-hidden="true" />
                                  {tx(item.location, locale)}
                               </span>
                               <span className="tg-listing-card-duration-time">
-                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.00175 3.73329V7.99996L10.8462 9.42218M15.1128 8.00003C15.1128 11.9274 11.9291 15.1111 8.00174 15.1111C4.07438 15.1111 0.890625 11.9274 0.890625 8.00003C0.890625 4.07267 4.07438 0.888916 8.00174 0.888916C11.9291 0.888916 15.1128 4.07267 15.1128 8.00003Z" stroke="currentColor" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
-                                 </svg>
+                                 <Clock3 size={14} strokeWidth={1.75} aria-hidden="true" />
                                  {item.days} {t("svc.days")}
                               </span>
                            </div>

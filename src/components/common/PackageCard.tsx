@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Clock3, MapPin } from "lucide-react";
 import type { PackageItem } from "@/data/services";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
+
+import shape from "@/assets/img/listing/listing-2/shape.png";
 
 const PackageCard = ({
    item,
@@ -18,33 +21,46 @@ const PackageCard = ({
    const { locale, t } = useT();
 
    return (
-      <div className="tg-listing-card-item tg-listing-2-card-item mb-25">
-         <div className="tg-listing-card-thumb tg-listing-2-card-thumb fix p-relative">
-            <Link href={href}>
-               <Image className="tg-card-border w-100" src={item.thumb} alt={tx(item.title, locale)} />
+      <div className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card mb-25 w-100">
+         <div className="tg-listing-card-thumb tg-listing-2-card-thumb ebt-tour-card-thumb fix p-relative">
+            <Link href={href} className="ebt-tour-card-media">
+               <Image
+                  className="tg-card-border w-100"
+                  src={item.thumb}
+                  alt={tx(item.title, locale)}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+               />
                {item.tag && <span className="tg-listing-item-price-discount shape-2">{tx(item.tag, locale)}</span>}
             </Link>
+            <div className="tg-listing-2-mask" aria-hidden="true">
+               <Image className="w-100" src={shape} alt="" />
+            </div>
          </div>
          <div className="tg-listing-card-content p-relative">
             <div className="tg-listing-2-price-wrap text-center">
                <div className="tg-listing-2-price">
-                  <span className="new">BDT {item.price.toLocaleString()}</span>
+                  <span className="new">BDT {item.price.toLocaleString("en-US")}</span>
                   <span className="shift">{priceSuffix}</span>
                </div>
             </div>
             <h4 className="tg-listing-card-title">
                <Link href={href}>{tx(item.title, locale)}</Link>
             </h4>
-            <p className="mb-10">{tx(item.summary, locale)}</p>
+            <p className="ebt-tour-card-summary mb-10">{tx(item.summary, locale)}</p>
             <div className="tg-listing-card-duration-tour">
-               <span className="tg-listing-card-duration-map mb-5">{tx(item.location, locale)}</span>
+               <span className="tg-listing-card-duration-map mb-0">
+                  <MapPin size={14} strokeWidth={1.75} aria-hidden="true" />
+                  {tx(item.location, locale)}
+               </span>
                {item.days > 1 && (
                   <span className="tg-listing-card-duration-time">
+                     <Clock3 size={14} strokeWidth={1.75} aria-hidden="true" />
                      {item.days} {t("svc.days")}
                   </span>
                )}
             </div>
-            <div className="pt-15">
+            <div className="ebt-tour-card-cta">
                <Link href={href} className="tg-btn">
                   {t("svc.details")}
                </Link>

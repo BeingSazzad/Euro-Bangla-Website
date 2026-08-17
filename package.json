@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "node --no-experimental-webstorage ./node_modules/next/dist/bin/next dev",
-    "build": "node --no-experimental-webstorage ./node_modules/next/dist/bin/next build",
-    "start": "node --no-experimental-webstorage ./node_modules/next/dist/bin/next start",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

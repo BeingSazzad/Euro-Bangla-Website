@@ -7,7 +7,7 @@ import { useT } from "@/i18n/LanguageProvider";
 
 import process_1 from "@/assets/img/chose/chose-2/thumb-1.jpg"
 import process_2 from "@/assets/img/chose/chose-2/thumb-2.jpg"
-import process_3 from "@/assets/img/chose/chose-2/thumb-3.jpg"
+import process_3 from "@/assets/img/destination/des-2.jpg"
 import shape from "@/assets/img/chose/chose-2/shape.png"
 
 interface DataType {
@@ -71,7 +71,7 @@ const Process = () => {
                   item.thumb ? (
                      <div key={item.id} className="col-lg-4 col-md-6 col-sm-6 mb-25">
                         <div className="tg-chose-2-thumb h-100 wow fadeInLeft" data-wow-delay=".4s" data-wow-duration=".6s">
-                           <Image className="w-100 h-100" src={item.thumb} alt="chose" />
+                           <Image className="w-100 h-100" src={item.thumb} alt="" style={{ objectFit: "cover" }} />
                         </div>
                      </div>
                   ) : (

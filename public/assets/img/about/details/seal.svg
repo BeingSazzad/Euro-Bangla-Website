@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <circle cx="100" cy="100" r="98" fill="#f4f6f8" stroke="#d9dee6" stroke-width="2"/>
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#c5ccd6" stroke-width="1.2"/>
+  <defs>
+    <path id="ebt-seal-ring" d="M100,100 m-64,0 a64,64 0 1,1 128,0 a64,64 0 1,1 -128,0"/>
+  </defs>
+  <text fill="#5b6573" font-family="Poppins, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="1.8">
+    <textPath href="#ebt-seal-ring" startOffset="3%">EURO BANGLA TRAVELS - DHAKA -</textPath>
+  </text>
+</svg>

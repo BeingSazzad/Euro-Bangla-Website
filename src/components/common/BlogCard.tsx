@@ -29,7 +29,10 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
             <h3 className="ebt-blog-title">
                <Link href={post.href}>{t(post.titleKey)}</Link>
             </h3>
-            <p className="ebt-blog-text mb-0">{t(post.textKey)}</p>
+            <p className="ebt-blog-text">{t(post.textKey)}</p>
+            <Link href={post.href} className="ebt-blog-more">
+               {t("svc.details")}
+            </Link>
          </div>
       </article>
    );

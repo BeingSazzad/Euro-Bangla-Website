@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { useT } from "@/i18n/LanguageProvider";
 import { FAQ_ITEMS } from "@/data/faqContent";
 import { COMPANY, whatsappLink } from "@/data/company";
+import { WhatsAppIcon } from "@/components/common/SocialIcons";
 
 const INITIAL_VISIBLE = 6;
 
@@ -105,11 +106,12 @@ const FaqArea = () => {
                               {t("faq.startInquiry")}
                            </Link>
                            <a
-                              className="tg-btn tg-btn-transparent"
+                              className="tg-btn ebt-btn-whatsapp"
                               href={whatsappLink(`Hello ${COMPANY.name}, I need travel help.`)}
                               target="_blank"
                               rel="noreferrer"
                            >
+                              <WhatsAppIcon size={18} />
                               {t("faq.whatsappUs")}
                            </a>
                         </div>

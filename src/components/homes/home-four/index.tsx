@@ -12,7 +12,6 @@ import FooterThree from "@/layouts/footers/FooterThree"
 
 /**
  * Live homepage composition for Euro Bangla Travels.
- * Listing uses template tour package cards (still in codebase).
  */
 const HomeFour = () => {
   return (

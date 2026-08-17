@@ -12,6 +12,7 @@ import des1 from "@/assets/img/destination/des.jpg";
 import des2 from "@/assets/img/destination/des-2.jpg";
 import des3 from "@/assets/img/destination/des-3.jpg";
 import des4 from "@/assets/img/destination/des-4.jpg";
+import kaaba from "@/assets/img/chose/chose-2/thumb-2.jpg";
 import visaTourist from "@/assets/img/visa/switzerland.jpg";
 import visaVisit from "@/assets/img/visa/uk.jpg";
 import visaBusiness from "@/assets/img/visa/usa.jpg";
@@ -43,7 +44,7 @@ const day = (en: string, bn: string, fr: string): LText => ({ en, bn, fr });
 export const hajjPackages: PackageItem[] = [
    {
       slug: "economy-umrah-14",
-      thumb: listing1,
+      thumb: des4,
       title: day("Economy Umrah 14 Days", "ইকোনমি ওমরাহ ১৪ দিন", "Omra économique 14 jours"),
       location: day("Makkah & Madinah", "মক্কা ও মদিনা", "La Mecque et Médine"),
       days: 14,
@@ -74,7 +75,7 @@ export const hajjPackages: PackageItem[] = [
    },
    {
       slug: "premium-umrah-10",
-      thumb: listing2,
+      thumb: kaaba,
       title: day("Premium Umrah 10 Days", "প্রিমিয়াম ওমরাহ ১০ দিন", "Omra premium 10 jours"),
       location: day("5-star Makkah & Madinah", "৫-স্টার মক্কা ও মদিনা", "5 étoiles La Mecque et Médine"),
       days: 10,
@@ -100,7 +101,7 @@ export const hajjPackages: PackageItem[] = [
    },
    {
       slug: "hajj-group-2026",
-      thumb: listing3,
+      thumb: kaaba,
       title: day("Hajj Group 2026", "হজ গ্রুপ ২০২৬", "Groupe Hajj 2026"),
       location: day("Makkah, Madinah & Mina", "মক্কা, মদিনা ও মিনা", "La Mecque, Médine et Mina"),
       days: 28,
@@ -126,7 +127,7 @@ export const hajjPackages: PackageItem[] = [
    },
    {
       slug: "family-umrah",
-      thumb: listing4,
+      thumb: des4,
       title: day("Family Umrah Package", "পারিবারিক ওমরাহ প্যাকেজ", "Forfait Omra famille"),
       location: day("Makkah & Madinah", "মক্কা ও মদিনা", "La Mecque et Médine"),
       days: 12,
@@ -214,6 +215,7 @@ export const tourPackages: PackageItem[] = [
       location: day("Riyadh & Jeddah", "রিয়াদ ও জেদ্দা", "Riyad et Djeddah"),
       days: 6,
       price: 112000,
+      tag: day("KSA", "সৌদি", "KSA"),
       category: "group",
       region: "ksa",
       summary: day("Modern cities, Red Sea corniche and easy weekend-style itinerary.", "আধুনিক শহর, লোহিত সাগর কর্নিশ এবং সহজ উইকএন্ড ইটিনারেডি।", "Villes modernes, corniche de la mer Rouge et itinéraire week-end."),

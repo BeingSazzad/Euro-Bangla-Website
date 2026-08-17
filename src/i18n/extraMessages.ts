@@ -1,5 +1,3 @@
-import type { Locale } from "./locales";
-
 export const extraMessages = {
    en: {
       nav: {
@@ -203,11 +201,18 @@ export const extraMessages = {
          t4: "We are not responsible for embassy or consulate visa decisions, flight delays caused by airlines, or force majeure events.",
          t5: "Contact us with your inquiry reference if you need clarification before you travel.",
       },
+      blogDetail: {
+         by: "Euro Bangla Travels",
+         related: "More articles",
+         cta: "Start an inquiry",
+         back: "All articles",
+         tips: "What to send us",
+      },
       cookie: {
          text: "We use cookies and other site data to make your experience better. We advise you to go through the",
          accept: "I Understand",
          decline: "Decline",
-         more: "details.",
+         more: "Cookie Policy",
       },
       wa: {
          label: "WhatsApp",
@@ -417,11 +422,18 @@ export const extraMessages = {
          t4: "দূতাবাসের ভিসা সিদ্ধান্ত, এয়ারলাইন দেরি বা ফোর্স ম্যাজিওর ঘটনার জন্য আমরা দায়ী নই।",
          t5: "ভ্রমণের আগে স্পষ্টীকরণের জন্য আপনার রেফারেন্স নম্বরসহ যোগাযোগ করুন।",
       },
+      blogDetail: {
+         by: "ইউরো বাংলা ট্রাভেলস",
+         related: "আরও আর্টিকেল",
+         cta: "অনুসন্ধান শুরু করুন",
+         back: "সব আর্টিকেল",
+         tips: "কী পাঠাবেন",
+      },
       cookie: {
          text: "আমরা আপনার অভিজ্ঞতা আরও ভালো করতে কুকি ও সাইট ডেটা ব্যবহার করি। বিস্তারিত জানতে দেখুন",
          accept: "বুঝেছি",
          decline: "প্রত্যাখ্যান",
-         more: "বিস্তারিত।",
+         more: "কুকি পলিসি",
       },
       wa: {
          label: "হোয়াটসঅ্যাপ",
@@ -631,11 +643,18 @@ export const extraMessages = {
          t4: "Nous ne sommes pas responsables des décisions consulaires, des retards aériens ni des cas de force majeure.",
          t5: "Contactez-nous avec votre référence si vous avez besoin de précisions avant le départ.",
       },
+      blogDetail: {
+         by: "Euro Bangla Travels",
+         related: "Autres articles",
+         cta: "Commencer une demande",
+         back: "Tous les articles",
+         tips: "Quoi nous envoyer",
+      },
       cookie: {
          text: "Nous utilisons des cookies et d’autres données du site pour améliorer votre expérience. Nous vous conseillons de consulter les",
          accept: "J’ai compris",
          decline: "Refuser",
-         more: "détails.",
+         more: "politique cookies",
       },
       wa: {
          label: "WhatsApp",
