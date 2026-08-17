@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
-import { Check, Clock3, Languages, MapPin, Users } from "lucide-react";
+import { Check, Clock3, Languages, MapPin, Users, X } from "lucide-react";
 import type { PackageItem } from "@/data/services";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
