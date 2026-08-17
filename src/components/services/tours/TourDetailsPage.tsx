@@ -5,15 +5,22 @@ import { notFound } from "next/navigation";
 import ServicePageShell from "@/components/common/ServicePageShell";
 import PackageDetail from "@/components/common/PackageDetail";
 import { findTour } from "@/data/services";
+import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 
 const TourDetailsPage = ({ slug }: { slug: string }) => {
-   const { t } = useT();
+   const { t, locale } = useT();
    const item = findTour(slug);
    if (!item) notFound();
 
    return (
-      <ServicePageShell title="svc.toursTitle" subTitle="nav.tours">
+      <ServicePageShell
+         title={tx(item.title, locale)}
+         subTitle={tx(item.title, locale)}
+         raw
+         parentHref="/tours"
+         parentKey="nav.tours"
+      >
          <Suspense>
             <PackageDetail item={item} service="tour" priceSuffix={` BDT ${t("svc.perPerson")}`} />
          </Suspense>

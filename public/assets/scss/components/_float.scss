@@ -1432,3 +1432,377 @@ body:has(.ebt-cookie-banner) {
 .ebt-about-copy .tg-btn {
    padding: 14px 28px;
 }
+
+.ebt-pkg-details {
+   padding-top: 56px;
+   padding-bottom: 90px;
+
+   @media #{$md,$sm,$xs} {
+      padding-top: 40px;
+      padding-bottom: 70px;
+   }
+}
+
+.ebt-pkg-head {
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+   gap: 24px;
+   margin-bottom: 28px;
+
+   @media #{$sm,$xs} {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+}
+
+.ebt-pkg-badge {
+   display: inline-flex;
+   margin-bottom: 10px;
+   padding: 4px 12px;
+   border-radius: 999px;
+   background: #0047AB;
+   color: #fff;
+   font-size: 12px;
+   font-weight: 600;
+   letter-spacing: 0.02em;
+}
+
+.ebt-pkg-title {
+   font-family: var(--tg-ff-outfit);
+   font-size: 36px;
+   font-weight: 700;
+   line-height: 1.2;
+   color: #0f172a;
+   margin-bottom: 10px;
+
+   @media #{$sm,$xs} {
+      font-size: 28px;
+   }
+}
+
+.ebt-pkg-location {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   margin: 0;
+   color: #64748b;
+   font-size: 15px;
+
+   svg {
+      color: #0047AB;
+      flex-shrink: 0;
+   }
+}
+
+.ebt-pkg-price-block {
+   text-align: right;
+   white-space: nowrap;
+
+   @media #{$sm,$xs} {
+      text-align: left;
+   }
+
+   .ebt-pkg-price-label {
+      display: block;
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 2px;
+   }
+
+   strong {
+      display: inline-block;
+      color: #0047AB;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-right: 4px;
+   }
+
+   span:last-child {
+      color: #64748b;
+      font-size: 14px;
+   }
+}
+
+.ebt-pkg-gallery {
+   display: grid;
+   gap: 12px;
+   margin-bottom: 24px;
+
+   &--1 {
+      grid-template-columns: 1fr;
+      min-height: 360px;
+   }
+
+   &--2 {
+      grid-template-columns: 1.2fr 1fr;
+
+      @media #{$xs} {
+         grid-template-columns: 1fr;
+      }
+   }
+
+   &--3 {
+      grid-template-columns: 1.45fr 1fr;
+      grid-template-rows: 200px 200px;
+
+      .is-hero {
+         grid-row: 1 / span 2;
+      }
+
+      @media #{$sm,$xs} {
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: 220px 160px;
+
+         .is-hero {
+            grid-column: 1 / span 2;
+            grid-row: 1;
+         }
+      }
+   }
+}
+
+.ebt-pkg-gallery-item {
+   overflow: hidden;
+   border-radius: 18px;
+   min-height: 180px;
+   background: #eef2f7;
+
+   img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+   }
+}
+
+.ebt-pkg-meta {
+   background: #fff;
+   border: 1px solid #e8eaf0;
+   border-radius: 16px;
+   padding: 18px 22px;
+   margin-bottom: 40px;
+
+   ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 32px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+   }
+
+   li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+   }
+}
+
+.ebt-pkg-meta-icon {
+   width: 42px;
+   height: 42px;
+   border-radius: 12px;
+   background: #eef4ff;
+   color: #0047AB;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
+}
+
+.ebt-pkg-meta span {
+   display: block;
+   font-size: 12px;
+   color: #94a3b8;
+   line-height: 1.2;
+}
+
+.ebt-pkg-meta strong {
+   display: block;
+   font-size: 15px;
+   color: #0f172a;
+   font-weight: 600;
+}
+
+.ebt-pkg-body {
+   align-items: flex-start;
+}
+
+.ebt-pkg-section {
+   margin-bottom: 36px;
+
+   h2 {
+      font-family: var(--tg-ff-outfit);
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 14px;
+   }
+
+   p {
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 0;
+      max-width: 640px;
+   }
+}
+
+.ebt-pkg-highlights {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+
+   li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #334155;
+      line-height: 1.5;
+   }
+
+   svg {
+      margin-top: 3px;
+      color: #0047AB;
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      padding: 3px;
+      border-radius: 50%;
+      background: #eef4ff;
+   }
+}
+
+.ebt-pkg-list {
+   list-style: none;
+   margin: 0 0 16px;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+
+   li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: #334155;
+      line-height: 1.5;
+   }
+
+   svg {
+      margin-top: 3px;
+      flex-shrink: 0;
+   }
+
+   &.is-in svg {
+      color: #0047AB;
+   }
+
+   &.is-out svg {
+      color: #94a3b8;
+   }
+}
+
+.ebt-pkg-itinerary {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+
+   li {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eef2f7;
+   }
+
+   h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #0f172a;
+   }
+
+   p {
+      margin: 0;
+   }
+}
+
+.ebt-pkg-day {
+   flex-shrink: 0;
+   min-width: 72px;
+   height: fit-content;
+   padding: 6px 10px;
+   border-radius: 8px;
+   background: #eef4ff;
+   color: #0047AB;
+   font-size: 12px;
+   font-weight: 700;
+   text-align: center;
+}
+
+.ebt-pkg-map {
+   border: 0;
+   border-radius: 16px;
+}
+
+.ebt-pkg-side {
+   position: sticky;
+   top: 110px;
+   background: #f7f8fb;
+   border: 1px solid #e8eaf0;
+   border-radius: 20px;
+   padding: 26px 22px 22px;
+
+   h2 {
+      font-family: var(--tg-ff-outfit);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #0f172a;
+   }
+
+   @media #{$md,$sm,$xs} {
+      position: static;
+      margin-top: 12px;
+   }
+}
+
+.ebt-pkg-side-text {
+   color: #64748b;
+   font-size: 14px;
+   margin-bottom: 12px;
+}
+
+.ebt-pkg-side-price {
+   margin-bottom: 20px;
+   padding-bottom: 16px;
+   border-bottom: 1px dashed #d9dee7;
+   color: #64748b;
+   font-size: 14px;
+
+   strong {
+      color: #0047AB;
+      font-size: 22px;
+      font-weight: 700;
+   }
+}
+
+.ebt-pkg-side .tg-contact-form {
+   .input,
+   .textarea,
+   select.input {
+      background: #fff;
+   }
+
+   .tg-btn {
+      width: 100%;
+      justify-content: center;
+   }
+}

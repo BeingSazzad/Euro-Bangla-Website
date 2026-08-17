@@ -69,6 +69,11 @@ const Listing = () => {
                                  {item.days} {t("svc.days")}
                               </span>
                            </div>
+                           <div className="ebt-tour-card-cta">
+                              <Link href={`/tours/${item.slug}`} className="tg-btn">
+                                 {t("svc.details")}
+                              </Link>
+                           </div>
                         </div>
                      </div>
                   </div>

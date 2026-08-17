@@ -13,6 +13,7 @@ import des2 from "@/assets/img/destination/des-2.jpg";
 import des3 from "@/assets/img/destination/des-3.jpg";
 import des4 from "@/assets/img/destination/des-4.jpg";
 import kaaba from "@/assets/img/chose/chose-2/thumb-2.jpg";
+import plane from "@/assets/img/chose/chose-2/thumb-1.jpg";
 import visaTourist from "@/assets/img/visa/switzerland.jpg";
 import visaVisit from "@/assets/img/visa/uk.jpg";
 import visaBusiness from "@/assets/img/visa/usa.jpg";
@@ -35,6 +36,7 @@ export type PackageItem = {
    region?: "europe" | "dubai" | "ksa" | "turkey" | "bd";
    gallery?: StaticImageData[];
    facilities?: LText[];
+   highlights?: LText[];
    mapEmbed?: string;
    hotelName?: LText;
 };
@@ -66,6 +68,12 @@ export const hajjPackages: PackageItem[] = [
          day("Personal expenses", "ব্যক্তিগত খরচ", "Dépenses personnelles"),
          day("Travel insurance upgrade", "ট্রাভেল ইনস্যুরেন্স আপগ্রেড", "Assurance voyage supérieure"),
       ],
+      highlights: [
+         day("Group flights from Dhaka with Umrah visa", "ঢাকা থেকে গ্রুপ ফ্লাইট ও ওমরাহ ভিসা", "Vols de groupe depuis Dhaka et visa Omra"),
+         day("Hotels in Makkah and Madinah near Haram", "মক্কা ও মদিনায় হারামের কাছে হোটেল", "Hôtels près du Haram à La Mecque et Médine"),
+         day("Guided Tawaf, Sa’i and ziyarah", "গাইডেড তাওয়াফ, সাঈ ও জিয়ারত", "Tawaf, Sa’i et ziyarah accompagnés"),
+      ],
+      gallery: [des4, kaaba, plane],
       itinerary: [
          { day: 1, title: day("Arrival Jeddah / Madinah", "জেদ্দা / মদিনা আগমন", "Arrivée Djeddah / Médine"), text: day("Airport pickup and hotel check-in.", "এয়ারপোর্ট পিকআপ ও হোটেল চেক-ইন।", "Transfert aéroport et enregistrement à l’hôtel.") },
          { day: 2, title: day("Umrah rites", "ওমরাহ আদায়", "Rites de l’Omra"), text: day("Ihram, Tawaf and Sa’i with group guidance.", "ইহরাম, তাওয়াফ ও সাঈ গ্রুপ গাইডেন্স সহ।", "Ihram, Tawaf et Sa’i avec accompagnement.") },
@@ -93,6 +101,12 @@ export const hajjPackages: PackageItem[] = [
          day("Private transfers", "প্রাইভেট ট্রান্সফার", "Transferts privés"),
       ],
       excludes: [day("Extra nights", "অতিরিক্ত রাত", "Nuits supplémentaires")],
+      highlights: [
+         day("5-star hotels closer to Haram", "হারামের কাছাকাছি ৫-স্টার হোটেল", "Hôtels 5 étoiles plus proches du Haram"),
+         day("Smaller family group and VIP transfers", "ছোট পারিবারিক গ্রুপ ও ভিআইপি ট্রান্সফার", "Petit groupe famille et transferts VIP"),
+         day("Flexible flight dates after inquiry", "অনুসন্ধানের পর নমনীয় ফ্লাইট তারিখ", "Dates de vol flexibles après demande"),
+      ],
+      gallery: [kaaba, des4, plane],
       itinerary: [
          { day: 1, title: day("Arrival", "আগমন", "Arrivée"), text: day("VIP transfer to hotel.", "ভিআইপি ট্রান্সফার।", "Transfert VIP vers l’hôtel.") },
          { day: 2, title: day("Umrah", "ওমরাহ", "Omra"), text: day("Guided Umrah.", "গাইডেড ওমরাহ।", "Omra accompagnée.") },
@@ -119,6 +133,12 @@ export const hajjPackages: PackageItem[] = [
          day("Mutawwif guidance", "মুতাওয়াফ গাইডেন্স", "Accompagnement mutawwif"),
       ],
       excludes: [day("Qurbani extra package", "কুরবানি অতিরিক্ত প্যাকেজ", "Pack qurbani supplémentaire")],
+      highlights: [
+         day("Official quota group Hajj from Bangladesh", "বাংলাদেশ থেকে সরকারি কোটা গ্রুপ হজ", "Hajj de groupe avec quota officiel depuis le Bangladesh"),
+         day("Mina and Arafat camp with meals on Hajj days", "হজের দিনে মিনা ও আরাফাত ক্যাম্প এবং খাবার", "Camp Mina et Arafat avec repas les jours du Hajj"),
+         day("Experienced mutawwif throughout the rites", "সমস্ত রুকনে অভিজ্ঞ মুতাওয়াফ", "Mutawwif expérimenté pendant tous les rites"),
+      ],
+      gallery: [kaaba, des4, plane],
       itinerary: [
          { day: 1, title: day("Departure Dhaka", "ঢাকা থেকে যাত্রা", "Départ de Dhaka"), text: day("Group briefing and flight.", "গ্রুপ ব্রিফিং ও ফ্লাইট।", "Briefing du groupe et vol.") },
          { day: 8, title: day("Hajj days", "হজের দিনগুলো", "Jours du Hajj"), text: day("Mina, Arafat and Muzdalifah with the group.", "গ্রুপের সাথে মিনা, আরাফাত ও মুজদালিফা।", "Mina, Arafat et Muzdalifah avec le groupe.") },
@@ -132,12 +152,19 @@ export const hajjPackages: PackageItem[] = [
       location: day("Makkah & Madinah", "মক্কা ও মদিনা", "La Mecque et Médine"),
       days: 12,
       price: 189000,
+      tag: day("Family", "পরিবার", "Famille"),
       summary: day("Family rooms, child policy and flexible ziyarah timing.", "ফ্যামিলি রুম, শিশু পলিসি এবং নমনীয় জিয়ারত সময়।", "Chambres familiales, politique enfants et ziyarah flexible."),
       includes: [
          day("Family room", "ফ্যামিলি রুম", "Chambre familiale"),
          day("Visa & ticket", "ভিসা ও টিকিট", "Visa et billet"),
       ],
       excludes: [day("Infant ticket if required", "প্রয়োজনে শিশু টিকিট", "Billet bébé si requis")],
+      highlights: [
+         day("Family rooms in Makkah and Madinah", "মক্কা ও মদিনায় ফ্যামিলি রুম", "Chambres familiales à La Mecque et Médine"),
+         day("Child policy explained before you pay", "পেমেন্টের আগে শিশু পলিসি স্পষ্ট", "Politique enfants clarifiée avant paiement"),
+         day("Ziyarah timing adjusted for the family", "পরিবারের জন্য জিয়ারত সময় সমন্বয়", "Horaires ziyarah adaptés à la famille"),
+      ],
+      gallery: [des4, kaaba, plane],
       itinerary: [
          { day: 1, title: day("Arrival", "আগমন", "Arrivée"), text: day("Family transfer.", "পারিবারিক ট্রান্সফার।", "Transfert famille.") },
       ],
@@ -169,6 +196,7 @@ export const tourPackages: PackageItem[] = [
          { day: 7, title: day("Swiss Alps", "সুইস আল্পস", "Alpes suisses"), text: day("Mountain panorama day.", "পর্বত প্যানোরামা দিন।", "Journée panorama en montagne.") },
       ],
       terms: day("Group departures monthly. Private groups on request.", "মাসিক গ্রুপ ডিপার্চার। প্রাইভেট গ্রুপ অনুরোধে।", "Départs groupés mensuels. Groupes privés sur demande."),
+      gallery: [des1, listing7, listing3],
    },
    {
       slug: "dubai-family",
@@ -188,6 +216,7 @@ export const tourPackages: PackageItem[] = [
          { day: 3, title: day("Desert safari", "ডেজার্ট সাফারি", "Safari désert"), text: day("BBQ dinner in camp.", "ক্যাম্পে বিবিকিউ ডিনার।", "Dîner barbecue au camp.") },
       ],
       terms: day("Rates vary by season and room type.", "সিজন ও রুম টাইপ অনুযায়ী রেট পরিবর্তন হয়।", "Tarifs selon saison et type de chambre."),
+      gallery: [des2, listing2],
    },
    {
       slug: "turkey-honeymoon",
@@ -207,6 +236,7 @@ export const tourPackages: PackageItem[] = [
          { day: 4, title: day("Cappadocia", "ক্যাপাডোকিয়া", "Cappadoce"), text: day("Valley viewpoints.", "ভ্যালি ভিউপয়েন্ট।", "Points de vue des vallées.") },
       ],
       terms: day("Couple extras can be added at inquiry.", "কাপল এক্সট্রা অনুসন্ধানে যোগ করা যায়।", "Extras couple ajoutables sur demande."),
+      gallery: [des3],
    },
    {
       slug: "ksa-short",
@@ -225,6 +255,7 @@ export const tourPackages: PackageItem[] = [
          { day: 1, title: day("Riyadh", "রিয়াদ", "Riyad"), text: day("City highlights.", "সিটি হাইলাইটস।", "Points forts de la ville.") },
       ],
       terms: day("Best for e-visa eligible passports.", "ই-ভিসা যোগ্য পাসপোর্টের জন্য উপযোগী।", "Idéal pour passeports éligibles e-visa."),
+      gallery: [des4, kaaba],
    },
 ];
 
@@ -254,7 +285,7 @@ export const hotelPackages: PackageItem[] = [
    },
    {
       slug: "makkah-haram-view",
-      thumb: listing6,
+      thumb: kaaba,
       title: day("Makkah Haram View", "মক্কা হারাম ভিউ", "Vue Haram La Mecque"),
       location: day("Makkah, KSA", "মক্কা, সৌদি আরব", "La Mecque, KSA"),
       days: 1,
@@ -265,7 +296,7 @@ export const hotelPackages: PackageItem[] = [
       excludes: [day("Haram shuttle if far wing", "দূর উইং হলে শাটল", "Navette Haram si aile éloignée")],
       itinerary: [],
       terms: day("Ramadan and Hajj dates are peak season.", "রমজান ও হজ পিক সিজন।", "Ramadan et Hajj sont des hautes saisons."),
-      gallery: [listing6, listing2, listing4],
+      gallery: [kaaba, des4, plane],
       facilities: [
          day("Haram walking access", "হারামে হেঁটে যাওয়া", "Accès Haram à pied"),
          day("Family rooms", "ফ্যামিলি রুম", "Chambres familiales"),

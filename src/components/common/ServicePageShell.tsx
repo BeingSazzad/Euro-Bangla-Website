@@ -8,16 +8,28 @@ const ServicePageShell = ({
    title,
    subTitle,
    children,
+   raw = false,
+   parentHref,
+   parentKey,
 }: {
    title: string;
    subTitle: string;
    children: React.ReactNode;
+   raw?: boolean;
+   parentHref?: string;
+   parentKey?: string;
 }) => {
    return (
       <>
          <InnerHeader />
          <main>
-            <BreadCrumb title={title} sub_title={subTitle} />
+            <BreadCrumb
+               title={title}
+               sub_title={subTitle}
+               raw={raw}
+               parentHref={parentHref}
+               parentKey={parentKey}
+            />
             {children}
          </main>
          <FooterThree />
