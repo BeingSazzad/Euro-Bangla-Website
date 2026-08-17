@@ -1,5 +1,8 @@
+@use 'sass:list';
+@use 'sass:map';
 @use 'colors' as *;
 @use 'typography' as *;
+@use 'tokens' as *;
 
 :root {
 
@@ -17,5 +20,41 @@
         }
     }
 
-}
+    --tg-heading-font-family: "Poppins", sans-serif;
 
+    //@Type Scale Declaration
+    @each $step, $entry in $type-scale {
+        --tg-fs-#{$step}: #{list.nth($entry, 1)};
+        --tg-lh-#{$step}: #{list.nth($entry, 2)};
+        --tg-fw-#{$step}: #{list.nth($entry, 3)};
+    }
+
+    //@Spacing Declaration
+    @each $step in $space {
+        --tg-space-#{$step}: #{$step}px;
+    }
+
+    //@Radius Declaration
+    @each $step, $value in $radius {
+        --tg-radius-#{$step}: #{$value};
+    }
+
+    //@Elevation Declaration
+    @each $step, $value in $elevation {
+        --tg-shadow-#{$step}: #{$value};
+    }
+
+    //@Layout Declaration
+    @each $step, $value in $layout {
+        --tg-layout-#{$step}: #{$value};
+    }
+
+    //@Control Declaration
+    @each $step, $value in $control {
+        --tg-control-#{$step}: #{$value};
+    }
+
+    --tg-focus-width: 2px;
+    --tg-focus-color: var(--tg-theme-primary);
+
+}

@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import { JSX } from "react";
 import Link from "next/link";
 import { ClipboardList, MessageSquareText, BadgeCheck } from "lucide-react";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 import process_1 from "@/assets/img/chose/chose-2/thumb-1.jpg"
@@ -17,7 +18,7 @@ interface DataType {
    desc?: string;
 }
 
-const processIcon = { size: 44, strokeWidth: 1.5, "aria-hidden": true as const };
+const processIcon = iconProps("xl");
 
 const process_data: DataType[] = [
    {

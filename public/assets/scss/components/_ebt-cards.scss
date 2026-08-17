@@ -1,0 +1,329 @@
+@use '../utils' as *;
+
+/*=============================
+   Euro Bangla rhythm + cards
+=============================*/
+
+/* These rules deliberately live outside _float.scss: that file holds the
+   per-feature product rules and is edited often, so the shared geometry is kept
+   here where it can be reasoned about in one place. */
+
+.ebt-site {
+   .ebt-section,
+   .ebt-page-content {
+      padding-top: var(--tg-space-96);
+      padding-bottom: var(--tg-space-96);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-64);
+         padding-bottom: var(--tg-space-64);
+      }
+   }
+
+   .ebt-section-sm,
+   .ebt-visa-why {
+      padding-top: var(--tg-space-80);
+      padding-bottom: var(--tg-space-80);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-48);
+         padding-bottom: var(--tg-space-48);
+      }
+   }
+
+   .ebt-section-sm.pb-0 {
+      padding-bottom: 0;
+   }
+
+   .ebt-home-visa {
+      padding-top: var(--tg-space-96);
+      padding-bottom: var(--tg-space-96);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-64);
+         padding-bottom: var(--tg-space-64);
+      }
+   }
+
+   .ebt-cta-band {
+      padding-top: var(--tg-space-96);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-64);
+      }
+   }
+
+   .ebt-pkg-details {
+      padding-top: var(--tg-space-64);
+      padding-bottom: var(--tg-space-80);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-48);
+         padding-bottom: var(--tg-space-64);
+      }
+   }
+
+   .ebt-footer {
+      padding-top: var(--tg-space-96);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-64);
+      }
+   }
+
+   /* Top padding has to clear the overlaid header, so it stays at the top of the
+      scale rather than matching the bottom. */
+   .ebt-breadcrumb.tg-breadcrumb-spacing-5 {
+      padding-top: var(--tg-space-120);
+      padding-bottom: var(--tg-space-48);
+
+      @media #{$md,$sm} {
+         padding-top: var(--tg-space-120);
+         padding-bottom: var(--tg-space-40);
+      }
+
+      @media #{$xs} {
+         padding-top: var(--tg-space-96);
+         padding-bottom: var(--tg-space-32);
+      }
+   }
+}
+
+/*=============================
+   Display headings on scale
+=============================*/
+
+.ebt-site {
+   .ebt-home-block-title,
+   .ebt-visa-dest-title,
+   .ebt-visa-why-title,
+   .ebt-visa-cta-title {
+      font-size: var(--tg-fs-h2);
+      line-height: var(--tg-lh-h2);
+      font-weight: var(--tg-fw-h2);
+   }
+
+   .ebt-breadcrumb .tg-breadcrumb-title,
+   .ebt-pkg-title {
+      font-size: var(--tg-fs-h1);
+      line-height: var(--tg-lh-h1);
+      font-weight: var(--tg-fw-h1);
+   }
+
+   .ebt-blog-details-sub,
+   .ebt-blog-related-title,
+   .ebt-visa-types-title,
+   .ebt-faq-cta-title {
+      font-size: var(--tg-fs-h3);
+      line-height: var(--tg-lh-h3);
+      font-weight: var(--tg-fw-h3);
+   }
+
+   .ebt-legal-heading,
+   .ebt-visa-country-name,
+   .ebt-visa-why-card-title {
+      font-size: var(--tg-fs-h5);
+      line-height: var(--tg-lh-h5);
+      font-weight: var(--tg-fw-h5);
+   }
+
+   .ebt-blog-details-lead {
+      font-size: var(--tg-fs-body-l);
+      line-height: var(--tg-lh-body-l);
+   }
+
+   @media #{$sm,$xs} {
+      .ebt-home-block-title,
+      .ebt-visa-dest-title,
+      .ebt-visa-why-title,
+      .ebt-visa-cta-title,
+      .ebt-breadcrumb .tg-breadcrumb-title,
+      .ebt-pkg-title {
+         font-size: var(--tg-fs-h3);
+         line-height: var(--tg-lh-h3);
+      }
+   }
+
+   @media #{$md} {
+      .ebt-breadcrumb .tg-breadcrumb-title,
+      .ebt-pkg-title {
+         font-size: var(--tg-fs-h2);
+         line-height: var(--tg-lh-h2);
+      }
+   }
+}
+
+/*=============================
+   Card geometry
+=============================*/
+
+.ebt-site {
+   .ebt-blog-card,
+   .ebt-review-card,
+   .ebt-visa-country-body,
+   .ebt-visa-why-card,
+   .ebt-visa-shot,
+   .ebt-about-card,
+   .ebt-pkg-gallery-item,
+   .ebt-pkg-side,
+   .ebt-visa-cta-media,
+   .ebt-faq-cta,
+   .tg-listing-2-card-item.ebt-tour-card {
+      border-radius: var(--tg-radius-lg);
+   }
+
+   .ebt-visa-cta-box {
+      border-radius: var(--tg-radius-xl);
+   }
+
+   .ebt-faq-item {
+      border-radius: var(--tg-radius-md);
+   }
+
+   /* Content cards share one hover: a border shift plus level 1. No lift, no
+      colour change. */
+   .ebt-blog-card,
+   .tg-listing-2-card-item.ebt-tour-card {
+      border-color: var(--tg-border-4);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+         border-color: var(--tg-border-5);
+         box-shadow: var(--tg-shadow-1);
+      }
+   }
+
+   .ebt-review-card,
+   .ebt-visa-country-body {
+      border-color: var(--tg-border-4);
+   }
+
+   /* Fixed pixel heights are replaced by ratios so photos never crop
+      differently between breakpoints. */
+   .ebt-tour-card-thumb {
+      height: auto;
+      aspect-ratio: 3 / 2;
+      background: var(--tg-grey-3);
+      border-top-left-radius: var(--tg-radius-lg);
+      border-top-right-radius: var(--tg-radius-lg);
+   }
+
+   .ebt-blog-thumb {
+      height: auto;
+      aspect-ratio: 16 / 9;
+      background: var(--tg-grey-3);
+   }
+
+   .ebt-blog-body {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      padding: var(--tg-space-20);
+   }
+
+   .ebt-blog-more {
+      margin-top: auto;
+   }
+
+   .ebt-blog-card {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .ebt-review-card,
+   .ebt-visa-why-card {
+      padding: var(--tg-space-24);
+   }
+
+   .ebt-tour-card .tg-listing-card-content {
+      padding: 0 var(--tg-space-20) var(--tg-space-20);
+   }
+
+   /* Card body copy previously carried three near-identical greys (#64748b,
+      #475467, #475569); they collapse onto the ink ramp here. */
+   .ebt-tour-card-summary {
+      color: var(--tg-ink-4);
+      @include text('body-s');
+      line-height: 1.55;
+   }
+
+   .ebt-tour-card .tg-listing-card-duration-tour span {
+      color: var(--tg-ink-3);
+   }
+}
+
+/*=============================
+   Bus route card
+=============================*/
+
+.ebt-route-card {
+   margin-bottom: var(--tg-space-24);
+}
+
+.ebt-route-card .ebt-card-body {
+   gap: var(--tg-space-8);
+   padding: var(--tg-space-24);
+}
+
+.ebt-route-card-kind {
+   color: var(--tg-theme-primary);
+   font-size: var(--tg-fs-caption);
+   line-height: var(--tg-lh-caption);
+   font-weight: 600;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+}
+
+.ebt-route-card-title {
+   margin: 0;
+   color: var(--tg-ink-1);
+   font-size: var(--tg-fs-h4);
+   line-height: var(--tg-lh-h4);
+   font-weight: var(--tg-fw-h4);
+}
+
+.ebt-route-card-meta,
+.ebt-route-card-price {
+   margin: 0;
+   color: var(--tg-ink-4);
+   font-size: var(--tg-fs-body-s);
+   line-height: var(--tg-lh-body-s);
+}
+
+.ebt-route-card-price strong {
+   color: var(--tg-theme-primary);
+   font-size: var(--tg-fs-h5);
+   font-weight: var(--tg-fw-h5);
+}
+
+.ebt-route-card-cta {
+   align-self: flex-start;
+   margin-top: var(--tg-space-12);
+}
+
+/*=============================
+   Filter chips
+=============================*/
+
+.ebt-filter-set {
+   display: flex;
+   flex-direction: column;
+   gap: var(--tg-space-20);
+   margin-bottom: var(--tg-space-40);
+}
+
+.ebt-site .ebt-filter-row {
+   display: flex;
+   flex-wrap: wrap;
+   gap: var(--tg-space-8);
+}
+
+/* The banner is now built from .ebt-btn, so the one-off accept button rule in
+   the product file no longer applies to it. */
+.ebt-site .ebt-cookie-banner .ebt-btn {
+   flex: 0 0 auto;
+
+   @media #{$xs} {
+      width: 100%;
+   }
+}

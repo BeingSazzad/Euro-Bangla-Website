@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock3, MapPin } from "lucide-react";
 import type { PackageItem } from "@/data/services";
+import { iconProps } from "@/data/icons";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 
@@ -49,12 +50,12 @@ const PackageCard = ({
             <p className="ebt-tour-card-summary mb-10">{tx(item.summary, locale)}</p>
             <div className="tg-listing-card-duration-tour">
                <span className="tg-listing-card-duration-map mb-0">
-                  <MapPin size={14} strokeWidth={1.75} aria-hidden="true" />
+                  <MapPin {...iconProps("sm")} />
                   {tx(item.location, locale)}
                </span>
                {item.days > 1 && (
                   <span className="tg-listing-card-duration-time">
-                     <Clock3 size={14} strokeWidth={1.75} aria-hidden="true" />
+                     <Clock3 {...iconProps("sm")} />
                      {item.days} {t("svc.days")}
                   </span>
                )}

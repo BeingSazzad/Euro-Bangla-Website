@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { JSX } from "react";
 import { CalendarDays, Users, Award } from "lucide-react";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 import shape from "@/assets/img/banner/banner-2/shape.png"
@@ -13,7 +14,7 @@ interface DataType {
    desc: string;
 }
 
-const chooseIcon = { size: 40, strokeWidth: 1.5, "aria-hidden": true as const };
+const chooseIcon = iconProps("xl");
 
 const choose_data: DataType[] = [
    {

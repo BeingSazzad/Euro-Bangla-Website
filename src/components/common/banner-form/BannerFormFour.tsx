@@ -4,6 +4,7 @@ import {
    FormEvent,
    JSX,
    useEffect,
+   useId,
    useMemo,
    useRef,
    useState,
@@ -115,6 +116,8 @@ const DestinationField = ({
    const { t } = useT();
    const [open, setOpen] = useState(false);
    const boxRef = useRef<HTMLDivElement>(null);
+   const inputId = useId();
+   const listId = `${inputId}-list`;
 
    const filtered = useMemo(() => {
       const q = value.trim().toLowerCase();
@@ -134,15 +137,25 @@ const DestinationField = ({
 
    return (
       <div className="tg-booking-form-parent-inner ebt-booking-field tg-hero-quantity p-relative" ref={boxRef}>
-         <span className="tg-booking-form-title mb-5">{title}</span>
+         <label className="tg-booking-form-title mb-5" htmlFor={inputId}>
+            {title}
+         </label>
          <div className={`tg-booking-add-input-field ${open ? "active" : ""}`}>
             <input
+               id={inputId}
                className="input ebt-booking-dynamic-input"
                name={name}
                value={value}
                placeholder={placeholder}
                autoComplete="off"
+               role="combobox"
+               aria-expanded={open}
+               aria-controls={listId}
+               aria-autocomplete="list"
                onFocus={() => setOpen(true)}
+               onKeyDown={(event) => {
+                  if (event.key === "Escape") setOpen(false);
+               }}
                onChange={(e) => {
                   onChange(e.target.value);
                   setOpen(true);
@@ -154,22 +167,25 @@ const DestinationField = ({
          </div>
          {open && (
             <div className="tg-booking-form-location-list tg-booking-quantity-active tg-list-open">
-               <ul className="scrool-bar scrool-height pr-5">
+               <ul className="scrool-bar scrool-height pr-5" id={listId} role="listbox">
                   {filtered.length === 0 && (
                      <li className="ebt-booking-empty">
                         <span>{t("search.noMatches")}</span>
                      </li>
                   )}
                   {filtered.map((item) => (
-                     <li
-                        key={item}
-                        onClick={() => {
-                           onChange(item);
-                           setOpen(false);
-                        }}
-                     >
-                        <MapPin size={14} strokeWidth={1.75} aria-hidden="true" />
-                        <span>{item}</span>
+                     <li key={item} role="option" aria-selected={item === value}>
+                        <button
+                           type="button"
+                           className="ebt-booking-option"
+                           onClick={() => {
+                              onChange(item);
+                              setOpen(false);
+                           }}
+                        >
+                           <MapPin size={14} strokeWidth={1.75} aria-hidden="true" />
+                           <span>{item}</span>
+                        </button>
                      </li>
                   ))}
                </ul>
@@ -191,29 +207,37 @@ const DateField = ({
    value: Date | undefined;
    onChange: (date: Date | undefined) => void;
    minDate?: Date | "today";
-}) => (
-   <div className="tg-booking-form-parent-inner ebt-booking-field">
-      <span className="tg-booking-form-title mb-5">{title}</span>
-      <div className="tg-booking-add-input-date p-relative">
-         <span aria-hidden="true">
-            <CalendarDays size={14} strokeWidth={1.75} />
-         </span>
-         <input type="hidden" name={name} value={formatDate(value)} />
-         <Flatpickr
-            value={value}
-            onChange={(selected) => onChange(selected[0])}
-            options={{
-               dateFormat: "d/m/Y",
-               minDate: minDate ?? "today",
-               disableMobile: true,
-               allowInput: false,
-            }}
-            className="input"
-            placeholder="dd/mm/yyyy"
-         />
+}) => {
+   const { t } = useT();
+   const inputId = useId();
+
+   return (
+      <div className="tg-booking-form-parent-inner ebt-booking-field">
+         <label className="tg-booking-form-title mb-5" htmlFor={inputId}>
+            {title}
+         </label>
+         <div className="tg-booking-add-input-date p-relative">
+            <span aria-hidden="true">
+               <CalendarDays size={14} strokeWidth={1.75} />
+            </span>
+            <input type="hidden" name={name} value={formatDate(value)} />
+            <Flatpickr
+               id={inputId}
+               value={value}
+               onChange={(selected) => onChange(selected[0])}
+               options={{
+                  dateFormat: "d/m/Y",
+                  minDate: minDate ?? "today",
+                  disableMobile: true,
+                  allowInput: false,
+               }}
+               className="input"
+               placeholder={t("search.datePlaceholder")}
+            />
+         </div>
       </div>
-   </div>
-);
+   );
+};
 
 const GuestField = ({
    title,
@@ -239,6 +263,7 @@ const GuestField = ({
    const { t } = useT();
    const [open, setOpen] = useState(false);
    const boxRef = useRef<HTMLDivElement>(null);
+   const labelId = useId();
 
    useEffect(() => {
       const onDoc = (event: MouseEvent) => {
@@ -264,7 +289,9 @@ const GuestField = ({
 
    return (
       <div className="tg-booking-form-parent-inner ebt-booking-field tg-hero-quantity p-relative" ref={boxRef}>
-         <span className="tg-booking-form-title mb-5">{title}</span>
+         <span className="tg-booking-form-title mb-5" id={labelId}>
+            {title}
+         </span>
          {showRooms && <input type="hidden" name="rooms" value={rooms} />}
          <input type="hidden" name="adults" value={adults} />
          <input type="hidden" name="children" value={childCount} />
@@ -273,6 +300,8 @@ const GuestField = ({
             type="button"
             className={`tg-booking-add-input-field tg-booking-quantity-toggle ${open ? "active" : ""}`}
             onClick={() => setOpen((prev) => !prev)}
+            aria-expanded={open}
+            aria-labelledby={labelId}
          >
             <span className="location" aria-hidden="true">
                <Users size={15} strokeWidth={1.75} />
@@ -289,16 +318,23 @@ const GuestField = ({
                            <button
                               type="button"
                               className="decrement"
-                              aria-label={`Decrease ${row.label}`}
+                              aria-label={`${t("search.decrease")} ${row.label}`}
+                              disabled={row.value <= row.min}
                               onClick={() => row.set(Math.max(row.min, row.value - 1))}
                            >
                               <Minus size={14} strokeWidth={1.75} />
                            </button>
-                           <input className="tg-quantity-input" type="text" readOnly value={row.value} />
+                           <input
+                              className="tg-quantity-input"
+                              type="text"
+                              readOnly
+                              value={row.value}
+                              aria-label={row.label}
+                           />
                            <button
                               type="button"
                               className="increment"
-                              aria-label={`Increase ${row.label}`}
+                              aria-label={`${t("search.increase")} ${row.label}`}
                               onClick={() => row.set(row.value + 1)}
                            >
                               <Plus size={14} strokeWidth={1.75} />
@@ -496,7 +532,7 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
                                           <DestinationField
                                              title={t("search.package")}
                                              name="destination"
-                                             placeholder="Umrah / Hajj"
+                                             placeholder={t("search.hajjPlaceholder")}
                                              options={HAJJ_PACKAGES}
                                              value={destination}
                                              onChange={setDestination}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, Clock3 } from "lucide-react";
 import type { BlogPost } from "@/data/blogPosts";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 const BlogCard = ({ post }: { post: BlogPost }) => {
@@ -18,11 +19,11 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
          <div className="ebt-blog-body">
             <div className="ebt-blog-meta">
                <span>
-                  <CalendarDays size={14} strokeWidth={1.75} aria-hidden="true" />
+                  <CalendarDays {...iconProps("sm")} />
                   {t(post.dateKey)}
                </span>
                <span>
-                  <Clock3 size={14} strokeWidth={1.75} aria-hidden="true" />
+                  <Clock3 {...iconProps("sm")} />
                   {t(post.readKey)}
                </span>
             </div>

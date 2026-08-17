@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 interface DataType {
@@ -31,11 +32,11 @@ const BreadCrumb = ({ sub_title, title, raw = false, parentHref, parentKey }: Da
                      <div className="tg-breadcrumb-list-4">
                         <ul>
                            <li><Link href="/">{t("page.home")}</Link></li>
-                           <li><ChevronRight size={14} strokeWidth={2} aria-hidden="true" /></li>
+                           <li><ChevronRight {...iconProps("sm")} /></li>
                            {resolvedParent ? (
                               <>
                                  <li><Link href={resolvedParent}>{resolvedParentLabel}</Link></li>
-                                 <li><ChevronRight size={14} strokeWidth={2} aria-hidden="true" /></li>
+                                 <li><ChevronRight {...iconProps("sm")} /></li>
                                  <li>{crumbLabel}</li>
                               </>
                            ) : (

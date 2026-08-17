@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Globe } from "lucide-react";
+import { iconProps } from "@/data/icons";
 import { LOCALES } from "@/i18n/locales";
 import { useT } from "@/i18n/LanguageProvider";
 
@@ -39,7 +40,7 @@ const LanguageSwitcher = () => {
             aria-label={t("header.language")}
          >
             <span className="tg-lang-switcher-globe">
-               <Globe size={18} strokeWidth={1.75} aria-hidden="true" />
+               <Globe {...iconProps("md")} />
             </span>
             <span className="tg-lang-switcher-code">{current.short}</span>
          </button>

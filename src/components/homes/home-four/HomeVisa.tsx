@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ClipboardList, Clock3, ShieldCheck } from "lucide-react";
 import Button from "@/components/common/Button";
 import { visaDestinations } from "@/data/visaDestinations";
 import { tx } from "@/data/localized";
@@ -10,12 +9,6 @@ import { useT } from "@/i18n/LanguageProvider";
 import type { Locale } from "@/i18n/locales";
 
 const HOME_VISA_IDS = ["france", "uk", "canada", "usa", "germany"] as const;
-
-const points = [
-   { icon: ClipboardList, textKey: "home.visaPoint1" },
-   { icon: Clock3, textKey: "home.visaPoint2" },
-   { icon: ShieldCheck, textKey: "home.visaPoint3" },
-] as const;
 
 const HomeVisa = () => {
    const { locale, t } = useT();
@@ -35,26 +28,12 @@ const HomeVisa = () => {
                <p className="ebt-home-block-text mb-0">{t("home.visaText")}</p>
             </div>
 
-            <ul className="ebt-home-visa-points">
-               {points.map((point) => {
-                  const Icon = point.icon;
-                  return (
-                     <li key={point.textKey}>
-                        <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
-                        <span>{t(point.textKey)}</span>
-                     </li>
-                  );
-               })}
-            </ul>
-
             <div className="ebt-home-visa-mosaic">
                <VisaShot dest={hero} locale={locale} processingLabel={t("visaDetail.processingLabel")} featured />
                {rest.map((dest) => (
                   <VisaShot key={dest.id} dest={dest} locale={locale} processingLabel={t("visaDetail.processingLabel")} />
                ))}
             </div>
-
-            <p className="ebt-home-visa-note">{t("home.visaNote")}</p>
 
             <div className="ebt-home-visa-actions">
                <Link href="/visa" className="tg-btn tg-btn-switch-animation">

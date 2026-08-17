@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { COMPANY, whatsappLink } from "@/data/company";
+import { ICON_SIZE, iconProps } from "@/data/icons";
 import { WhatsAppIcon } from "@/components/common/SocialIcons";
 import { useT } from "@/i18n/LanguageProvider";
 
@@ -14,7 +15,7 @@ const ContactInfoList = () => {
          <li>
             <Link href={COMPANY.mapLink} target="_blank" rel="noopener noreferrer" className="ebt-contact-item">
                <span className="ebt-contact-icon" aria-hidden="true">
-                  <MapPin size={18} strokeWidth={1.75} />
+                  <MapPin {...iconProps("md")} />
                </span>
                <span className="ebt-contact-copy">
                   <strong>{t("header.officeAddress")}</strong>
@@ -29,7 +30,7 @@ const ContactInfoList = () => {
          <li>
             <Link href={`tel:${COMPANY.phoneTel}`} className="ebt-contact-item">
                <span className="ebt-contact-icon" aria-hidden="true">
-                  <Phone size={18} strokeWidth={1.75} />
+                  <Phone {...iconProps("md")} />
                </span>
                <span className="ebt-contact-copy">
                   <strong>{t("header.phoneNumber")}</strong>
@@ -40,7 +41,7 @@ const ContactInfoList = () => {
          <li>
             <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="ebt-contact-item">
                <span className="ebt-contact-icon" aria-hidden="true">
-                  <WhatsAppIcon size={18} />
+                  <WhatsAppIcon size={ICON_SIZE.md} />
                </span>
                <span className="ebt-contact-copy">
                   <strong>WhatsApp</strong>
@@ -51,7 +52,7 @@ const ContactInfoList = () => {
          <li>
             <Link href={`mailto:${COMPANY.email}`} className="ebt-contact-item">
                <span className="ebt-contact-icon" aria-hidden="true">
-                  <Mail size={18} strokeWidth={1.75} />
+                  <Mail {...iconProps("md")} />
                </span>
                <span className="ebt-contact-copy">
                   <strong>{t("header.emailAddress")}</strong>

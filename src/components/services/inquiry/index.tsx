@@ -14,7 +14,7 @@ const InquiryPage = () => {
                <div className="row justify-content-center">
                   <div className="col-lg-8">
                      <div className="tg-login-top text-center mb-40">
-                        <h2 className="mb-15">{t("inquiry.title")}</h2>
+                        <h2 className="mb-15">{t("inquiry.formTitle")}</h2>
                         <p className="mb-0">{t("inquiry.subtitle")}</p>
                      </div>
                      <Suspense>

@@ -1,8 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
+import { SearchX } from "lucide-react";
 import type { PackageItem } from "@/data/services";
 import PackageCard from "./PackageCard";
+import EbtButton from "./EbtButton";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 const PackageListing = ({
@@ -21,6 +24,7 @@ const PackageListing = ({
    showTourFilters?: boolean;
 }) => {
    const { t } = useT();
+   const uid = useId();
    const [category, setCategory] = useState("all");
    const [region, setRegion] = useState("all");
 
@@ -33,14 +37,9 @@ const PackageListing = ({
    }, [items, category, region]);
 
    const Chip = ({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) => (
-      <button
-         type="button"
-         className={`tg-btn ${active ? "" : "tg-btn-transparent"}`}
-         onClick={onClick}
-         style={{ padding: "8px 16px", minHeight: 0 }}
-      >
+      <EbtButton variant={active ? "primary" : "outline"} size="sm" aria-pressed={active} onClick={onClick}>
          {label}
-      </button>
+      </EbtButton>
    );
 
    return (
@@ -52,26 +51,49 @@ const PackageListing = ({
                <p className="mb-0">{t(textKey)}</p>
             </div>
             {showTourFilters && (
-               <div className="mb-40">
-                  <p className="mb-15">{t("svc.filterType")}</p>
-                  <div className="ebt-filter-row mb-15">
-                     <Chip active={category === "all"} onClick={() => setCategory("all")} label={t("svc.all")} />
-                     <Chip active={category === "family"} onClick={() => setCategory("family")} label={t("svc.family")} />
-                     <Chip active={category === "honeymoon"} onClick={() => setCategory("honeymoon")} label={t("svc.honeymoon")} />
-                     <Chip active={category === "group"} onClick={() => setCategory("group")} label={t("svc.group")} />
+               <div className="ebt-filter-set">
+                  <div className="ebt-field">
+                     <p className="ebt-label" id={`${uid}-type`}>
+                        {t("svc.filterType")}
+                     </p>
+                     <div className="ebt-filter-row" role="group" aria-labelledby={`${uid}-type`}>
+                        <Chip active={category === "all"} onClick={() => setCategory("all")} label={t("svc.all")} />
+                        <Chip active={category === "family"} onClick={() => setCategory("family")} label={t("svc.family")} />
+                        <Chip active={category === "honeymoon"} onClick={() => setCategory("honeymoon")} label={t("svc.honeymoon")} />
+                        <Chip active={category === "group"} onClick={() => setCategory("group")} label={t("svc.group")} />
+                     </div>
                   </div>
-                  <p className="mb-15 mt-10">{t("svc.filterRegion")}</p>
-                  <div className="ebt-filter-row mb-0">
-                     <Chip active={region === "all"} onClick={() => setRegion("all")} label={t("svc.all")} />
-                     <Chip active={region === "europe"} onClick={() => setRegion("europe")} label={t("svc.europe")} />
-                     <Chip active={region === "dubai"} onClick={() => setRegion("dubai")} label={t("svc.dubai")} />
-                     <Chip active={region === "turkey"} onClick={() => setRegion("turkey")} label={t("svc.turkey")} />
-                     <Chip active={region === "ksa"} onClick={() => setRegion("ksa")} label={t("svc.ksa")} />
+                  <div className="ebt-field">
+                     <p className="ebt-label" id={`${uid}-region`}>
+                        {t("svc.filterRegion")}
+                     </p>
+                     <div className="ebt-filter-row" role="group" aria-labelledby={`${uid}-region`}>
+                        <Chip active={region === "all"} onClick={() => setRegion("all")} label={t("svc.all")} />
+                        <Chip active={region === "europe"} onClick={() => setRegion("europe")} label={t("svc.europe")} />
+                        <Chip active={region === "dubai"} onClick={() => setRegion("dubai")} label={t("svc.dubai")} />
+                        <Chip active={region === "turkey"} onClick={() => setRegion("turkey")} label={t("svc.turkey")} />
+                        <Chip active={region === "ksa"} onClick={() => setRegion("ksa")} label={t("svc.ksa")} />
+                     </div>
                   </div>
                </div>
             )}
             {filtered.length === 0 ? (
-               <p className="text-center mb-0">{t("svc.noMatches")}</p>
+               <div className="ebt-empty" role="status">
+                  <span className="ebt-empty-icon">
+                     <SearchX {...iconProps("lg")} />
+                  </span>
+                  <p className="ebt-empty-title">{t("svc.noMatchesTitle")}</p>
+                  <p className="ebt-empty-text">{t("svc.noMatchesHint")}</p>
+                  <EbtButton
+                     variant="outline"
+                     onClick={() => {
+                        setCategory("all");
+                        setRegion("all");
+                     }}
+                  >
+                     {t("svc.clearFilters")}
+                  </EbtButton>
+               </div>
             ) : (
                <div className="row align-items-stretch">
                   {filtered.map((item) => (

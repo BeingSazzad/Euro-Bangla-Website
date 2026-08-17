@@ -2,8 +2,8 @@ import InquiryPage from "@/components/services/inquiry";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-  title: "Travel Inquiry | Euro Bangla Travels",
-  description: "Send a flight, Hajj, tour, hotel, bus or visa inquiry and receive a reference number.",
+  title: "Request a Quote | Euro Bangla Travels",
+  description: "Send a flight, Hajj, tour, hotel, bus or visa inquiry and receive a quote with a reference number.",
 };
 
 const page = () => (

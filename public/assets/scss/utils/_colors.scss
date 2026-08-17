@@ -19,12 +19,44 @@ $colors: (
     'theme': (
         'primary': #0047AB,
         'secondary': #05AB13,
+        'secondary-dark': #048f10,
+        'deep': #002F6C,
+        'deep-2': #003C8A,
+    ),
+    'brand': (
+        'whatsapp': #25D366,
+        'whatsapp-dark': #1EBE5B,
     ),
     'border': (
         '1': #e1e1e1,
         '2': #c5c5c5,
         '3': #e6e6e6,
+        '4': #e8edf3,
+        '5': #dbe4f0,
 
+    ),
+    // Text ramp. These five values were already the de-facto heading/body/meta
+    // colours across the Euro Bangla rules; naming them stops new near-misses
+    // like #475467 vs #475569 from appearing.
+    'ink': (
+        '1': #0f172a,
+        '2': #334155,
+        '3': #475569,
+        '4': #64748b,
+        '5': #94a3b8,
+    ),
+    // Brand-tinted surfaces, as opposed to the neutral 'grey' ramp above.
+    'surface': (
+        '1': #f7fafc,
+        '2': #f4f7fd,
+        '3': #eef4ff,
+    ),
+    // Feedback. Success reads as a darkened theme-secondary so message text
+    // clears AA on white; error darkens the bare `red` the old .form_error used,
+    // which only reached 4.0:1.
+    'state': (
+        'success': #046c0f,
+        'error': #d92d20,
     )
 );
 

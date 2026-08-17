@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BadgeCheck, Clock3, Headset, ShieldCheck } from "lucide-react";
 import Button from "@/components/common/Button";
+import { iconProps } from "@/data/icons";
 import { visaTypes } from "@/data/services";
 import { visaDestinations } from "@/data/visaDestinations";
 import { tx } from "@/data/localized";
@@ -106,7 +107,7 @@ export const VisaWhy = () => {
                      <div key={why.id} className="col-lg-3 col-md-6 mb-25 d-flex">
                         <div className={`ebt-visa-why-card ebt-visa-why-card--${why.tone}`}>
                            <span className="ebt-visa-why-icon" aria-hidden="true">
-                              <Icon size={28} strokeWidth={1.75} />
+                              <Icon {...iconProps("lg")} />
                            </span>
                            <h3 className="ebt-visa-why-card-title">{t(why.titleKey)}</h3>
                            <p className="ebt-visa-why-card-text mb-0">{t(why.textKey)}</p>

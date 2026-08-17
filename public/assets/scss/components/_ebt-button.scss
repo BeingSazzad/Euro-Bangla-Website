@@ -1,0 +1,295 @@
+@use '../utils' as *;
+
+/*=============================
+   Euro Bangla button system
+=============================*/
+
+/* One base plus one variant class for everything that reads as a button. Height
+   ramp is shared with .ebt-control so a field and the button beside it align. */
+.ebt-btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: var(--tg-space-8);
+   min-height: var(--tg-control-h-md);
+   padding: 0 var(--tg-space-16);
+   border: 1px solid transparent;
+   border-radius: var(--tg-radius-sm);
+   background: transparent;
+   font-family: var(--tg-ff-body);
+   @include text('btn-m');
+   text-align: center;
+   text-decoration: none;
+   text-transform: none;
+   white-space: nowrap;
+   cursor: pointer;
+   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+   svg {
+      flex-shrink: 0;
+   }
+
+   &:focus-visible {
+      @include focus-ring();
+   }
+
+   &:disabled,
+   &[aria-disabled='true'] {
+      cursor: not-allowed;
+   }
+
+   &:disabled,
+   &.is-loading {
+      pointer-events: none;
+   }
+}
+
+.ebt-btn--sm {
+   min-height: var(--tg-control-h-sm);
+   padding: 0 var(--tg-space-12);
+   @include text('btn-s');
+}
+
+.ebt-btn--lg {
+   min-height: var(--tg-control-h-lg);
+   padding: 0 var(--tg-space-20);
+   @include text('btn-l');
+}
+
+/* Small is a density choice, not a licence to ship a 36px tap target on a
+   phone. */
+@media (pointer: coarse) {
+   .ebt-btn--sm {
+      min-height: var(--tg-control-tap-min);
+   }
+}
+
+.ebt-btn--block {
+   width: 100%;
+}
+
+.ebt-btn--icon {
+   width: var(--tg-control-h-md);
+   min-width: var(--tg-control-h-md);
+   padding: 0;
+   border-radius: var(--tg-radius-sm);
+
+   &.ebt-btn--sm {
+      width: var(--tg-control-h-sm);
+      min-width: var(--tg-control-h-sm);
+   }
+
+   &.ebt-btn--round {
+      border-radius: var(--tg-radius-full);
+   }
+}
+
+.ebt-btn--primary {
+   background: var(--tg-theme-primary);
+   border-color: var(--tg-theme-primary);
+   color: var(--tg-common-white);
+
+   &:hover {
+      background: var(--tg-theme-deep-2);
+      border-color: var(--tg-theme-deep-2);
+      color: var(--tg-common-white);
+   }
+
+   &:active {
+      background: var(--tg-theme-deep);
+      border-color: var(--tg-theme-deep);
+   }
+}
+
+.ebt-btn--secondary {
+   background: var(--tg-theme-secondary);
+   border-color: var(--tg-theme-secondary);
+   color: var(--tg-common-white);
+
+   &:hover {
+      background: var(--tg-theme-secondary-dark);
+      border-color: var(--tg-theme-secondary-dark);
+      color: var(--tg-common-white);
+   }
+
+   &:active {
+      background: var(--tg-theme-secondary-dark);
+   }
+}
+
+.ebt-btn--outline {
+   border-color: var(--tg-theme-primary);
+   color: var(--tg-theme-primary);
+
+   &:hover {
+      background: var(--tg-surface-3);
+      border-color: var(--tg-theme-deep);
+      color: var(--tg-theme-deep);
+   }
+
+   &:active {
+      background: var(--tg-border-5);
+   }
+}
+
+.ebt-btn--ghost {
+   color: var(--tg-theme-primary);
+
+   &:hover {
+      background: var(--tg-surface-3);
+      color: var(--tg-theme-deep);
+   }
+
+   &:active {
+      background: var(--tg-border-5);
+   }
+}
+
+.ebt-btn--text {
+   padding: 0;
+   color: var(--tg-theme-primary);
+
+   &:hover {
+      color: var(--tg-theme-deep);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+   }
+}
+
+/* Defined so the system is complete and so a future destructive control cannot
+   invent its own styling. Nothing on this site destroys data today. */
+.ebt-btn--danger {
+   background: var(--tg-state-error);
+   border-color: var(--tg-state-error);
+   color: var(--tg-common-white);
+
+   &:hover {
+      background: var(--tg-state-error);
+      border-color: var(--tg-state-error);
+      color: var(--tg-common-white);
+      filter: brightness(0.92);
+   }
+}
+
+.ebt-btn--whatsapp {
+   background: var(--tg-brand-whatsapp);
+   border-color: var(--tg-brand-whatsapp);
+   color: var(--tg-common-white);
+
+   &:hover {
+      background: var(--tg-brand-whatsapp-dark);
+      border-color: var(--tg-brand-whatsapp-dark);
+      color: var(--tg-common-white);
+   }
+}
+
+/* Placed on a brand fill, so the ring has to be light to be seen. */
+.ebt-btn--on-brand {
+   background: var(--tg-common-white);
+   border-color: var(--tg-common-white);
+   color: var(--tg-theme-primary);
+
+   &:hover {
+      background: var(--tg-surface-3);
+      border-color: var(--tg-surface-3);
+      color: var(--tg-theme-deep);
+   }
+
+   &:focus-visible {
+      @include focus-ring-inverse();
+   }
+}
+
+.ebt-btn--primary,
+.ebt-btn--secondary,
+.ebt-btn--danger,
+.ebt-btn--whatsapp {
+   &:disabled,
+   &[aria-disabled='true'] {
+      background: var(--tg-grey-3);
+      border-color: var(--tg-grey-3);
+      color: var(--tg-ink-5);
+      filter: none;
+   }
+}
+
+.ebt-btn--outline,
+.ebt-btn--ghost,
+.ebt-btn--text,
+.ebt-btn--on-brand {
+   &:disabled,
+   &[aria-disabled='true'] {
+      background: transparent;
+      border-color: var(--tg-border-1);
+      color: var(--tg-ink-5);
+      text-decoration: none;
+   }
+}
+
+.ebt-btn-spinner {
+   width: 16px;
+   height: 16px;
+   flex: 0 0 16px;
+   border: 2px solid currentColor;
+   border-right-color: transparent;
+   border-radius: var(--tg-radius-full);
+   animation: ebt-spin 0.7s linear infinite;
+}
+
+@keyframes ebt-spin {
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .ebt-btn-spinner {
+      animation-duration: 2.4s;
+   }
+}
+
+/* The template button is still the most common CTA on the site. Rather than
+   rewrite every call site, its geometry, hover and focus are pulled onto the
+   token ramp; only the palette is inherited untouched. */
+.tg-btn {
+   min-height: var(--tg-control-h-md);
+   padding: 10px var(--tg-space-20);
+   border: 1px solid var(--tg-theme-primary);
+   border-radius: var(--tg-radius-sm);
+   @include text('btn-l');
+
+   &:hover {
+      background: var(--tg-theme-deep-2);
+      border-color: var(--tg-theme-deep-2);
+   }
+
+   &:active {
+      background: var(--tg-theme-deep);
+      border-color: var(--tg-theme-deep);
+   }
+
+   &:focus-visible {
+      @include focus-ring();
+   }
+
+   &:disabled,
+   &[aria-disabled='true'] {
+      background: var(--tg-grey-3);
+      border-color: var(--tg-grey-3);
+      color: var(--tg-ink-5);
+      cursor: not-allowed;
+      pointer-events: none;
+   }
+}
+
+.tg-btn-transparent {
+   background: var(--tg-surface-3);
+   border-color: var(--tg-surface-3);
+   color: var(--tg-theme-primary);
+
+   &:hover {
+      background: var(--tg-theme-primary);
+      border-color: var(--tg-theme-primary);
+      color: var(--tg-common-white);
+   }
+}

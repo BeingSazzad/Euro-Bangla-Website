@@ -4,8 +4,9 @@ import Link from "next/link"
 import { X } from "lucide-react"
 import SiteLogo from "@/components/common/SiteLogo"
 import ContactInfoList from "@/components/common/ContactInfoList"
-import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons"
-import { COMPANY, whatsappLink } from "@/data/company"
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/common/SocialIcons"
+import { COMPANY } from "@/data/company"
+import { ICON_SIZE, iconProps } from "@/data/icons"
 import { useT } from "@/i18n/LanguageProvider"
 
 interface SidebarProps {
@@ -35,7 +36,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
          <div className={`offCanvas__info ${sidebar ? "active" : ""}`} role="dialog" aria-modal="true" aria-label={t("header.contactInfo")}>
             <div className="offCanvas__close-icon menu-close">
                <button type="button" onClick={close} aria-label={t("header.close")}>
-                  <X size={18} strokeWidth={2} aria-hidden="true" />
+                  <X {...iconProps("md")} />
                </button>
             </div>
             <div className="offCanvas__logo mb-30">
@@ -45,22 +46,19 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
                <ContactInfoList />
             </div>
             <div className="offCanvas__social-icon mt-30">
-               <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                  <WhatsAppIcon size={16} />
-               </Link>
                {COMPANY.facebook !== "#" && (
                   <Link href={COMPANY.facebook} aria-label="Facebook">
-                     <FacebookIcon size={16} />
+                     <FacebookIcon size={ICON_SIZE.sm} />
                   </Link>
                )}
                {COMPANY.instagram !== "#" && (
                   <Link href={COMPANY.instagram} aria-label="Instagram">
-                     <InstagramIcon size={16} />
+                     <InstagramIcon size={ICON_SIZE.sm} />
                   </Link>
                )}
                {COMPANY.youtube !== "#" && (
                   <Link href={COMPANY.youtube} aria-label="YouTube">
-                     <YoutubeIcon size={16} />
+                     <YoutubeIcon size={ICON_SIZE.sm} />
                   </Link>
                )}
             </div>

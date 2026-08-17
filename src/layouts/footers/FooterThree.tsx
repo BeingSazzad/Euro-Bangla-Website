@@ -6,6 +6,7 @@ import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/common/So
 import SiteLogo from "@/components/common/SiteLogo"
 import { useT } from "@/i18n/LanguageProvider"
 import { COMPANY } from "@/data/company"
+import { ICON_SIZE, iconProps } from "@/data/icons"
 
 const FooterThree = () => {
    const { t } = useT();
@@ -33,7 +34,7 @@ const FooterThree = () => {
                                  <form onSubmit={onNewsletter}>
                                     <input type="email" placeholder={t("footer.emailPlaceholder")} />
                                     <button className="tg-footer-form-btn" type="submit" aria-label="Submit">
-                                       <ArrowRight size={20} strokeWidth={1.75} color="white" aria-hidden="true" />
+                                       <ArrowRight {...iconProps("md")} color="white" />
                                     </button>
                                  </form>
                                  {newsNote && <p className="mt-10 mb-0">{newsNote}</p>}
@@ -42,17 +43,17 @@ const FooterThree = () => {
                                  <div className="tg-footer-social">
                                     {COMPANY.facebook !== "#" && (
                                        <Link href={COMPANY.facebook} aria-label="Facebook">
-                                          <FacebookIcon size={16} />
+                                          <FacebookIcon size={ICON_SIZE.sm} />
                                        </Link>
                                     )}
                                     {COMPANY.instagram !== "#" && (
                                        <Link href={COMPANY.instagram} aria-label="Instagram">
-                                          <InstagramIcon size={16} />
+                                          <InstagramIcon size={ICON_SIZE.sm} />
                                        </Link>
                                     )}
                                     {COMPANY.youtube !== "#" && (
                                        <Link href={COMPANY.youtube} aria-label="YouTube">
-                                          <YoutubeIcon size={16} />
+                                          <YoutubeIcon size={ICON_SIZE.sm} />
                                        </Link>
                                     )}
                                  </div>
@@ -78,7 +79,7 @@ const FooterThree = () => {
                                  <li>
                                     <Link className="d-flex" href={COMPANY.mapLink}>
                                        <span className="mr-15">
-                                          <MapPin size={20} strokeWidth={1.75} color="white" aria-hidden="true" />
+                                          <MapPin {...iconProps("md")} color="white" />
                                        </span>
                                        {COMPANY.address}
                                     </Link>
@@ -86,14 +87,14 @@ const FooterThree = () => {
                                  <li>
                                     <Link className="d-flex" href={`tel:${COMPANY.phoneTel}`}>
                                        <span className="mr-15">
-                                          <Phone size={18} strokeWidth={1.75} color="white" aria-hidden="true" />
+                                          <Phone {...iconProps("md")} color="white" />
                                        </span>
                                        {COMPANY.phone}
                                     </Link>
                                  </li>
                                  <li className="d-flex">
                                     <span className="mr-15">
-                                       <Clock size={20} strokeWidth={1.75} color="white" aria-hidden="true" />
+                                       <Clock {...iconProps("md")} color="white" />
                                     </span>
                                     <p className="mb-0">
                                        {t("footer.hours")}<br />

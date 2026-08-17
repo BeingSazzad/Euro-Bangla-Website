@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { Check, Clock3, MapPin, Users, X } from "lucide-react";
 import type { PackageItem } from "@/data/services";
+import { iconProps } from "@/data/icons";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 import InquiryForm from "@/components/forms/InquiryForm";
@@ -30,7 +31,7 @@ const PackageDetail = ({
    const title = tx(item.title, locale);
    const location = tx(item.location, locale);
    const photos = uniquePhotos(item);
-   const highlights = item.highlights?.length ? item.highlights : item.includes.slice(0, 4);
+   const highlights = item.highlights ?? [];
    const styleLabel =
       item.category === "family"
          ? t("svc.family")
@@ -51,7 +52,7 @@ const PackageDetail = ({
                   {item.tag && <span className="ebt-pkg-badge">{tx(item.tag, locale)}</span>}
                   <h1 className="ebt-pkg-title">{title}</h1>
                   <p className="ebt-pkg-location">
-                     <MapPin size={16} strokeWidth={1.75} aria-hidden="true" />
+                     <MapPin {...iconProps("sm")} />
                      {location}
                      {item.hotelName ? ` · ${tx(item.hotelName, locale)}` : ""}
                   </p>
@@ -81,7 +82,7 @@ const PackageDetail = ({
                <ul>
                   <li>
                      <div className="ebt-pkg-meta-icon" aria-hidden="true">
-                        <Clock3 size={18} strokeWidth={1.75} />
+                        <Clock3 {...iconProps("md")} />
                      </div>
                      <div>
                         <span>{t("svc.duration")}</span>
@@ -90,7 +91,7 @@ const PackageDetail = ({
                   </li>
                   <li>
                      <div className="ebt-pkg-meta-icon" aria-hidden="true">
-                        <MapPin size={18} strokeWidth={1.75} />
+                        <MapPin {...iconProps("md")} />
                      </div>
                      <div>
                         <span>{t("svc.destination")}</span>
@@ -99,7 +100,7 @@ const PackageDetail = ({
                   </li>
                   <li>
                      <div className="ebt-pkg-meta-icon" aria-hidden="true">
-                        <Users size={18} strokeWidth={1.75} />
+                        <Users {...iconProps("md")} />
                      </div>
                      <div>
                         <span>{t("svc.style")}</span>
@@ -119,10 +120,10 @@ const PackageDetail = ({
                   {highlights.length > 0 && (
                      <section className="ebt-pkg-section">
                         <h2>{t("svc.highlights")}</h2>
-                        <ul className="ebt-pkg-highlights">
+                        <ul className="ebt-pkg-highlights is-grid">
                            {highlights.map((line, index) => (
                               <li key={index}>
-                                 <Check size={16} strokeWidth={2.4} aria-hidden="true" />
+                                 <Check {...iconProps("sm")} />
                                  <span>{tx(line, locale)}</span>
                               </li>
                            ))}
@@ -132,22 +133,24 @@ const PackageDetail = ({
 
                   <section className="ebt-pkg-section">
                      <h2>{t("svc.includes")} / {t("svc.excludes")}</h2>
-                     <div className="row">
-                        <div className="col-md-6">
+                     <div className="ebt-pkg-inout">
+                        <div className="ebt-pkg-inout-col is-in">
+                           <h3>{t("svc.included")}</h3>
                            <ul className="ebt-pkg-list is-in">
                               {item.includes.map((line, index) => (
                                  <li key={index}>
-                                    <Check size={15} strokeWidth={2.4} aria-hidden="true" />
+                                    <Check {...iconProps("sm")} />
                                     {tx(line, locale)}
                                  </li>
                               ))}
                            </ul>
                         </div>
-                        <div className="col-md-6">
+                        <div className="ebt-pkg-inout-col is-out">
+                           <h3>{t("svc.notIncluded")}</h3>
                            <ul className="ebt-pkg-list is-out">
                               {item.excludes.map((line, index) => (
                                  <li key={index}>
-                                    <X size={15} strokeWidth={2.4} aria-hidden="true" />
+                                    <X {...iconProps("sm")} />
                                     {tx(line, locale)}
                                  </li>
                               ))}
@@ -156,13 +159,33 @@ const PackageDetail = ({
                      </div>
                   </section>
 
+                  {item.itinerary.length > 0 && (
+                     <section className="ebt-pkg-section">
+                        <h2>{t("svc.itinerary")}</h2>
+                        <p className="ebt-pkg-section-lead">{t("svc.itineraryLead")}</p>
+                        <ol className="ebt-pkg-itinerary">
+                           {item.itinerary.map((step) => (
+                              <li key={step.day}>
+                                 <span className="ebt-pkg-day">
+                                    {t("svc.dayLabel")} {step.day}
+                                 </span>
+                                 <div>
+                                    <h3>{tx(step.title, locale)}</h3>
+                                    <p>{tx(step.text, locale)}</p>
+                                 </div>
+                              </li>
+                           ))}
+                        </ol>
+                     </section>
+                  )}
+
                   {item.facilities && item.facilities.length > 0 && (
                      <section className="ebt-pkg-section">
                         <h2>{t("svc.facilities")}</h2>
-                        <ul className="ebt-pkg-highlights">
+                        <ul className="ebt-pkg-highlights is-grid">
                            {item.facilities.map((line, index) => (
                               <li key={index}>
-                                 <Check size={16} strokeWidth={2.4} aria-hidden="true" />
+                                 <Check {...iconProps("sm")} />
                                  <span>{tx(line, locale)}</span>
                               </li>
                            ))}
@@ -183,6 +206,11 @@ const PackageDetail = ({
                         />
                      </section>
                   )}
+
+                  <section className="ebt-pkg-section ebt-pkg-terms">
+                     <h2>{t("svc.goodToKnow")}</h2>
+                     <p>{tx(item.terms, locale)}</p>
+                  </section>
                </div>
 
                <div className="col-lg-4">

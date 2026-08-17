@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import EbtButton from "@/components/common/EbtButton";
 import { useT } from "@/i18n/LanguageProvider";
 
 const COOKIE_KEY = "ebt-cookie-consent";
@@ -31,9 +32,9 @@ const CookieConsent = () => {
                {t("cookie.more")}
             </Link>
          </p>
-         <button type="button" className="ebt-cookie-accept" onClick={accept}>
+         <EbtButton variant="primary" onClick={accept}>
             {t("cookie.accept")}
-         </button>
+         </EbtButton>
       </div>
    );
 };

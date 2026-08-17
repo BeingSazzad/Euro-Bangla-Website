@@ -8,6 +8,7 @@ import InnerHeader from "@/layouts/headers/InnerHeader";
 import FooterThree from "@/layouts/footers/FooterThree";
 import BreadCrumb from "@/components/common/BreadCrumb";
 import { blogPosts, findBlog } from "@/data/blogPosts";
+import { iconProps } from "@/data/icons";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 
@@ -48,11 +49,11 @@ const BlogDetailsPage = ({ slug }: { slug: string }) => {
                               <div className="tg-blog-standard-content">
                                  <div className="tg-blog-standard-date ebt-blog-meta mb-15">
                                     <span>
-                                       <CalendarDays size={15} strokeWidth={1.75} aria-hidden="true" />
+                                       <CalendarDays {...iconProps("sm")} />
                                        {t(post.dateKey)}
                                     </span>
                                     <span>
-                                       <Clock3 size={15} strokeWidth={1.75} aria-hidden="true" />
+                                       <Clock3 {...iconProps("sm")} />
                                        {t(post.readKey)}
                                     </span>
                                     <span>{t("blogDetail.by")}</span>

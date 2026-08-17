@@ -1,0 +1,234 @@
+@use '../utils' as *;
+
+/*=============================
+   Euro Bangla layout + surfaces
+=============================*/
+
+/* One content width for every page. Bootstrap's ladder of max-widths is capped
+   here and the side padding follows the desktop / tablet / mobile steps. */
+.ebt-site {
+   .container,
+   .container-fluid {
+      padding-left: var(--tg-layout-pad-mobile);
+      padding-right: var(--tg-layout-pad-mobile);
+   }
+
+   .container {
+      max-width: var(--tg-layout-container-max);
+   }
+
+   .row {
+      --bs-gutter-x: var(--tg-layout-gutter-mobile);
+   }
+
+   @media (min-width: 768px) {
+      .container,
+      .container-fluid {
+         padding-left: var(--tg-layout-pad-tablet);
+         padding-right: var(--tg-layout-pad-tablet);
+      }
+
+      .row {
+         --bs-gutter-x: var(--tg-layout-gutter-tablet);
+      }
+   }
+
+   @media (min-width: 1200px) {
+      .container,
+      .container-fluid {
+         padding-left: var(--tg-layout-pad);
+         padding-right: var(--tg-layout-pad);
+      }
+
+      .row {
+         --bs-gutter-x: var(--tg-layout-gutter);
+      }
+   }
+}
+
+/* The template strips focus rings globally, which leaves the site unusable by
+   keyboard. Restore a visible ring for keyboard users only. */
+.ebt-site {
+   a:focus-visible,
+   button:focus-visible,
+   summary:focus-visible,
+   [tabindex]:focus-visible {
+      @include focus-ring();
+   }
+
+   .swiper-pagination-bullet:focus-visible {
+      @include focus-ring();
+   }
+}
+
+/*=============================
+   Navigation
+=============================*/
+
+.ebt-site {
+   /* Every icon-only control in the chrome gets a real tap target. */
+   .tgmenu-offcanvas-open-btn,
+   .ebt-mobile-close,
+   .offCanvas__close-icon button,
+   .tg-footer-form-btn,
+   .dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--tg-control-tap-min);
+      min-height: var(--tg-control-tap-min);
+   }
+
+   .tgmenu-offcanvas-open-btn {
+      flex-direction: column;
+      gap: 5px;
+   }
+
+   .tg-lang-switcher-btn {
+      min-height: var(--tg-control-tap-min);
+      padding-left: var(--tg-space-8);
+      padding-right: var(--tg-space-8);
+   }
+
+   .tg-lang-switcher-item {
+      min-height: var(--tg-control-tap-min);
+   }
+
+   .tg-footer-form-btn {
+      width: var(--tg-control-tap-min);
+      height: var(--tg-control-tap-min);
+   }
+
+   .tg-footer-social a,
+   .tgmobile__menu .social-links a,
+   .offCanvas__social-icon a {
+      min-width: var(--tg-control-tap-min);
+      min-height: var(--tg-control-tap-min);
+   }
+
+   .scroll__top {
+      @media #{$xs} {
+         width: var(--tg-control-tap-min);
+         height: var(--tg-control-tap-min);
+         line-height: var(--tg-control-tap-min);
+      }
+   }
+
+   .tg-breadcrumb-list-4 a,
+   .ebt-contact-item {
+      min-height: var(--tg-control-tap-min);
+   }
+}
+
+/* The 404 uses the template's 237px band, which is far outside the section
+   scale. */
+.ebt-site .tg-error-spacing {
+   padding-top: var(--tg-space-120);
+   padding-bottom: var(--tg-space-120);
+
+   @media #{$md,$sm,$xs} {
+      padding-top: var(--tg-space-80);
+      padding-bottom: var(--tg-space-80);
+   }
+}
+
+/*=============================
+   Card surface
+=============================*/
+
+.ebt-card {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   background: var(--tg-common-white);
+   border: 1px solid var(--tg-border-4);
+   border-radius: var(--tg-radius-lg);
+   transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+   &:hover {
+      border-color: var(--tg-border-5);
+      box-shadow: var(--tg-shadow-1);
+   }
+}
+
+.ebt-card-body {
+   display: flex;
+   flex: 1 1 auto;
+   flex-direction: column;
+   padding: var(--tg-space-20);
+}
+
+/* Doubles as the image placeholder: the neutral fill shows while the photo
+   loads and behind any transparent edge. */
+.ebt-media {
+   position: relative;
+   display: block;
+   overflow: hidden;
+   background: var(--tg-grey-3);
+
+   img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+   }
+}
+
+.ebt-ratio-16x9 {
+   aspect-ratio: 16 / 9;
+}
+
+.ebt-ratio-3x2 {
+   aspect-ratio: 3 / 2;
+}
+
+.ebt-ratio-4x3 {
+   aspect-ratio: 4 / 3;
+}
+
+.ebt-ratio-1x1 {
+   aspect-ratio: 1 / 1;
+}
+
+/*=============================
+   Empty state
+=============================*/
+
+.ebt-empty {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--tg-space-12);
+   padding: var(--tg-space-48) var(--tg-space-24);
+   border: 1px solid var(--tg-border-4);
+   border-radius: var(--tg-radius-md);
+   background: var(--tg-grey-5);
+   text-align: center;
+}
+
+.ebt-empty-icon {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: var(--tg-space-48);
+   height: var(--tg-space-48);
+   border-radius: var(--tg-radius-full);
+   background: var(--tg-surface-3);
+   color: var(--tg-theme-primary);
+}
+
+.ebt-empty-title {
+   margin: 0;
+   color: var(--tg-ink-1);
+   font-family: var(--tg-ff-body);
+   @include text('h5');
+}
+
+.ebt-empty-text {
+   margin: 0;
+   max-width: 46ch;
+   color: var(--tg-ink-4);
+   @include text('body-s');
+}

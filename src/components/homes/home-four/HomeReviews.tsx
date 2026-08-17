@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Star } from "lucide-react";
+import { ICON_SIZE } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 import avatar_1 from "@/assets/img/testimonial/avatar.png";
@@ -72,7 +73,7 @@ const HomeReviews = () => {
                      <article className="ebt-review-card">
                         <div className="ebt-review-stars" aria-hidden="true">
                            {Array.from({ length: 5 }).map((_, index) => (
-                              <Star key={index} size={16} strokeWidth={0} fill="currentColor" />
+                              <Star key={index} size={ICON_SIZE.sm} strokeWidth={0} fill="currentColor" />
                            ))}
                         </div>
                         <p className="ebt-review-text">{t(item.textKey)}</p>

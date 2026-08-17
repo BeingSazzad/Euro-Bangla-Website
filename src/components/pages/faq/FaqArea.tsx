@@ -1,11 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import EbtButton, { EbtButtonLink } from "@/components/common/EbtButton";
 import { useT } from "@/i18n/LanguageProvider";
 import { FAQ_ITEMS } from "@/data/faqContent";
 import { COMPANY, whatsappLink } from "@/data/company";
+import { ICON_SIZE, iconProps } from "@/data/icons";
 import { WhatsAppIcon } from "@/components/common/SocialIcons";
 
 const INITIAL_VISIBLE = 6;
@@ -60,7 +61,7 @@ const FaqArea = () => {
                                  >
                                     <span className="ebt-faq-question">{item.question}</span>
                                     <span className="ebt-faq-icon" aria-hidden="true">
-                                       <ChevronDown size={18} strokeWidth={2.25} />
+                                       <ChevronDown {...iconProps("md")} />
                                     </span>
                                  </button>
                                  <div
@@ -79,22 +80,15 @@ const FaqArea = () => {
 
                      {hasMore && (
                         <div className="ebt-faq-more text-center">
-                           <button
-                              type="button"
-                              className="ebt-faq-more-btn"
-                              onClick={onToggleList}
-                              aria-expanded={expanded}
-                           >
+                           <EbtButton variant="ghost" onClick={onToggleList} aria-expanded={expanded}>
                               {expanded
                                  ? t("faq.showLess")
                                  : `${t("faq.showMore")} (${hiddenCount})`}
                               <ChevronDown
                                  className={`ebt-faq-more-chevron ${expanded ? "is-up" : ""}`}
-                                 size={16}
-                                 strokeWidth={1.75}
-                                 aria-hidden="true"
+                                 {...iconProps("sm")}
                               />
-                           </button>
+                           </EbtButton>
                         </div>
                      )}
 
@@ -102,18 +96,20 @@ const FaqArea = () => {
                         <h3 className="ebt-faq-cta-title mb-10">{t("faq.helpTitle")}</h3>
                         <p className="ebt-faq-cta-text mb-25">{t("faq.helpText")}</p>
                         <div className="ebt-faq-cta-actions">
-                           <Link className="tg-btn" href="/inquiry">
+                           <EbtButtonLink variant="primary" size="lg" href="/inquiry">
                               {t("faq.startInquiry")}
-                           </Link>
-                           <a
-                              className="tg-btn ebt-btn-whatsapp"
+                           </EbtButtonLink>
+                           <EbtButtonLink
+                              variant="whatsapp"
+                              size="lg"
                               href={whatsappLink(`Hello ${COMPANY.name}, I need travel help.`)}
+                              external
                               target="_blank"
                               rel="noreferrer"
                            >
-                              <WhatsAppIcon size={18} />
+                              <WhatsAppIcon size={ICON_SIZE.md} />
                               {t("faq.whatsappUs")}
-                           </a>
+                           </EbtButtonLink>
                         </div>
                      </div>
                   </div>

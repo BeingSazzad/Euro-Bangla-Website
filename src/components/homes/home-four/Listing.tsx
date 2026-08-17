@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Clock3, MapPin } from "lucide-react"
 
 import cardShape from "@/assets/img/listing/listing-2/shape.png"
-import Button from "@/components/common/Button"
+import { iconProps } from "@/data/icons"
 import { useT } from "@/i18n/LanguageProvider"
 import { tourPackages } from "@/data/services"
 import { tx } from "@/data/localized"
@@ -56,11 +56,11 @@ const Listing = () => {
                               <h4 className="tg-listing-card-title">{title}</h4>
                               <div className="tg-listing-card-duration-tour">
                                  <span className="tg-listing-card-duration-map mb-0">
-                                    <MapPin size={14} strokeWidth={1.75} aria-hidden="true" />
+                                    <MapPin {...iconProps("sm")} />
                                     {tx(item.location, locale)}
                                  </span>
                                  <span className="tg-listing-card-duration-time">
-                                    <Clock3 size={14} strokeWidth={1.75} aria-hidden="true" />
+                                    <Clock3 {...iconProps("sm")} />
                                     {item.days} {t("svc.days")}
                                  </span>
                               </div>
@@ -70,9 +70,9 @@ const Listing = () => {
                   );
                })}
                <div className="col-12 wow fadeInUp" data-wow-delay=".7s" data-wow-duration=".6s">
-                  <div className="tg-listing-2-btn text-center pt-30">
-                     <Link href="/tours" className="tg-btn tg-btn-switch-animation">
-                        <Button text={t("home.seeAll")} />
+                  <div className="text-center pt-20">
+                     <Link href="/tours" className="ebt-text-link">
+                        {t("home.seeAll")}
                      </Link>
                   </div>
                </div>

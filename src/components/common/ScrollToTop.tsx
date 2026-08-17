@@ -2,6 +2,7 @@
 import UseSticky from "@/hooks/UseSticky";
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { iconProps } from "@/data/icons";
 
 const ScrollToTop = () => {
    const { sticky }: { sticky: boolean } = UseSticky();
@@ -27,7 +28,7 @@ const ScrollToTop = () => {
          className={`scroll__top scroll-to-target ${sticky && showScroll ? "open" : ""}`}
          data-target="html"
       >
-         <ArrowUp size={18} strokeWidth={1.75} aria-hidden="true" />
+         <ArrowUp {...iconProps("md")} />
       </button>
    );
 };

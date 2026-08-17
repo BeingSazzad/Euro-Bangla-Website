@@ -1,9 +1,16 @@
 "use client"
+import { Poppins } from "next/font/google";
 import "../styles/index.css";
 import "../../public/assets/scss/main.scss";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+
+const poppins = Poppins({
+   subsets: ["latin", "latin-ext"],
+   weight: ["400", "500", "600", "700", "800"],
+   display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -27,7 +34,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="icon" href="/icons/icon-192.png" type="image/png" sizes="192x192" />
       </head>
-      <body className="ebt-site" suppressHydrationWarning={true}>
+      <body className={`${poppins.className} ebt-site`} suppressHydrationWarning={true}>
         <Provider store={store}>
           <LanguageProvider>
             {children}

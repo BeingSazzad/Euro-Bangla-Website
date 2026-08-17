@@ -76,10 +76,8 @@
 ===============================*/
 body {
 	font-family: var(--tg-ff-body);
-	font-size: 16px;
-	font-weight: 400;
+	@include text('body-m');
 	color: var(--tg-grey-1);
-	line-height: 26px;
 }
 img,
 .img {
@@ -147,20 +145,31 @@ input[type="tel"],
 input[type="number"],
 input[type="password"],
 input[type="url"],
+input[type="search"],
+input[type="date"],
 textarea{
 	outline: none;
-	background-color: #fff;
-	height: 56px;
+	background-color: var(--tg-common-white);
+	height: var(--tg-control-h-md);
 	width: 100%;
-	line-height: 56px;
-	font-size: 15px;
-	color:  var(--tg-grey-1);
-	padding-left: 26px;
-	padding-right: 26px;
-	border: 1px solid #a2a9ac;
+	line-height: normal;
+	@include text('body-s');
+	color: var(--tg-ink-1);
+	padding-left: var(--tg-space-16);
+	padding-right: var(--tg-space-16);
+	border: 1px solid var(--tg-border-1);
+	border-radius: var(--tg-radius-sm);
+	box-sizing: border-box;
 	@include placeholder{
-		color: var(--tg-grey-1);
+		color: var(--tg-ink-4);
 	}
+}
+textarea{
+	height: auto;
+	min-height: 112px;
+	padding-top: var(--tg-space-12);
+	padding-bottom: var(--tg-space-12);
+	line-height: 1.5;
 }
 h1,
 h2,
@@ -169,8 +178,8 @@ h4,
 h5,
 h6 {
 	color: var(--tg-common-black);
+	font-family: "Poppins", sans-serif;
 	font-weight: 700;
-	line-height: 1.1;
 	text-transform: unset;
 }
 h1 a,
@@ -182,25 +191,26 @@ h6 a {
 	color: inherit;
 }
 h1 {
-	font-size: 48px;
+	@include text('display-l');
 }
 h2 {
-	font-size: 36px;
+	@include text('h1');
 }
 h3 {
-	font-size: 24px;
+	@include text('h3');
 }
 h4 {
-	font-size: 18px;
+	@include text('h4');
 }
 h5 {
-	font-size: 17px;
+	@include text('h5');
 }
 h6 {
-	font-size: 16px;
+	@include text('body-m');
+	font-weight: 600;
 }
 p {
-	margin-bottom: 15px;
+	margin-bottom: var(--tg-space-16);
 }
 label {
 	color: var(--tg-common-black);

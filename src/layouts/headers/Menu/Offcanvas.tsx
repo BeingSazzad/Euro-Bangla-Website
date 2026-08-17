@@ -6,6 +6,7 @@ import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import { useT } from "@/i18n/LanguageProvider";
 import ContactInfoList from "@/components/common/ContactInfoList";
 import { COMPANY, whatsappLink } from "@/data/company";
+import { ICON_SIZE, iconProps } from "@/data/icons";
 import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons";
 
 interface MobileSidebarProps {
@@ -32,7 +33,7 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                         onClick={() => setOffCanvas(false)}
                         aria-label={t("header.close")}
                      >
-                        <X size={20} strokeWidth={2} aria-hidden="true" />
+                        <X {...iconProps("md")} />
                      </button>
                   </div>
                </div>
@@ -46,27 +47,27 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                   <ul className="list-wrap">
                      <li>
                         <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                           <WhatsAppIcon size={16} />
+                           <WhatsAppIcon size={ICON_SIZE.sm} />
                         </Link>
                      </li>
                      {COMPANY.facebook !== "#" && (
                         <li>
                            <Link href={COMPANY.facebook} aria-label="Facebook">
-                              <FacebookIcon size={16} />
+                              <FacebookIcon size={ICON_SIZE.sm} />
                            </Link>
                         </li>
                      )}
                      {COMPANY.instagram !== "#" && (
                         <li>
                            <Link href={COMPANY.instagram} aria-label="Instagram">
-                              <InstagramIcon size={16} />
+                              <InstagramIcon size={ICON_SIZE.sm} />
                            </Link>
                         </li>
                      )}
                      {COMPANY.youtube !== "#" && (
                         <li>
                            <Link href={COMPANY.youtube} aria-label="YouTube">
-                              <YoutubeIcon size={16} />
+                              <YoutubeIcon size={ICON_SIZE.sm} />
                            </Link>
                         </li>
                      )}

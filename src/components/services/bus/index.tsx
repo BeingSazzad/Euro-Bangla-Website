@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import ServicePageShell from "@/components/common/ServicePageShell";
+import { EbtButtonLink } from "@/components/common/EbtButton";
 import { busRoutes } from "@/data/services";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
@@ -20,26 +20,29 @@ const BusPage = () => {
                </div>
                <div className="row">
                   {busRoutes.map((route) => (
-                     <div key={route.slug} className="col-xl-4 col-md-6">
-                        <div className="tg-listing-card-item mb-25 p-4">
-                           <span className="tg-section-subtitle d-block mb-10">
-                              {route.type === "domestic" ? t("svc.domestic") : t("svc.international")}
-                           </span>
-                           <h4 className="mb-10">
-                              {tx(route.from, locale)} → {tx(route.to, locale)}
-                           </h4>
-                           <p className="mb-10">
-                              {t("svc.duration")}: {tx(route.duration, locale)}
-                           </p>
-                           <p className="mb-20">
-                              {t("svc.from")} {route.fromPrice.toLocaleString()}
-                           </p>
-                           <Link
-                              className="tg-btn"
-                              href={`/inquiry?service=bus&from=${encodeURIComponent(tx(route.from, locale))}&to=${encodeURIComponent(tx(route.to, locale))}`}
-                           >
-                              {t("svc.quote")}
-                           </Link>
+                     <div key={route.slug} className="col-xl-4 col-md-6 d-flex">
+                        <div className="ebt-card ebt-route-card mb-25">
+                           <div className="ebt-card-body">
+                              <span className="ebt-route-card-kind">
+                                 {route.type === "domestic" ? t("svc.domestic") : t("svc.international")}
+                              </span>
+                              <h3 className="ebt-route-card-title">
+                                 {tx(route.from, locale)} → {tx(route.to, locale)}
+                              </h3>
+                              <p className="ebt-route-card-meta">
+                                 {t("svc.duration")}: {tx(route.duration, locale)}
+                              </p>
+                              <p className="ebt-route-card-price">
+                                 {t("svc.from")} <strong>BDT {route.fromPrice.toLocaleString("en-US")}</strong>
+                              </p>
+                              <EbtButtonLink
+                                 variant="primary"
+                                 className="ebt-route-card-cta"
+                                 href={`/inquiry?service=bus&from=${encodeURIComponent(tx(route.from, locale))}&to=${encodeURIComponent(tx(route.to, locale))}`}
+                              >
+                                 {t("svc.quote")}
+                              </EbtButtonLink>
+                           </div>
                         </div>
                      </div>
                   ))}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { FAQ_ITEMS } from "@/data/faqContent";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
 const HOME_FAQ_COUNT = 5;
@@ -37,7 +38,7 @@ const HomeFaq = () => {
                               >
                                  <span className="ebt-faq-question">{item.question}</span>
                                  <span className="ebt-faq-icon" aria-hidden="true">
-                                    <ChevronDown size={18} strokeWidth={2.25} />
+                                    <ChevronDown {...iconProps("md")} />
                                  </span>
                               </button>
                               <div className={`ebt-faq-panel ${isOpen ? "is-open" : ""}`}>

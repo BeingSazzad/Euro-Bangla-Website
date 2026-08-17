@@ -1,8 +1,11 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, ReactNode, useId, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { AlertCircle, CircleCheck } from "lucide-react";
 import { COMPANY, whatsappLink } from "@/data/company";
+import EbtButton, { EbtButtonLink } from "@/components/common/EbtButton";
+import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 import {
    buildInquiryMailto,
@@ -13,6 +16,11 @@ import {
 } from "@/utils/inquiry";
 
 const SERVICES = ["flight", "hajj", "tour", "hotel", "bus", "visa", "other"] as const;
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type FieldName = "name" | "phone" | "email";
+type FieldErrors = Partial<Record<FieldName, string>>;
 
 type Props = {
    defaultService?: string;
@@ -37,8 +45,10 @@ const InquiryForm = ({
 }: Props) => {
    const { t } = useT();
    const params = useSearchParams();
+   const uid = useId();
    const [honeypot, setHoneypot] = useState("");
-   const [error, setError] = useState("");
+   const [errors, setErrors] = useState<FieldErrors>({});
+   const [submitting, setSubmitting] = useState(false);
    const [record, setRecord] = useState<InquiryRecord | null>(null);
 
    const initial = useMemo(() => {
@@ -62,68 +72,148 @@ const InquiryForm = ({
       };
    }, [defaultDates, defaultDestination, defaultMessage, defaultPassengers, defaultService, locked, params]);
 
-   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      if (honeypot) return;
-      const form = new FormData(event.currentTarget);
-      const name = String(form.get("name") || "").trim();
+   const fieldId = (name: string) => `${uid}-${name}`;
+
+   const validate = (form: FormData): FieldErrors => {
+      const next: FieldErrors = {};
+      if (!String(form.get("name") || "").trim()) next.name = t("inquiry.errName");
+      if (!String(form.get("phone") || "").trim()) next.phone = t("inquiry.errPhone");
       const email = String(form.get("email") || "").trim();
-      const phone = String(form.get("phone") || "").trim();
+      if (!locked && !email) next.email = t("inquiry.errEmail");
+      else if (email && !EMAIL_PATTERN.test(email)) next.email = t("inquiry.errEmail");
+      return next;
+   };
+
+   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (honeypot || submitting) return;
+      const form = new FormData(event.currentTarget);
+      const nextErrors = validate(form);
+      setErrors(nextErrors);
+      if (Object.keys(nextErrors).length > 0) return;
+
+      setSubmitting(true);
+      // Yield one frame so the pending button state paints before the reference
+      // is generated and written to storage.
+      await new Promise<void>((resolve) => {
+         if (typeof requestAnimationFrame === "function") requestAnimationFrame(() => resolve());
+         else resolve();
+      });
+
       const service = String(form.get("service") || initial.service || "other");
-      if (!name || !phone || (!locked && !email)) {
-         setError(t("inquiry.required"));
-         return;
-      }
       const from = String(form.get("from") || initial.from);
       const destination = String(form.get("destination") || "");
       const next: InquiryRecord = {
          ref: generateInquiryRef(),
          createdAt: new Date().toISOString(),
          service: t(`inquiry.services.${service}`),
-         name,
-         email,
-         phone,
+         name: String(form.get("name") || "").trim(),
+         email: String(form.get("email") || "").trim(),
+         phone: String(form.get("phone") || "").trim(),
          destination: [from, destination].filter(Boolean).join(" → ") || destination,
          dates: String(form.get("dates") || ""),
          passengers: String(form.get("passengers") || ""),
          message: String(form.get("message") || ""),
       };
       saveInquiry(next);
-      setError("");
+      setSubmitting(false);
       setRecord(next);
    };
 
+   const Field = ({
+      name,
+      label,
+      note,
+      hint,
+      required = false,
+      full = false,
+      children,
+   }: {
+      name: string;
+      label: string;
+      note?: string;
+      hint?: string;
+      required?: boolean;
+      full?: boolean;
+      children: ReactNode;
+   }) => {
+      const error = errors[name as FieldName];
+      return (
+         <div className={`ebt-field${full ? " ebt-form-grid--full" : ""}`}>
+            <label className="ebt-label" htmlFor={fieldId(name)}>
+               {label}
+               {required && (
+                  <span className="ebt-label-note" aria-hidden="true">
+                     *
+                  </span>
+               )}
+               {!required && note && <span className="ebt-label-note">{note}</span>}
+            </label>
+            {children}
+            {error && (
+               <p className="ebt-field-msg ebt-field-msg--error" id={`${fieldId(name)}-msg`}>
+                  <AlertCircle {...iconProps("sm")} />
+                  <span>{error}</span>
+               </p>
+            )}
+            {!error && hint && (
+               <p className="ebt-field-msg" id={`${fieldId(name)}-msg`}>
+                  {hint}
+               </p>
+            )}
+         </div>
+      );
+   };
+
+   const describedBy = (name: string, hint?: string) =>
+      errors[name as FieldName] || hint ? `${fieldId(name)}-msg` : undefined;
+
    if (record) {
       return (
-         <div className={`tg-contact-form tg-tour-about-review-form${compact ? " ebt-inq ebt-inq-success" : ""}`}>
-            <h4 className="mb-10">{t("inquiry.success")}</h4>
-            <p className="mb-10">
+         <div className={`ebt-inq-done${compact ? " ebt-inq-done--compact" : ""}`}>
+            <p className="ebt-form-status ebt-form-status--success" role="status">
+               <CircleCheck {...iconProps("md")} />
+               <span>{t("inquiry.success")}</span>
+            </p>
+            <p className="ebt-inq-done-ref">
                {t("inquiry.refLabel")}: <strong>{record.ref}</strong>
             </p>
-            <p className={compact ? "mb-15" : "mb-25"}>{locked ? t("inquiry.quoteHint") : t("inquiry.emailHint")}</p>
-            <div className={compact ? "ebt-inq-success-actions" : "d-flex flex-wrap"} style={compact ? undefined : { gap: 12 }}>
-               <a className="tg-btn" href={whatsappLink(buildInquiryWhatsApp(record))} target="_blank" rel="noreferrer">
+            <p className="ebt-inq-done-text">{locked ? t("inquiry.quoteHint") : t("inquiry.emailHint")}</p>
+            <div className="ebt-inq-done-actions">
+               <EbtButtonLink
+                  variant="whatsapp"
+                  href={whatsappLink(buildInquiryWhatsApp(record))}
+                  external
+                  target="_blank"
+                  rel="noreferrer"
+               >
                   {t("inquiry.whatsapp")}
-               </a>
-               <a className="tg-btn" href={buildInquiryMailto(record, COMPANY.email)}>
+               </EbtButtonLink>
+               <EbtButtonLink variant="outline" href={buildInquiryMailto(record, COMPANY.email)} external>
                   {t("inquiry.emailUs")}
-               </a>
-               <button type="button" className="tg-btn" onClick={() => setRecord(null)}>
+               </EbtButtonLink>
+               <EbtButton variant="ghost" onClick={() => setRecord(null)}>
                   {t("inquiry.another")}
-               </button>
+               </EbtButton>
             </div>
          </div>
       );
    }
 
+   const errorCount = Object.keys(errors).length;
+
    return (
-      <form className={`tg-contact-form tg-tour-about-review-form${compact ? " ebt-inq" : ""}`} onSubmit={onSubmit}>
+      <form
+         className={`ebt-inq-form${compact ? " ebt-inq-form--compact" : ""}`}
+         onSubmit={onSubmit}
+         noValidate
+      >
          <input
             className="d-none"
             tabIndex={-1}
             autoComplete="off"
             value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
+            onChange={(event) => setHoneypot(event.target.value)}
             aria-hidden="true"
          />
          <input type="hidden" name="from" defaultValue={initial.from} />
@@ -140,94 +230,134 @@ const InquiryForm = ({
                )}
             </>
          )}
-         {compact ? (
-            <>
-               <input className="input" name="name" type="text" autoComplete="name" placeholder={t("inquiry.name")} required />
-               <input className="input" name="phone" type="tel" autoComplete="tel" placeholder={t("inquiry.phone")} required />
-               <input className="input" name="email" type="email" autoComplete="email" placeholder={locked ? `${t("inquiry.email")} (${t("inquiry.optionalNote")})` : t("inquiry.email")} required={!locked} />
-               {!locked && (
-                  <>
-                     <select className="input" name="service" defaultValue={initial.service}>
+
+         <div className="ebt-form-grid">
+            <Field name="name" label={t("inquiry.name")} required full={compact}>
+               <input
+                  id={fieldId("name")}
+                  className="ebt-control"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  aria-invalid={errors.name ? true : undefined}
+                  aria-describedby={describedBy("name")}
+               />
+            </Field>
+
+            <Field name="phone" label={t("inquiry.phone")} required full={compact}>
+               <input
+                  id={fieldId("phone")}
+                  className="ebt-control"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  required
+                  aria-invalid={errors.phone ? true : undefined}
+                  aria-describedby={describedBy("phone")}
+               />
+            </Field>
+
+            <Field
+               name="email"
+               label={t("inquiry.email")}
+               required={!locked}
+               note={locked ? t("inquiry.optionalNote") : undefined}
+               full={compact || simple}
+            >
+               <input
+                  id={fieldId("email")}
+                  className="ebt-control"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required={!locked}
+                  aria-invalid={errors.email ? true : undefined}
+                  aria-describedby={describedBy("email")}
+               />
+            </Field>
+
+            {!simple && !locked && (
+               <>
+                  <Field name="service" label={t("inquiry.service")} full={compact}>
+                     <select id={fieldId("service")} className="ebt-control" name="service" defaultValue={initial.service}>
                         {SERVICES.map((item) => (
                            <option key={item} value={item}>
                               {t(`inquiry.services.${item}`)}
                            </option>
                         ))}
                      </select>
-                     <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
-                  </>
-               )}
-               <div className="ebt-inq-split">
-                  <input
-                     className="input"
-                     name="dates"
-                     type="text"
-                     defaultValue={initial.dates}
-                     placeholder={locked ? `${t("inquiry.dates")} (${t("inquiry.datesHint")})` : t("inquiry.dates")}
-                  />
-                  <input
-                     className="input"
-                     name="passengers"
-                     type="text"
-                     defaultValue={initial.passengers}
-                     placeholder={locked ? t("inquiry.passengersHint") : t("inquiry.passengers")}
-                  />
-               </div>
-               <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={`${t("inquiry.message")} (${t("inquiry.optionalNote")})`} />
-               {error && <p className="form_error">{error}</p>}
-               <button type="submit" className="tg-btn">
-                  {locked ? t("inquiry.requestQuote") : t("inquiry.submit")}
-               </button>
-               {locked && <p className="ebt-inq-note">{t("inquiry.requestHint")}</p>}
-            </>
-         ) : (
-            <div className="row">
-               <div className="col-lg-6 mb-25">
-                  <input className="input" name="name" type="text" placeholder={t("inquiry.name")} />
-               </div>
-               <div className="col-lg-6 mb-25">
-                  <input className="input" name="email" type="email" placeholder={t("inquiry.email")} />
-               </div>
-               <div className={`${simple ? "col-lg-12" : "col-lg-6"} mb-25`}>
-                  <input className="input" name="phone" type="tel" placeholder={t("inquiry.phone")} />
-               </div>
-               {!simple && (
-                  <>
-                     <div className="col-lg-6 mb-25">
-                        <select className="input" name="service" defaultValue={initial.service} style={{ height: 56 }}>
-                           {SERVICES.map((item) => (
-                              <option key={item} value={item}>
-                                 {t(`inquiry.services.${item}`)}
-                              </option>
-                           ))}
-                        </select>
-                     </div>
-                     <div className="col-lg-6 mb-25">
-                        <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
-                     </div>
-                     <div className="col-md-6 mb-25">
-                        <input className="input" name="dates" type="text" defaultValue={initial.dates} placeholder={t("inquiry.dates")} />
-                     </div>
-                     <div className="col-md-6 mb-25">
-                        <input className="input" name="passengers" type="text" defaultValue={initial.passengers} placeholder={t("inquiry.passengers")} />
-                     </div>
-                  </>
-               )}
-               <div className="col-lg-12 mb-25">
-                  <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={t("inquiry.message")}></textarea>
-               </div>
-               {error && (
-                  <div className="col-12">
-                     <p className="form_error">{error}</p>
-                  </div>
-               )}
-               <div className="col-12">
-                  <button type="submit" className="tg-btn">
-                     {simple ? t("contact.send") : t("inquiry.submit")}
-                  </button>
-               </div>
-            </div>
-         )}
+                  </Field>
+
+                  <Field name="destination" label={t("inquiry.destination")} full={compact}>
+                     <input
+                        id={fieldId("destination")}
+                        className="ebt-control"
+                        name="destination"
+                        type="text"
+                        defaultValue={initial.destination}
+                     />
+                  </Field>
+               </>
+            )}
+
+            {!simple && (
+               <>
+                  <Field name="dates" label={t("inquiry.dates")} hint={t("inquiry.datesHint")}>
+                     <input
+                        id={fieldId("dates")}
+                        className="ebt-control"
+                        name="dates"
+                        type="text"
+                        defaultValue={initial.dates}
+                        aria-describedby={describedBy("dates", t("inquiry.datesHint"))}
+                     />
+                  </Field>
+
+                  <Field name="passengers" label={t("inquiry.passengers")} hint={t("inquiry.passengersHint")}>
+                     <input
+                        id={fieldId("passengers")}
+                        className="ebt-control"
+                        name="passengers"
+                        type="text"
+                        defaultValue={initial.passengers}
+                        aria-describedby={describedBy("passengers", t("inquiry.passengersHint"))}
+                     />
+                  </Field>
+               </>
+            )}
+
+            <Field name="message" label={t("inquiry.message")} note={t("inquiry.optionalNote")} full>
+               <textarea
+                  id={fieldId("message")}
+                  className="ebt-control"
+                  name="message"
+                  defaultValue={initial.message}
+               />
+            </Field>
+         </div>
+
+         <div aria-live="polite">
+            {errorCount > 0 && (
+               <p className="ebt-form-status ebt-form-status--error">
+                  <AlertCircle {...iconProps("md")} />
+                  <span>{t("inquiry.fixFields")}</span>
+               </p>
+            )}
+         </div>
+
+         <EbtButton
+            type="submit"
+            variant="primary"
+            size="lg"
+            block={compact}
+            loading={submitting}
+            loadingLabel={t("inquiry.sending")}
+         >
+            {locked ? t("inquiry.requestQuote") : simple ? t("contact.send") : t("inquiry.submit")}
+         </EbtButton>
+
+         {locked && <p className="ebt-inq-note">{t("inquiry.requestHint")}</p>}
       </form>
    );
 };
