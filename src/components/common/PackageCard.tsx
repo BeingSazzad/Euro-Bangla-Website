@@ -33,7 +33,6 @@ const PackageCard = ({
                   sizes="(max-width: 768px) 100vw, 50vw"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                />
-               {item.tag && <span className="tg-listing-item-price-discount shape-2">{tx(item.tag, locale)}</span>}
             </span>
             <div className="tg-listing-2-mask" aria-hidden="true">
                <Image className="w-100" src={shape} alt="" />
@@ -42,12 +41,12 @@ const PackageCard = ({
          <div className="tg-listing-card-content p-relative">
             <div className="tg-listing-2-price-wrap text-center">
                <div className="tg-listing-2-price">
-                  <span className="new">BDT {item.price.toLocaleString("en-US")}</span>
-                  <span className="shift">{priceSuffix}</span>
+                  <span className="new">{item.price.toLocaleString("en-US")}</span>
+                  <span className="shift">{priceSuffix.trim()}</span>
                </div>
             </div>
             <h4 className="tg-listing-card-title">{title}</h4>
-            <p className="ebt-tour-card-summary mb-10">{tx(item.summary, locale)}</p>
+            <p className="ebt-tour-card-summary">{tx(item.summary, locale)}</p>
             <div className="tg-listing-card-duration-tour">
                <span className="tg-listing-card-duration-map mb-0">
                   <MapPin {...iconProps("sm")} />

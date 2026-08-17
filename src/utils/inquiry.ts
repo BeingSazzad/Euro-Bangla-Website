@@ -49,12 +49,13 @@ export const buildInquiryMailto = (record: InquiryRecord, adminEmail: string) =>
          `Name: ${record.name}`,
          `Email: ${record.email}`,
          `Phone: ${record.phone}`,
-         `Destination: ${record.destination || "-"}`,
-         `Dates: ${record.dates || "-"}`,
-         `Passengers: ${record.passengers || "-"}`,
-         "",
+         record.destination ? `Destination: ${record.destination}` : "",
+         record.dates ? `Dates: ${record.dates}` : "",
+         record.passengers ? `Passengers: ${record.passengers}` : "",
          record.message,
-      ].join("\n")
+      ]
+         .filter(Boolean)
+         .join("\n")
    );
    return `mailto:${adminEmail}?subject=${subject}&body=${body}`;
 };
@@ -67,6 +68,7 @@ export const buildInquiryWhatsApp = (record: InquiryRecord) =>
       `Phone: ${record.phone}`,
       record.destination ? `Destination: ${record.destination}` : "",
       record.dates ? `Dates: ${record.dates}` : "",
+      record.passengers ? `Passengers: ${record.passengers}` : "",
       record.message,
    ]
       .filter(Boolean)

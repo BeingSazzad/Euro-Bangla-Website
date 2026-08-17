@@ -70,7 +70,6 @@
    .tgmenu-offcanvas-open-btn,
    .ebt-mobile-close,
    .offCanvas__close-icon button,
-   .tg-footer-form-btn,
    .dropdown-btn {
       display: inline-flex;
       align-items: center;
@@ -94,9 +93,40 @@
       min-height: var(--tg-control-tap-min);
    }
 
-   .tg-footer-form-btn {
-      width: var(--tg-control-tap-min);
-      height: var(--tg-control-tap-min);
+   .tg-footer-form {
+      overflow: hidden;
+      border-radius: 5px;
+      background: var(--tg-common-white);
+
+      form {
+         position: relative;
+         display: block;
+      }
+
+      input {
+         height: 45px;
+         border-radius: 5px;
+         padding-right: 52px;
+      }
+
+      .tg-footer-form-btn {
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         position: absolute;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         width: 45px;
+         height: 45px;
+         min-width: 45px;
+         min-height: 45px;
+         padding: 0;
+         border: 0;
+         border-radius: 0 5px 5px 0;
+         transform: none;
+         line-height: 0;
+      }
    }
 
    .tg-footer-social a,
@@ -192,43 +222,3 @@
    aspect-ratio: 1 / 1;
 }
 
-/*=============================
-   Empty state
-=============================*/
-
-.ebt-empty {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: var(--tg-space-12);
-   padding: var(--tg-space-48) var(--tg-space-24);
-   border: 1px solid var(--tg-border-4);
-   border-radius: var(--tg-radius-md);
-   background: var(--tg-grey-5);
-   text-align: center;
-}
-
-.ebt-empty-icon {
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-   width: var(--tg-space-48);
-   height: var(--tg-space-48);
-   border-radius: var(--tg-radius-full);
-   background: var(--tg-surface-3);
-   color: var(--tg-theme-primary);
-}
-
-.ebt-empty-title {
-   margin: 0;
-   color: var(--tg-ink-1);
-   font-family: var(--tg-ff-body);
-   @include text('h5');
-}
-
-.ebt-empty-text {
-   margin: 0;
-   max-width: 46ch;
-   color: var(--tg-ink-4);
-   @include text('body-s');
-}

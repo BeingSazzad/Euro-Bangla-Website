@@ -14,7 +14,7 @@ const HajjPage = () => {
             textKey="svc.hajjText"
             items={hajjPackages}
             hrefBase="/hajj-umrah"
-            priceSuffix={` BDT ${t("svc.perPerson")}`}
+            priceSuffix={`BDT ${t("svc.perPerson")}`}
          />
       </ServicePageShell>
    );

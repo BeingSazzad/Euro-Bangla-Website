@@ -14,8 +14,7 @@ const ToursPage = () => {
             textKey="svc.toursText"
             items={tourPackages}
             hrefBase="/tours"
-            priceSuffix={` BDT ${t("svc.perPerson")}`}
-            showTourFilters
+            priceSuffix={`BDT ${t("svc.perPerson")}`}
          />
       </ServicePageShell>
    );

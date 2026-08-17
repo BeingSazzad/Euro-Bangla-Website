@@ -17,6 +17,8 @@ import {
 
 const SERVICES = ["flight", "hajj", "tour", "hotel", "bus", "visa", "other"] as const;
 
+const PHONE_CODES = ["+880", "+966", "+971", "+974", "+44", "+33", "+1"] as const;
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type FieldName = "name" | "phone" | "email";
@@ -25,23 +27,31 @@ type FieldErrors = Partial<Record<FieldName, string>>;
 type Props = {
    defaultService?: string;
    defaultDestination?: string;
-   defaultDates?: string;
-   defaultPassengers?: string;
    defaultMessage?: string;
    simple?: boolean;
    compact?: boolean;
    locked?: boolean;
+   hideIntro?: boolean;
+   hideMessage?: boolean;
+   hint?: string;
+};
+
+const composePhone = (code: string, raw: string) => {
+   const digits = raw.replace(/\D/g, "");
+   const national = digits.replace(/^0+/, "");
+   return `${code}${national}`;
 };
 
 const InquiryForm = ({
    defaultService,
    defaultDestination,
-   defaultDates,
-   defaultPassengers,
    defaultMessage,
    simple = false,
    compact = false,
    locked = false,
+   hideIntro = false,
+   hideMessage = false,
+   hint,
 }: Props) => {
    const { t } = useT();
    const params = useSearchParams();
@@ -56,8 +66,8 @@ const InquiryForm = ({
          return {
             service: defaultService || "other",
             destination: defaultDestination || "",
-            dates: defaultDates || "",
-            passengers: defaultPassengers || "",
+            dates: "",
+            passengers: "",
             message: defaultMessage || "",
             from: "",
          };
@@ -65,19 +75,20 @@ const InquiryForm = ({
       return {
          service: defaultService || params.get("service") || "flight",
          destination: defaultDestination || params.get("destination") || params.get("to") || "",
-         dates: defaultDates || params.get("dates") || params.get("depart") || "",
-         passengers: defaultPassengers || params.get("passengers") || params.get("pax") || "",
+         dates: params.get("dates") || params.get("depart") || "",
+         passengers: params.get("passengers") || params.get("pax") || "",
          message: defaultMessage || params.get("message") || "",
          from: params.get("from") || "",
       };
-   }, [defaultDates, defaultDestination, defaultMessage, defaultPassengers, defaultService, locked, params]);
+   }, [defaultDestination, defaultMessage, defaultService, locked, params]);
 
    const fieldId = (name: string) => `${uid}-${name}`;
 
    const validate = (form: FormData): FieldErrors => {
       const next: FieldErrors = {};
       if (!String(form.get("name") || "").trim()) next.name = t("inquiry.errName");
-      if (!String(form.get("phone") || "").trim()) next.phone = t("inquiry.errPhone");
+      const local = String(form.get("phone") || "").replace(/\D/g, "");
+      if (local.replace(/^0+/, "").length < 7) next.phone = t("inquiry.errPhone");
       const email = String(form.get("email") || "").trim();
       if (!locked && !email) next.email = t("inquiry.errEmail");
       else if (email && !EMAIL_PATTERN.test(email)) next.email = t("inquiry.errEmail");
@@ -93,8 +104,6 @@ const InquiryForm = ({
       if (Object.keys(nextErrors).length > 0) return;
 
       setSubmitting(true);
-      // Yield one frame so the pending button state paints before the reference
-      // is generated and written to storage.
       await new Promise<void>((resolve) => {
          if (typeof requestAnimationFrame === "function") requestAnimationFrame(() => resolve());
          else resolve();
@@ -109,7 +118,7 @@ const InquiryForm = ({
          service: t(`inquiry.services.${service}`),
          name: String(form.get("name") || "").trim(),
          email: String(form.get("email") || "").trim(),
-         phone: String(form.get("phone") || "").trim(),
+         phone: composePhone(String(form.get("phoneCode") || "+880"), String(form.get("phone") || "")),
          destination: [from, destination].filter(Boolean).join(" → ") || destination,
          dates: String(form.get("dates") || ""),
          passengers: String(form.get("passengers") || ""),
@@ -126,7 +135,6 @@ const InquiryForm = ({
       note,
       hint,
       required = false,
-      full = false,
       children,
    }: {
       name: string;
@@ -134,12 +142,11 @@ const InquiryForm = ({
       note?: string;
       hint?: string;
       required?: boolean;
-      full?: boolean;
       children: ReactNode;
    }) => {
       const error = errors[name as FieldName];
       return (
-         <div className={`ebt-field${full ? " ebt-form-grid--full" : ""}`}>
+         <div className="ebt-field">
             <label className="ebt-label" htmlFor={fieldId(name)}>
                {label}
                {required && (
@@ -217,45 +224,66 @@ const InquiryForm = ({
             aria-hidden="true"
          />
          <input type="hidden" name="from" defaultValue={initial.from} />
+         <input type="hidden" name="destination" value={initial.destination} />
+         <input type="hidden" name="dates" value={initial.dates} />
+         <input type="hidden" name="passengers" value={initial.passengers} />
          {simple && !locked && <input type="hidden" name="service" value="other" />}
-         {locked && (
+         {locked && <input type="hidden" name="service" value={initial.service} />}
+         {hideMessage && <input type="hidden" name="message" value={initial.message} />}
+         {locked && !hideIntro && (
             <>
-               <input type="hidden" name="service" value={initial.service} />
-               <input type="hidden" name="destination" value={initial.destination} />
                {initial.destination && (
                   <p className="ebt-inq-package">
                      <span>{t("inquiry.selectedPackage")}</span>
                      <strong>{initial.destination}</strong>
                   </p>
                )}
+               <p className="ebt-inq-lead">{t("inquiry.subtitle")}</p>
             </>
          )}
 
          <div className="ebt-form-grid">
-            <Field name="name" label={t("inquiry.name")} required full={compact}>
+            <Field name="name" label={t("inquiry.name")} required>
                <input
                   id={fieldId("name")}
                   className="ebt-control"
                   name="name"
                   type="text"
                   autoComplete="name"
+                  placeholder={t("inquiry.namePh")}
                   required
                   aria-invalid={errors.name ? true : undefined}
                   aria-describedby={describedBy("name")}
                />
             </Field>
 
-            <Field name="phone" label={t("inquiry.phone")} required full={compact}>
-               <input
-                  id={fieldId("phone")}
-                  className="ebt-control"
-                  name="phone"
-                  type="tel"
-                  autoComplete="tel"
-                  required
-                  aria-invalid={errors.phone ? true : undefined}
-                  aria-describedby={describedBy("phone")}
-               />
+            <Field name="phone" label={t("inquiry.phone")} required>
+               <div className={`ebt-phone${errors.phone ? " is-invalid" : ""}`}>
+                  <select
+                     className="ebt-control ebt-phone-code"
+                     name="phoneCode"
+                     defaultValue="+880"
+                     aria-label={t("inquiry.phoneCode")}
+                  >
+                     {PHONE_CODES.map((code) => (
+                        <option key={code} value={code}>
+                           {code}
+                        </option>
+                     ))}
+                  </select>
+                  <input
+                     id={fieldId("phone")}
+                     className="ebt-control"
+                     name="phone"
+                     type="tel"
+                     inputMode="tel"
+                     autoComplete="tel-national"
+                     placeholder={t("inquiry.phonePh")}
+                     required
+                     aria-invalid={errors.phone ? true : undefined}
+                     aria-describedby={describedBy("phone")}
+                  />
+               </div>
             </Field>
 
             <Field
@@ -263,7 +291,6 @@ const InquiryForm = ({
                label={t("inquiry.email")}
                required={!locked}
                note={locked ? t("inquiry.optionalNote") : undefined}
-               full={compact || simple}
             >
                <input
                   id={fieldId("email")}
@@ -271,6 +298,7 @@ const InquiryForm = ({
                   name="email"
                   type="email"
                   autoComplete="email"
+                  placeholder={t("inquiry.emailPh")}
                   required={!locked}
                   aria-invalid={errors.email ? true : undefined}
                   aria-describedby={describedBy("email")}
@@ -278,63 +306,28 @@ const InquiryForm = ({
             </Field>
 
             {!simple && !locked && (
-               <>
-                  <Field name="service" label={t("inquiry.service")} full={compact}>
-                     <select id={fieldId("service")} className="ebt-control" name="service" defaultValue={initial.service}>
-                        {SERVICES.map((item) => (
-                           <option key={item} value={item}>
-                              {t(`inquiry.services.${item}`)}
-                           </option>
-                        ))}
-                     </select>
-                  </Field>
-
-                  <Field name="destination" label={t("inquiry.destination")} full={compact}>
-                     <input
-                        id={fieldId("destination")}
-                        className="ebt-control"
-                        name="destination"
-                        type="text"
-                        defaultValue={initial.destination}
-                     />
-                  </Field>
-               </>
+               <Field name="service" label={t("inquiry.service")}>
+                  <select id={fieldId("service")} className="ebt-control" name="service" defaultValue={initial.service}>
+                     {SERVICES.map((item) => (
+                        <option key={item} value={item}>
+                           {t(`inquiry.services.${item}`)}
+                        </option>
+                     ))}
+                  </select>
+               </Field>
             )}
 
-            {!simple && (
-               <>
-                  <Field name="dates" label={t("inquiry.dates")} hint={t("inquiry.datesHint")}>
-                     <input
-                        id={fieldId("dates")}
-                        className="ebt-control"
-                        name="dates"
-                        type="text"
-                        defaultValue={initial.dates}
-                        aria-describedby={describedBy("dates", t("inquiry.datesHint"))}
-                     />
-                  </Field>
-
-                  <Field name="passengers" label={t("inquiry.passengers")} hint={t("inquiry.passengersHint")}>
-                     <input
-                        id={fieldId("passengers")}
-                        className="ebt-control"
-                        name="passengers"
-                        type="text"
-                        defaultValue={initial.passengers}
-                        aria-describedby={describedBy("passengers", t("inquiry.passengersHint"))}
-                     />
-                  </Field>
-               </>
+            {!hideMessage && (
+               <Field name="message" label={t("inquiry.message")} note={t("inquiry.optionalNote")}>
+                  <textarea
+                     id={fieldId("message")}
+                     className="ebt-control"
+                     name="message"
+                     defaultValue={initial.message}
+                     placeholder={t("inquiry.messagePh")}
+                  />
+               </Field>
             )}
-
-            <Field name="message" label={t("inquiry.message")} note={t("inquiry.optionalNote")} full>
-               <textarea
-                  id={fieldId("message")}
-                  className="ebt-control"
-                  name="message"
-                  defaultValue={initial.message}
-               />
-            </Field>
          </div>
 
          <div aria-live="polite">
@@ -350,14 +343,14 @@ const InquiryForm = ({
             type="submit"
             variant="primary"
             size="lg"
-            block={compact}
+            block
             loading={submitting}
             loadingLabel={t("inquiry.sending")}
          >
             {locked ? t("inquiry.requestQuote") : simple ? t("contact.send") : t("inquiry.submit")}
          </EbtButton>
 
-         {locked && <p className="ebt-inq-note">{t("inquiry.requestHint")}</p>}
+         {locked && <p className="ebt-inq-note">{hint || t("inquiry.requestHint")}</p>}
       </form>
    );
 };

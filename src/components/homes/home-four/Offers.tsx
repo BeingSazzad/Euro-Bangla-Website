@@ -49,7 +49,7 @@ const Offers = () => {
                      <PackageCard
                         item={item}
                         href={`/tours/${item.slug}`}
-                        priceSuffix={t("svc.perPerson")}
+                        priceSuffix={`BDT ${t("svc.perPerson")}`}
                      />
                   </SwiperSlide>
                ))}

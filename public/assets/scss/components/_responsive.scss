@@ -42,6 +42,8 @@ html,
 
    .tg-chose-2-content {
       background: var(--tg-theme-deep);
+      justify-content: center;
+      color: #fff;
       transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
 
       &:hover {
@@ -61,7 +63,18 @@ html,
    }
 
    .tg-chose-2-icon {
+      color: #fff;
       transition: transform 0.35s ease;
+
+      svg {
+         display: block;
+         width: 48px;
+         height: 48px;
+         color: #fff;
+         stroke: currentColor;
+         fill: none;
+         flex-shrink: 0;
+      }
    }
 
    .tg-chose-2-box-shape {
@@ -486,11 +499,6 @@ html,
 
    .tgmobile__menu {
       width: 100%;
-   }
-
-   .ebt-dest-card {
-      flex-basis: 240px;
-      width: 240px;
    }
 
    .tg-booking-form-item {

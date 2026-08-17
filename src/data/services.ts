@@ -405,7 +405,8 @@ export const tourPackages: PackageItem[] = [
          "বেলুন ফ্লাইট আবহাওয়ার উপর নির্ভরশীল এবং পৌঁছানোর পর আলাদাভাবে বুক করা হয়। অনুসন্ধানের সময় বিয়ের তারিখ জানালে বেশিরভাগ পার্টনার হোটেল বিনামূল্যে রুম ডেকোরেশন ও কেক দেয়।",
          "Les vols en montgolfière dépendent de la météo et se réservent sur place. Indiquez votre date de mariage : la plupart de nos hôtels partenaires offrent décoration et gâteau."
       ),
-      gallery: [des3],
+      gallery: [des3, listing2, listing6, listing3],
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009!2d28.9784!3d41.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9bd65723463%3A0x3db5c9871ebbc7b2!2sIstanbul!5e0!3m2!1sen!2str",
    },
    {
       slug: "ksa-short",

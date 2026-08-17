@@ -2,7 +2,7 @@
 
 import ServicePageShell from "@/components/common/ServicePageShell";
 import { useT } from "@/i18n/LanguageProvider";
-import { VisaCountryGrid, VisaCta, VisaTypeStrip, VisaWhy } from "./VisaSections";
+import { VisaCountryGrid, VisaCta, VisaWhy } from "./VisaSections";
 
 const VisaPage = () => {
    const { t } = useT();
@@ -17,7 +17,6 @@ const VisaPage = () => {
                   <p className="ebt-visa-dest-text mb-0">{t("svc.visaText")}</p>
                </div>
                <VisaCountryGrid />
-               <VisaTypeStrip />
             </div>
          </section>
          <VisaWhy />

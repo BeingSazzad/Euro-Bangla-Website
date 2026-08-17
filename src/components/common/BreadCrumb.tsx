@@ -11,8 +11,9 @@ interface DataType {
    raw?: boolean;
    parentHref?: string;
    parentKey?: string;
+   bannerSrc?: string;
 }
-const BreadCrumb = ({ sub_title, title, raw = false, parentHref, parentKey }: DataType) => {
+const BreadCrumb = ({ sub_title, title, raw = false, parentHref, parentKey, bannerSrc }: DataType) => {
    const { t } = useT();
    const titleLabel = raw ? title : t(title);
    const crumbLabel = raw ? sub_title : t(sub_title);
@@ -21,7 +22,7 @@ const BreadCrumb = ({ sub_title, title, raw = false, parentHref, parentKey }: Da
    const resolvedParentLabel = parentLabel || (raw ? t("nav.visa") : "");
 
    return (
-      <div className="tg-breadcrumb-area tg-breadcrumb-spacing-5 ebt-breadcrumb fix p-relative z-index-1 include-bg" style={{ backgroundImage: `url(/assets/img/breadcrumb/breadcrumb.jpg)` }}>
+      <div className="tg-breadcrumb-area tg-breadcrumb-spacing-5 ebt-breadcrumb fix p-relative z-index-1 include-bg" style={{ backgroundImage: `url(${bannerSrc || "/assets/img/breadcrumb/breadcrumb.jpg"})` }}>
          <div className="tg-hero-top-shadow"></div>
          <div className="tg-breadcrumb-shadow"></div>
          <div className="container">

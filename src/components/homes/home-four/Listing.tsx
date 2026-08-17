@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Clock3, MapPin } from "lucide-react"
 
 import cardShape from "@/assets/img/listing/listing-2/shape.png"
+import Button from "@/components/common/Button"
 import { iconProps } from "@/data/icons"
 import { useT } from "@/i18n/LanguageProvider"
 import { tourPackages } from "@/data/services"
@@ -40,7 +41,6 @@ const Listing = () => {
                                     sizes="(max-width: 768px) 50vw, 25vw"
                                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                  />
-                                 {item.tag && <span className="tg-listing-item-price-discount shape-2">{tx(item.tag, locale)}</span>}
                               </span>
                               <div className="tg-listing-2-mask" aria-hidden="true">
                                  <Image className="w-100" src={cardShape} alt="" />
@@ -49,8 +49,8 @@ const Listing = () => {
                            <div className="tg-listing-card-content p-relative">
                               <div className="tg-listing-2-price-wrap text-center">
                                  <div className="tg-listing-2-price">
-                                    <span className="new">BDT {item.price.toLocaleString("en-US")}</span>
-                                    <span className="shift">{t("svc.perPerson")}</span>
+                                    <span className="new">{item.price.toLocaleString("en-US")}</span>
+                                    <span className="shift">{`BDT ${t("svc.perPerson")}`}</span>
                                  </div>
                               </div>
                               <h4 className="tg-listing-card-title">{title}</h4>
@@ -70,9 +70,9 @@ const Listing = () => {
                   );
                })}
                <div className="col-12 wow fadeInUp" data-wow-delay=".7s" data-wow-duration=".6s">
-                  <div className="text-center pt-20">
-                     <Link href="/tours" className="ebt-text-link">
-                        {t("home.seeAll")}
+                  <div className="tg-listing-2-btn text-center pt-20">
+                     <Link href="/tours" className="tg-btn tg-btn-switch-animation">
+                        <Button text={t("home.seeAll")} />
                      </Link>
                   </div>
                </div>

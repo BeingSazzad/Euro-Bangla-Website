@@ -787,6 +787,11 @@
     }
 }
 
+.tgmenu__navbar-wrap-2 > ul,
+.tgmenu__navbar-wrap-4 > ul {
+    column-gap: var(--tg-space-20);
+}
+
 .tgmenu__navbar-wrap-2 {
     & > ul > li > a {
         padding-left: 8px;

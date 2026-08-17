@@ -18,7 +18,7 @@ interface DataType {
    desc?: string;
 }
 
-const processIcon = iconProps("xl");
+const processIcon = { ...iconProps("xl"), color: "#fff" as const };
 
 const process_data: DataType[] = [
    {

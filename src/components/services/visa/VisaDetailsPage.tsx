@@ -29,7 +29,7 @@ const VisaDetailsPage = ({ slug }: { slug: string }) => {
                      <p className="ebt-visa-dest-text mb-0">{tx(item.summary, locale)}</p>
                   </div>
 
-                  <VisaCountryGrid visaTypeTitle={title} />
+                  <VisaCountryGrid />
 
                   <div className="ebt-visa-docs mt-60">
                      <div className="row">

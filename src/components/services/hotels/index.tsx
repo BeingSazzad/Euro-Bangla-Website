@@ -14,7 +14,7 @@ const HotelsPage = () => {
             textKey="svc.hotelsText"
             items={hotelPackages}
             hrefBase="/hotels"
-            priceSuffix={` USD ${t("svc.perNight")}`}
+            priceSuffix={`USD ${t("svc.perNight")}`}
          />
       </ServicePageShell>
    );

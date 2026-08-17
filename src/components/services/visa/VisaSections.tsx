@@ -5,7 +5,6 @@ import Link from "next/link";
 import { BadgeCheck, Clock3, Headset, ShieldCheck } from "lucide-react";
 import Button from "@/components/common/Button";
 import { iconProps } from "@/data/icons";
-import { visaTypes } from "@/data/services";
 import { visaDestinations } from "@/data/visaDestinations";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
@@ -42,19 +41,17 @@ const whyItems = [
    },
 ] as const;
 
-export const VisaCountryGrid = ({ visaTypeTitle }: { visaTypeTitle?: string }) => {
+export const VisaCountryGrid = () => {
    const { locale, t } = useT();
 
    return (
       <div className="row justify-content-center ebt-visa-country-grid">
          {visaDestinations.map((dest) => {
             const name = tx(dest.name, locale);
-            const params = new URLSearchParams({ service: "visa", destination: name });
-            if (visaTypeTitle) params.set("message", visaTypeTitle);
 
             return (
                <div key={dest.id} className="col-6 col-md-4 col-lg-3 ebt-visa-country-col">
-                  <Link href={`/inquiry?${params.toString()}`} className="ebt-visa-country">
+                  <Link href={`/visa/${dest.id}`} className="ebt-visa-country">
                      <div className="ebt-visa-country-media">
                         <Image src={dest.image} alt={name} fill sizes="(max-width: 768px) 50vw, 25vw" />
                      </div>
@@ -68,24 +65,6 @@ export const VisaCountryGrid = ({ visaTypeTitle }: { visaTypeTitle?: string }) =
                </div>
             );
          })}
-      </div>
-   );
-};
-
-export const VisaTypeStrip = () => {
-   const { locale, t } = useT();
-
-   return (
-      <div className="ebt-visa-types">
-         <h3 className="ebt-visa-types-title">{t("visaDetail.typesTitle")}</h3>
-         <p className="ebt-visa-types-text">{t("visaDetail.typesText")}</p>
-         <div className="ebt-visa-type-chips">
-            {visaTypes.map((item) => (
-               <Link key={item.slug} href={`/visa/${item.slug}`} className="ebt-visa-type-chip">
-                  {tx(item.title, locale)}
-               </Link>
-            ))}
-         </div>
       </div>
    );
 };

@@ -158,12 +158,8 @@ select.ebt-control {
 
 .ebt-form-grid {
    display: grid;
-   grid-template-columns: repeat(2, minmax(0, 1fr));
-   gap: var(--tg-space-16) var(--tg-space-20);
-
-   @media #{$xs} {
-      grid-template-columns: 1fr;
-   }
+   grid-template-columns: 1fr;
+   gap: var(--tg-space-16);
 }
 
 .ebt-form-grid--full {
@@ -240,15 +236,103 @@ select.ebt-control {
 .ebt-inq-form {
    display: flex;
    flex-direction: column;
-   gap: var(--tg-space-24);
+   gap: var(--tg-space-20);
 }
 
 .ebt-inq-form--compact {
    gap: var(--tg-space-16);
+}
 
-   .ebt-form-grid {
-      grid-template-columns: 1fr;
-      gap: var(--tg-space-16);
+.ebt-inq-lead {
+   margin: 0;
+   color: var(--tg-ink-4);
+   @include text('body-s');
+   line-height: 1.5;
+}
+
+.ebt-phone {
+   display: flex;
+   align-items: stretch;
+   width: 100%;
+   overflow: hidden;
+   border: 1px solid var(--tg-border-1);
+   border-radius: var(--tg-radius-sm);
+   background: var(--tg-common-white);
+   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+   &:hover:not(:has(:disabled)) {
+      border-color: var(--tg-border-2);
+   }
+
+   &:focus-within {
+      border-color: var(--tg-theme-primary);
+      box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.18);
+   }
+
+   &.is-invalid {
+      border-color: var(--tg-state-error);
+
+      &:focus-within {
+         box-shadow: 0 0 0 3px rgba(217, 45, 32, 0.18);
+      }
+   }
+
+   .ebt-phone-code,
+   input.ebt-control {
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+
+      &:hover:not(:disabled),
+      &:focus,
+      &:focus-visible {
+         border: 0;
+         box-shadow: none;
+      }
+   }
+
+   .ebt-phone-code {
+      flex: 0 0 96px;
+      width: 96px;
+      padding-left: var(--tg-space-12);
+      padding-right: var(--tg-space-32);
+      background-color: rgba(0, 71, 171, 0.08);
+      background-position: right 10px center;
+      color: var(--tg-theme-primary);
+      font-weight: 600;
+      border-right: 1px solid var(--tg-border-1);
+   }
+
+   input.ebt-control {
+      flex: 1 1 auto;
+      min-width: 0;
+   }
+}
+
+.ebt-inq-card {
+   padding: 32px 28px 28px;
+   border-radius: var(--tg-radius-lg, 16px);
+   background: #fff;
+   box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08);
+}
+
+.ebt-inq-card-head {
+   margin-bottom: 24px;
+
+   h2 {
+      margin: 0 0 8px;
+      color: #0047AB;
+      font-family: var(--tg-ff-outfit);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.25;
+   }
+
+   p {
+      margin: 0;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.55;
    }
 }
 

@@ -53,16 +53,6 @@
       }
    }
 
-   .ebt-pkg-details {
-      padding-top: var(--tg-space-64);
-      padding-bottom: var(--tg-space-80);
-
-      @media #{$md,$sm,$xs} {
-         padding-top: var(--tg-space-48);
-         padding-bottom: var(--tg-space-64);
-      }
-   }
-
    .ebt-footer {
       padding-top: var(--tg-space-96);
 
@@ -104,15 +94,21 @@
    }
 
    .ebt-breadcrumb .tg-breadcrumb-title,
-   .ebt-pkg-title {
+   .ebt-tour-details .tg-tour-details-video-title,
+   .ebt-visa-guide-title {
       font-size: var(--tg-fs-h1);
       line-height: var(--tg-lh-h1);
       font-weight: var(--tg-fw-h1);
    }
 
+   .ebt-tour-details .tg-tour-about-title {
+      font-size: var(--tg-fs-h4);
+      line-height: var(--tg-lh-h4);
+      font-weight: var(--tg-fw-h4);
+   }
+
    .ebt-blog-details-sub,
    .ebt-blog-related-title,
-   .ebt-visa-types-title,
    .ebt-faq-cta-title {
       font-size: var(--tg-fs-h3);
       line-height: var(--tg-lh-h3);
@@ -138,7 +134,8 @@
       .ebt-visa-why-title,
       .ebt-visa-cta-title,
       .ebt-breadcrumb .tg-breadcrumb-title,
-      .ebt-pkg-title {
+      .ebt-tour-details .tg-tour-details-video-title,
+      .ebt-visa-guide-title {
          font-size: var(--tg-fs-h3);
          line-height: var(--tg-lh-h3);
       }
@@ -146,7 +143,8 @@
 
    @media #{$md} {
       .ebt-breadcrumb .tg-breadcrumb-title,
-      .ebt-pkg-title {
+      .ebt-tour-details .tg-tour-details-video-title,
+      .ebt-visa-guide-title {
          font-size: var(--tg-fs-h2);
          line-height: var(--tg-lh-h2);
       }
@@ -160,12 +158,10 @@
 .ebt-site {
    .ebt-blog-card,
    .ebt-review-card,
-   .ebt-visa-country-body,
+   .ebt-visa-country,
    .ebt-visa-why-card,
    .ebt-visa-shot,
    .ebt-about-card,
-   .ebt-pkg-gallery-item,
-   .ebt-pkg-side,
    .ebt-visa-cta-media,
    .ebt-faq-cta,
    .tg-listing-2-card-item.ebt-tour-card {
@@ -183,6 +179,7 @@
    /* Content cards share one hover: a border shift plus level 1. No lift, no
       colour change. */
    .ebt-blog-card,
+   .ebt-visa-country,
    .tg-listing-2-card-item.ebt-tour-card {
       border-color: var(--tg-border-4);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -193,8 +190,7 @@
       }
    }
 
-   .ebt-review-card,
-   .ebt-visa-country-body {
+   .ebt-review-card {
       border-color: var(--tg-border-4);
    }
 
@@ -236,6 +232,7 @@
    }
 
    .ebt-tour-card .tg-listing-card-content {
+      gap: var(--tg-space-8);
       padding: 0 var(--tg-space-20) var(--tg-space-20);
    }
 
@@ -247,8 +244,14 @@
       line-height: 1.55;
    }
 
-   .ebt-tour-card .tg-listing-card-duration-tour span {
-      color: var(--tg-ink-3);
+   .ebt-tour-card .tg-listing-card-duration-wrap {
+      margin-top: auto;
+      padding-top: var(--tg-space-8);
+      gap: var(--tg-space-4);
+
+      span {
+         color: var(--tg-ink-3);
+      }
    }
 }
 
@@ -302,21 +305,8 @@
 }
 
 /*=============================
-   Filter chips
+   Cookie banner
 =============================*/
-
-.ebt-filter-set {
-   display: flex;
-   flex-direction: column;
-   gap: var(--tg-space-20);
-   margin-bottom: var(--tg-space-40);
-}
-
-.ebt-site .ebt-filter-row {
-   display: flex;
-   flex-wrap: wrap;
-   gap: var(--tg-space-8);
-}
 
 /* The banner is now built from .ebt-btn, so the one-off accept button rule in
    the product file no longer applies to it. */

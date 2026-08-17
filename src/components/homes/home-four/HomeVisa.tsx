@@ -60,7 +60,7 @@ const VisaShot = ({
    featured?: boolean;
 }) => {
    const name = tx(dest.name, locale);
-   const href = `/inquiry?service=visa&destination=${encodeURIComponent(name)}`;
+   const href = `/visa/${dest.id}`;
 
    return (
       <Link

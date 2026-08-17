@@ -11,6 +11,7 @@ const ServicePageShell = ({
    raw = false,
    parentHref,
    parentKey,
+   bannerSrc,
 }: {
    title: string;
    subTitle: string;
@@ -18,6 +19,7 @@ const ServicePageShell = ({
    raw?: boolean;
    parentHref?: string;
    parentKey?: string;
+   bannerSrc?: string;
 }) => {
    return (
       <>
@@ -29,6 +31,7 @@ const ServicePageShell = ({
                raw={raw}
                parentHref={parentHref}
                parentKey={parentKey}
+               bannerSrc={bannerSrc}
             />
             {children}
          </main>
