@@ -109,6 +109,7 @@ const FooterThree = () => {
                               <h3 className="tg-footer-widget-title mb-25">{t("footer.help")}</h3>
                               <ul>
                                  <li><Link href="/about">{t("nav.about")}</Link></li>
+                                 <li><Link href="/blog">{t("page.blog")}</Link></li>
                                  <li><Link href="/faq">{t("footer.faq")}</Link></li>
                                  <li><Link href="/privacy">{t("footer.privacy")}</Link></li>
                                  <li><Link href="/terms">{t("footer.terms")}</Link></li>

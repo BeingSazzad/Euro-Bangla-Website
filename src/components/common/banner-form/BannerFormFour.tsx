@@ -276,7 +276,7 @@ const GuestField = ({
 
    const summary = showRooms
       ? `${rooms} ${t("search.rooms")}, ${adults} ${t("search.adults")}${children ? `, ${children} ${t("search.children")}` : ""}`
-      : `${adults} ${t("search.adults")}${children ? `, ${children} ${t("search.children")}` : ""}`;
+      : `${adults + children} ${t("inquiry.passengers")}`;
 
    const rows = [
       ...(showRooms
@@ -552,7 +552,7 @@ const BannerFormFour = () => {
                                           />
                                           <DateField title={t("search.date")} name="dates" value={depart} onChange={setDepart} />
                                           <GuestField
-                                             title={t("search.guest")}
+                                             title={t("search.pax")}
                                              rooms={rooms}
                                              adults={adults}
                                              children={children}

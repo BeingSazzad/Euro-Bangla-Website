@@ -33,7 +33,7 @@ const Destination = () => {
    return (
       <div className="tg-destination-area ebt-section">
          <div className="container">
-            <div className="row">
+            <div className="row align-items-stretch">
                <div className="col-12">
                   <div className="tg-destination-section-title text-center mb-40">
                      <h5 className="tg-section-subtitle wow fadeInUp" data-wow-delay=".4s" data-wow-duration=".6s">{t("home.destSubtitle")}</h5>
@@ -42,11 +42,17 @@ const Destination = () => {
                   </div>
                </div>
                {destination_data.map((item) => (
-                  <div key={item.id} className="col-lg-3 col-md-6 col-sm-6">
-                     <div className="tg-destination-item mb-30 wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
+                  <div key={item.id} className="col-lg-3 col-md-6 col-sm-6 d-flex">
+                     <div className="tg-destination-item mb-30 w-100 wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
                         <div className="tg-destination-thumb fix p-relative">
-                           <Image className="w-100" src={item.thumb} alt={t(item.titleKey)} />
-                           <div className="tg-listing-2-mask">
+                           <Image
+                              className="w-100"
+                              src={item.thumb}
+                              alt={t(item.titleKey)}
+                              sizes="(max-width: 768px) 50vw, 25vw"
+                              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                           />
+                           <div className="tg-listing-2-mask" aria-hidden="true">
                               <Image className="w-100" src={shape} alt="" />
                            </div>
                         </div>

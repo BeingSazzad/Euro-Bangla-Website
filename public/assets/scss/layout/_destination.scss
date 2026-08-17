@@ -9,14 +9,61 @@
     &-item{
         border: 1px solid var(--tg-border-3);
         border-radius: 30px;
+        background: var(--tg-common-white);
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
     &-thumb{
+        position: relative;
         overflow: hidden;
+        flex: 0 0 auto;
+        height: 230px;
+
+        @media #{$xl,$lg} {
+            height: 210px;
+        }
+
+        @media #{$md,$sm} {
+            height: 220px;
+        }
+
+        @media #{$xs} {
+            height: 200px;
+        }
+
         & img{
             border-radius: 30px 30px 0px 0px;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .tg-listing-2-mask {
+            position: absolute;
+            bottom: -1px;
+            left: -2px;
+            right: -2px;
+            width: 102%;
+            z-index: 1;
+            pointer-events: none;
+            line-height: 0;
+
+            img {
+                width: 100% !important;
+                height: auto !important;
+                object-fit: contain;
+                border-radius: 0 !important;
+            }
         }
     }
     &-content{
+        position: relative;
+        z-index: 2;
+        flex: 1 1 auto;
+        background: var(--tg-common-white);
         padding: 0px 30px 26px 30px;
         @media #{$xl,$lg,$md,$sm,$xs} {
             padding: 0px 15px 20px 15px;
@@ -24,7 +71,10 @@
     }
     &-meta{
         margin-top: -16px;
-        margin-bottom: 27px;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 3;
+
         & a{
             font-weight: 500;
             text-transform: capitalize;
@@ -33,11 +83,16 @@
             border-radius: 100px;
             padding: 1px 15px;
             display: inline-block;
-            background: var(--tg-theme-primary);
+            background: #0047AB;
             position: relative;
         }
     }
     &-tag{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+
         & span{
             font-weight: 500;
             font-size: 14px;
@@ -45,8 +100,8 @@
             color: var(--tg-grey-1);
             border: 1px solid var(--tg-border-3);
             border-radius: 6px;
-            margin-bottom: 7px;
-            padding: 0 9px;
+            margin-bottom: 0;
+            padding: 2px 9px;
             display: inline-block;
             background: var(--tg-grey-7);
         }

@@ -12,6 +12,10 @@ import des1 from "@/assets/img/destination/des.jpg";
 import des2 from "@/assets/img/destination/des-2.jpg";
 import des3 from "@/assets/img/destination/des-3.jpg";
 import des4 from "@/assets/img/destination/des-4.jpg";
+import visaTourist from "@/assets/img/visa/switzerland.jpg";
+import visaVisit from "@/assets/img/visa/uk.jpg";
+import visaBusiness from "@/assets/img/visa/usa.jpg";
+import visaStudent from "@/assets/img/visa/canada.jpg";
 
 export type PackageItem = {
    slug: string;
@@ -334,6 +338,7 @@ export const busRoutes: BusRoute[] = [
 
 export type VisaType = {
    slug: string;
+   thumb: StaticImageData;
    title: LText;
    summary: LText;
    destinations: LText;
@@ -344,6 +349,7 @@ export type VisaType = {
 export const visaTypes: VisaType[] = [
    {
       slug: "tourist",
+      thumb: visaTourist,
       title: day("Tourist Visa", "টুরিস্ট ভিসা", "Visa touristique"),
       summary: day("Holiday and sightseeing visas for Schengen, UK, Turkey, Malaysia and more.", "ছুটি ও ভ্রমণের জন্য শেঞ্জেন, যুক্তরাজ্য, তুরস্ক, মালয়েশিয়াসহ অন্যান্য ভিসা।", "Visas loisirs pour Schengen, Royaume-Uni, Turquie, Malaisie et plus."),
       destinations: day("Schengen, UK, Turkey, Malaysia, Thailand, UAE", "শেঞ্জেন, যুক্তরাজ্য, তুরস্ক, মালয়েশিয়া, থাইল্যান্ড, ইউএই", "Schengen, RU, Turquie, Malaisie, Thaïlande, EAU"),
@@ -357,6 +363,7 @@ export const visaTypes: VisaType[] = [
    },
    {
       slug: "visit",
+      thumb: visaVisit,
       title: day("Visit / Family Visa", "ভিজিট / পরিবার ভিসা", "Visa visite / famille"),
       summary: day("Visiting relatives in Europe, the UK or the Gulf with invitation support.", "আমন্ত্রণপত্র সহ ইউরোপ, যুক্তরাজ্য বা গালফে আত্মীয় দেখতে যাওয়া।", "Visite famille en Europe, au Royaume-Uni ou au Golfe avec invitation."),
       destinations: day("Schengen, UK, KSA, UAE, Qatar", "শেঞ্জেন, যুক্তরাজ্য, সৌদি, ইউএই, কাতার", "Schengen, RU, KSA, EAU, Qatar"),
@@ -369,6 +376,7 @@ export const visaTypes: VisaType[] = [
    },
    {
       slug: "business",
+      thumb: visaBusiness,
       title: day("Business Visa", "বিজনেস ভিসা", "Visa affaires"),
       summary: day("Meetings, fairs and short company visits with invitation letter guidance.", "মিটিং, মেলা ও স্বল্পকালীন কোম্পানি ভিজিট — ইনভিটেশন লেটার গাইডেন্স সহ।", "Réunions, salons et visites d’entreprise avec aide à la lettre d’invitation."),
       destinations: day("Schengen, UK, USA, China, UAE", "শেঞ্জেন, যুক্তরাজ্য, যুক্তরাষ্ট্র, চীন, ইউএই", "Schengen, RU, USA, Chine, EAU"),
@@ -381,6 +389,7 @@ export const visaTypes: VisaType[] = [
    },
    {
       slug: "student",
+      thumb: visaStudent,
       title: day("Student Visa Support", "স্টুডেন্ট ভিসা সহায়তা", "Accompagnement visa étudiant"),
       summary: day("File checklist and appointment guidance for study applications. We do not guarantee visa outcome.", "পড়াশোনার আবেদনের ফাইল চেকলিস্ট ও অ্যাপয়েন্টমেন্ট গাইডেন্স। ভিসা ফলাফল গ্যারান্টি নয়।", "Checklist et rendez-vous pour dossiers étudiants. Aucune garantie de visa."),
       destinations: day("France, UK, Canada, Malaysia", "ফ্রান্স, যুক্তরাজ্য, কানাডা, মালয়েশিয়া", "France, RU, Canada, Malaisie"),
