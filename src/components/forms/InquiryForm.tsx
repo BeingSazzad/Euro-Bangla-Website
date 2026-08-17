@@ -21,6 +21,7 @@ type Props = {
    defaultPassengers?: string;
    defaultMessage?: string;
    simple?: boolean;
+   compact?: boolean;
 };
 
 const InquiryForm = ({
@@ -30,6 +31,7 @@ const InquiryForm = ({
    defaultPassengers,
    defaultMessage,
    simple = false,
+   compact = false,
 }: Props) => {
    const { t } = useT();
    const params = useSearchParams();
@@ -82,7 +84,7 @@ const InquiryForm = ({
 
    if (record) {
       return (
-         <div className="tg-contact-form tg-tour-about-review-form">
+         <div className={`tg-contact-form tg-tour-about-review-form${compact ? " ebt-inq" : ""}`}>
             <h4 className="mb-10">{t("inquiry.success")}</h4>
             <p className="mb-10">
                {t("inquiry.refLabel")}: <strong>{record.ref}</strong>
@@ -104,7 +106,7 @@ const InquiryForm = ({
    }
 
    return (
-      <form className="tg-contact-form tg-tour-about-review-form" onSubmit={onSubmit}>
+      <form className={`tg-contact-form tg-tour-about-review-form${compact ? " ebt-inq" : ""}`} onSubmit={onSubmit}>
          <input
             className="d-none"
             tabIndex={-1}
@@ -115,52 +117,77 @@ const InquiryForm = ({
          />
          <input type="hidden" name="from" defaultValue={initial.from} />
          {simple && <input type="hidden" name="service" value="other" />}
-         <div className="row">
-            <div className="col-lg-6 mb-25">
+         {compact ? (
+            <>
                <input className="input" name="name" type="text" placeholder={t("inquiry.name")} />
-            </div>
-            <div className="col-lg-6 mb-25">
                <input className="input" name="email" type="email" placeholder={t("inquiry.email")} />
-            </div>
-            <div className={`${simple ? "col-lg-12" : "col-lg-6"} mb-25`}>
                <input className="input" name="phone" type="tel" placeholder={t("inquiry.phone")} />
-            </div>
-            {!simple && (
-               <>
-                  <div className="col-lg-6 mb-25">
-                     <select className="input" name="service" defaultValue={initial.service} style={{ height: 56 }}>
-                        {SERVICES.map((item) => (
-                           <option key={item} value={item}>
-                              {t(`inquiry.services.${item}`)}
-                           </option>
-                        ))}
-                     </select>
-                  </div>
-                  <div className="col-lg-6 mb-25">
-                     <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
-                  </div>
-                  <div className="col-lg-3 mb-25">
-                     <input className="input" name="dates" type="text" defaultValue={initial.dates} placeholder={t("inquiry.dates")} />
-                  </div>
-                  <div className="col-lg-3 mb-25">
-                     <input className="input" name="passengers" type="text" defaultValue={initial.passengers} placeholder={t("inquiry.passengers")} />
-                  </div>
-               </>
-            )}
-            <div className="col-lg-12 mb-25">
-               <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={t("inquiry.message")}></textarea>
-            </div>
-            {error && (
-               <div className="col-12">
-                  <p className="form_error">{error}</p>
+               <select className="input" name="service" defaultValue={initial.service}>
+                  {SERVICES.map((item) => (
+                     <option key={item} value={item}>
+                        {t(`inquiry.services.${item}`)}
+                     </option>
+                  ))}
+               </select>
+               <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
+               <div className="ebt-inq-split">
+                  <input className="input" name="dates" type="text" defaultValue={initial.dates} placeholder={t("inquiry.dates")} />
+                  <input className="input" name="passengers" type="text" defaultValue={initial.passengers} placeholder={t("inquiry.passengers")} />
                </div>
-            )}
-            <div className="col-12">
+               <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={t("inquiry.message")} />
+               {error && <p className="form_error">{error}</p>}
                <button type="submit" className="tg-btn">
-                  {simple ? t("contact.send") : t("inquiry.submit")}
+                  {t("inquiry.submit")}
                </button>
+            </>
+         ) : (
+            <div className="row">
+               <div className="col-lg-6 mb-25">
+                  <input className="input" name="name" type="text" placeholder={t("inquiry.name")} />
+               </div>
+               <div className="col-lg-6 mb-25">
+                  <input className="input" name="email" type="email" placeholder={t("inquiry.email")} />
+               </div>
+               <div className={`${simple ? "col-lg-12" : "col-lg-6"} mb-25`}>
+                  <input className="input" name="phone" type="tel" placeholder={t("inquiry.phone")} />
+               </div>
+               {!simple && (
+                  <>
+                     <div className="col-lg-6 mb-25">
+                        <select className="input" name="service" defaultValue={initial.service} style={{ height: 56 }}>
+                           {SERVICES.map((item) => (
+                              <option key={item} value={item}>
+                                 {t(`inquiry.services.${item}`)}
+                              </option>
+                           ))}
+                        </select>
+                     </div>
+                     <div className="col-lg-6 mb-25">
+                        <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
+                     </div>
+                     <div className="col-lg-3 mb-25">
+                        <input className="input" name="dates" type="text" defaultValue={initial.dates} placeholder={t("inquiry.dates")} />
+                     </div>
+                     <div className="col-lg-3 mb-25">
+                        <input className="input" name="passengers" type="text" defaultValue={initial.passengers} placeholder={t("inquiry.passengers")} />
+                     </div>
+                  </>
+               )}
+               <div className="col-lg-12 mb-25">
+                  <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={t("inquiry.message")}></textarea>
+               </div>
+               {error && (
+                  <div className="col-12">
+                     <p className="form_error">{error}</p>
+                  </div>
+               )}
+               <div className="col-12">
+                  <button type="submit" className="tg-btn">
+                     {simple ? t("contact.send") : t("inquiry.submit")}
+                  </button>
+               </div>
             </div>
-         </div>
+         )}
       </form>
    );
 };

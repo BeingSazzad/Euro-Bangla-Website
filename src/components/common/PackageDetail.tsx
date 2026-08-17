@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
-import { Check, Clock3, Globe, MapPin, Users, X } from "lucide-react";
+import { Check, Clock3, Languages, MapPin, Users } from "lucide-react";
 import type { PackageItem } from "@/data/services";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
@@ -38,8 +38,16 @@ const PackageDetail = ({
    const location = tx(item.location, locale);
    const photos = uniquePhotos(item);
    const highlights = item.highlights?.length ? item.highlights : item.includes.slice(0, 4);
-   const typeLabel = item.tag ? tx(item.tag, locale) : t(`inquiry.services.${service === "hajj" ? "hajj" : service === "hotel" ? "hotel" : "tour"}`);
-   const groupLabel = item.category ? t(`svc.${item.category}`) : t("svc.group");
+   const styleLabel =
+      item.category === "family"
+         ? t("svc.family")
+         : item.category === "honeymoon"
+            ? t("svc.honeymoon")
+            : item.category === "group"
+               ? t("svc.smallGroup")
+               : service === "hotel"
+                  ? t("inquiry.services.hotel")
+                  : t("svc.group");
    const durationLabel = `${item.days} ${t("svc.days")}`;
 
    return (
@@ -79,28 +87,36 @@ const PackageDetail = ({
             <div className="ebt-pkg-meta">
                <ul>
                   <li>
-                     <span className="ebt-pkg-meta-icon"><Clock3 size={18} strokeWidth={1.75} /></span>
+                     <div className="ebt-pkg-meta-icon" aria-hidden="true">
+                        <Clock3 size={18} strokeWidth={1.75} />
+                     </div>
                      <div>
                         <span>{t("svc.duration")}</span>
                         <strong>{durationLabel}</strong>
                      </div>
                   </li>
                   <li>
-                     <span className="ebt-pkg-meta-icon"><Globe size={18} strokeWidth={1.75} /></span>
+                     <div className="ebt-pkg-meta-icon" aria-hidden="true">
+                        <MapPin size={18} strokeWidth={1.75} />
+                     </div>
                      <div>
-                        <span>{t("svc.type")}</span>
-                        <strong>{typeLabel}</strong>
+                        <span>{t("svc.destination")}</span>
+                        <strong>{location}</strong>
                      </div>
                   </li>
                   <li>
-                     <span className="ebt-pkg-meta-icon"><Users size={18} strokeWidth={1.75} /></span>
+                     <div className="ebt-pkg-meta-icon" aria-hidden="true">
+                        <Users size={18} strokeWidth={1.75} />
+                     </div>
                      <div>
-                        <span>{t("svc.group")}</span>
-                        <strong>{groupLabel}</strong>
+                        <span>{t("svc.style")}</span>
+                        <strong>{styleLabel}</strong>
                      </div>
                   </li>
                   <li>
-                     <span className="ebt-pkg-meta-icon"><MapPin size={18} strokeWidth={1.75} /></span>
+                     <div className="ebt-pkg-meta-icon" aria-hidden="true">
+                        <Languages size={18} strokeWidth={1.75} />
+                     </div>
                      <div>
                         <span>{t("svc.languages")}</span>
                         <strong>EN · BN · FR</strong>
@@ -201,10 +217,10 @@ const PackageDetail = ({
                      </section>
                   )}
 
-                  <section className="ebt-pkg-section">
+                  <section className="ebt-pkg-section ebt-pkg-terms">
                      <h2>{t("svc.terms")}</h2>
                      <p>{tx(item.terms, locale)}</p>
-                     <Link className="tg-btn mt-10" href={listingHref(service)}>
+                     <Link className="tg-btn" href={listingHref(service)}>
                         {t("home.seeAll")}
                      </Link>
                   </section>
@@ -220,6 +236,7 @@ const PackageDetail = ({
                      </div>
                      <Suspense>
                         <InquiryForm
+                           compact
                            defaultService={service === "hajj" ? "hajj" : service === "hotel" ? "hotel" : "tour"}
                            defaultDestination={title}
                            defaultPassengers="1"
