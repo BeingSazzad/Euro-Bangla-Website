@@ -3,10 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Clock3, MapPin } from "lucide-react"
 
-import shape_1 from "@/assets/img/listing/listing-2/shape-1.png"
-import shape_2 from "@/assets/img/listing/listing-2/shape-2.png"
-import shape_3 from "@/assets/img/listing/listing-2/shape-3.png"
-import shape_4 from "@/assets/img/listing/listing-2/shape.png"
+import cardShape from "@/assets/img/listing/listing-2/shape.png"
 import Button from "@/components/common/Button"
 import { useT } from "@/i18n/LanguageProvider"
 import { tourPackages } from "@/data/services"
@@ -16,10 +13,7 @@ const Listing = () => {
    const { t, locale } = useT();
 
    return (
-      <div className="tg-listing-area tg-grey-bg ebt-section p-relative z-index-9">
-         <Image className="tg-listing-2-shape d-none d-sm-block" src={shape_1} alt="" />
-         <Image className="tg-listing-2-shape-2 d-none d-xl-block" src={shape_2} alt="" />
-         <Image className="tg-listing-2-shape-3 d-none d-sm-block" src={shape_3} alt="" />
+      <div className="tg-listing-area tg-grey-bg ebt-section p-relative z-index-1">
          <div className="container">
             <div className="row">
                <div className="col-12">
@@ -49,7 +43,7 @@ const Listing = () => {
                                  {item.tag && <span className="tg-listing-item-price-discount shape-2">{tx(item.tag, locale)}</span>}
                               </span>
                               <div className="tg-listing-2-mask" aria-hidden="true">
-                                 <Image className="w-100" src={shape_4} alt="" />
+                                 <Image className="w-100" src={cardShape} alt="" />
                               </div>
                            </div>
                            <div className="tg-listing-card-content p-relative">

@@ -1,20 +1,16 @@
 "use client";
 
 import { Suspense } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import InquiryForm from "../forms/InquiryForm";
 import { COMPANY, whatsappLink } from "@/data/company";
 import { useT } from "@/i18n/LanguageProvider";
-
-import shape_1 from "@/assets/img/banner/banner-2/shape.png";
 
 const ContactArea = () => {
    const { t } = useT();
 
    return (
       <div className="tg-contact-area ebt-page-content p-relative z-index-1">
-         <Image className="tg-team-shape-2 d-none d-md-block" src={shape_1} alt="" />
          <div className="container">
             <div className="row align-items-start">
                <div className="col-lg-5">

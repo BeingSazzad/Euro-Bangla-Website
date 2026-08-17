@@ -26,7 +26,7 @@ const FooterThree = () => {
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                            <div className="tg-footer-widget mb-40">
                               <div className="tg-footer-logo mb-20">
-                                 <Link href="/"><SiteLogo /></Link>
+                                 <Link href="/"><SiteLogo variant="white" /></Link>
                               </div>
                               <p className="mb-20">{t("footer.about")}</p>
                               <div className="tg-footer-form mb-30">
@@ -68,7 +68,6 @@ const FooterThree = () => {
                                  <li><Link href="/tours">{t("footer.tours")}</Link></li>
                                  <li><Link href="/hotels">{t("footer.hotels")}</Link></li>
                                  <li><Link href="/visa">{t("footer.visa")}</Link></li>
-                                 <li><Link href="/contact">{t("footer.contactUs")}</Link></li>
                               </ul>
                            </div>
                         </div>

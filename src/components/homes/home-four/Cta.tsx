@@ -4,20 +4,18 @@ import Button from '@/components/common/Button'
 import Link from 'next/link'
 import { useT } from '@/i18n/LanguageProvider'
 
-import shape_1 from "@/assets/img/banner/banner-2/shape.png"
-import shape_2 from "@/assets/img/banner/banner-2/shape-2.png"
+import shape from "@/assets/img/banner/banner-2/shape-2.png"
 
 const Cta = () => {
    const { t } = useT();
    return (
       <>
          <div className="tg-banner-area tg-banner-space p-relative z-index-9">
-            <Image className="tg-banner-3-shape d-none d-xl-block" src={shape_1} alt="" />
             <div className="container">
                <div className="row gx-0">
                   <div className="col-lg-4">
                      <div className="tg-banner-content tg-banner-3-content p-relative z-index-1 text-center">
-                        <Image className="tg-banner-shape" src={shape_2} alt="shape" />
+                        <Image className="tg-banner-shape" src={shape} alt="" />
                         <h4 className="tg-banner-subtitle mb-10">{t("home.ctaSmall")}</h4>
                         <h2 className="tg-banner-title mb-25">{t("home.ctaDiscount")}</h2>
                         <div className="tg-banner-btn">

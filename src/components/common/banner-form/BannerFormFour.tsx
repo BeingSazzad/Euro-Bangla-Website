@@ -13,10 +13,7 @@ import Flatpickr from "react-flatpickr";
 import {
    Plane,
    Building2,
-   MapPinned,
    Landmark,
-   Bus,
-   FileBadge2,
    MapPin,
    CalendarDays,
    Users,
@@ -25,7 +22,7 @@ import {
 } from "lucide-react";
 import { useT } from "@/i18n/LanguageProvider";
 
-type TabKey = "flight" | "hotel" | "tour" | "hajj" | "bus" | "visa";
+type TabKey = "flight" | "hotel" | "hajj";
 type TripType = "oneWay" | "round";
 type ScopeType = "domestic" | "international";
 
@@ -34,19 +31,13 @@ const iconProps = { size: 20, strokeWidth: 1.75, "aria-hidden": true as const };
 const icons: Record<TabKey, JSX.Element> = {
    flight: <Plane {...iconProps} />,
    hotel: <Building2 {...iconProps} />,
-   tour: <MapPinned {...iconProps} />,
    hajj: <Landmark {...iconProps} />,
-   bus: <Bus {...iconProps} />,
-   visa: <FileBadge2 {...iconProps} />,
 };
 
 const tabs: { key: TabKey; title: string }[] = [
    { key: "flight", title: "search.flight" },
    { key: "hotel", title: "search.hotel" },
-   { key: "tour", title: "search.tour" },
    { key: "hajj", title: "search.hajj" },
-   { key: "bus", title: "search.bus" },
-   { key: "visa", title: "search.visa" },
 ];
 
 const DESTINATIONS = [
@@ -66,21 +57,6 @@ const DESTINATIONS = [
    "Doha",
    "Bangkok",
    "Singapore",
-];
-
-const VISA_DESTINATIONS = [
-   "Schengen",
-   "United Kingdom",
-   "United States",
-   "Canada",
-   "Australia",
-   "France",
-   "Germany",
-   "Turkey",
-   "Malaysia",
-   "UAE",
-   "Qatar",
-   "KSA",
 ];
 
 const HAJJ_PACKAGES = ["Umrah", "Hajj", "Family Umrah", "Group Umrah"];
@@ -346,7 +322,7 @@ const GuestField = ({
    );
 };
 
-const BannerFormFour = () => {
+const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
    const { t } = useT();
    const router = useRouter();
    const [active, setActive] = useState<TabKey>("flight");
@@ -369,7 +345,7 @@ const BannerFormFour = () => {
       setDepart(undefined);
       setRet(undefined);
       setRooms(1);
-      setAdults(active === "hotel" || active === "tour" ? 2 : 1);
+      setAdults(active === "hotel" ? 2 : 1);
       setChildren(0);
    }, [active]);
 
@@ -392,11 +368,11 @@ const BannerFormFour = () => {
    };
 
    return (
-      <div className="tg-booking-form-area tg-booking-4-form-area tg-grey-bg pb-80">
+      <div className={`tg-booking-form-area tg-booking-4-form-area tg-grey-bg pb-80${standalone ? " ebt-booking-page" : ""}`}>
          <div className="container">
             <div className="row">
                <div className="col-lg-12">
-                  <div className="tg-booking-form-wrap tg-booking-form-space ebt-booking-wrap">
+                  <div className={`tg-booking-form-wrap ebt-booking-wrap${standalone ? "" : " tg-booking-form-space"}`}>
                      <div className="tg-booking-form-tabs">
                         <div className="nav nav-tab justify-content-center" role="tablist">
                            {tabs.map((tab) => (
@@ -515,31 +491,6 @@ const BannerFormFour = () => {
                                        </>
                                     )}
 
-                                    {active === "tour" && (
-                                       <>
-                                          <DestinationField
-                                             title={t("search.destination")}
-                                             name="destination"
-                                             placeholder={t("search.going") || "Europe / Dubai / Turkey"}
-                                             options={["Europe", "Dubai", "Turkey", "KSA", "France", "Malaysia", ...DESTINATIONS]}
-                                             value={destination}
-                                             onChange={setDestination}
-                                          />
-                                          <DateField title={t("search.date")} name="dates" value={depart} onChange={setDepart} />
-                                          <GuestField
-                                             title={t("search.guest")}
-                                             rooms={rooms}
-                                             adults={adults}
-                                             childCount={children}
-                                             showRooms={false}
-                                             onRooms={setRooms}
-                                             onAdults={setAdults}
-                                             onChildren={setChildren}
-                                             doneLabel={t("search.ok") || "OK"}
-                                          />
-                                       </>
-                                    )}
-
                                     {active === "hajj" && (
                                        <>
                                           <DestinationField
@@ -562,61 +513,6 @@ const BannerFormFour = () => {
                                              onChildren={setChildren}
                                              doneLabel={t("search.ok") || "OK"}
                                           />
-                                       </>
-                                    )}
-
-                                    {active === "bus" && (
-                                       <>
-                                          <DestinationField
-                                             title={t("search.from")}
-                                             name="from"
-                                             placeholder="Dhaka"
-                                             options={["Dhaka", "Chattogram", "Sylhet", "Rajshahi", "Khulna", "Kolkata"]}
-                                             value={from}
-                                             onChange={setFrom}
-                                          />
-                                          <DestinationField
-                                             title={t("search.to")}
-                                             name="to"
-                                             placeholder="Chattogram"
-                                             options={["Dhaka", "Chattogram", "Sylhet", "Rajshahi", "Khulna", "Kolkata"]}
-                                             value={to}
-                                             onChange={setTo}
-                                          />
-                                          <DateField title={t("search.date")} name="depart" value={depart} onChange={setDepart} />
-                                          <GuestField
-                                             title={t("search.pax")}
-                                             rooms={rooms}
-                                             adults={adults}
-                                             childCount={children}
-                                             showRooms={false}
-                                             onRooms={setRooms}
-                                             onAdults={setAdults}
-                                             onChildren={setChildren}
-                                             doneLabel={t("search.ok") || "OK"}
-                                          />
-                                       </>
-                                    )}
-
-                                    {active === "visa" && (
-                                       <>
-                                          <DestinationField
-                                             title={t("svc.destinations")}
-                                             name="to"
-                                             placeholder="Schengen / UK / KSA"
-                                             options={VISA_DESTINATIONS}
-                                             value={to}
-                                             onChange={setTo}
-                                          />
-                                          <DestinationField
-                                             title={t("search.visaType")}
-                                             name="destination"
-                                             placeholder={t("inquiry.services.visa")}
-                                             options={["Tourist Visa", "Visit Visa", "Business Visa", "Student Visa"]}
-                                             value={destination}
-                                             onChange={setDestination}
-                                          />
-                                          <DateField title={t("search.date")} name="dates" value={depart} onChange={setDepart} />
                                        </>
                                     )}
 

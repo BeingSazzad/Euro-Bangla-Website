@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import Link from "next/link"
 import { X } from "lucide-react"
 import SiteLogo from "@/components/common/SiteLogo"
+import ContactInfoList from "@/components/common/ContactInfoList"
 import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons"
 import { COMPANY, whatsappLink } from "@/data/company"
 import { useT } from "@/i18n/LanguageProvider"
@@ -41,32 +42,7 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
                <Link href="/" onClick={close}><SiteLogo height={40} /></Link>
             </div>
             <div className="offCanvas__side-info mb-30">
-               <div className="contact-list mb-30">
-                  <h4>{t("header.officeAddress")}</h4>
-                  <p>
-                     <Link href={COMPANY.mapLink} target="_blank" rel="noopener noreferrer">
-                        {COMPANY.addressLine1}<br />
-                        {COMPANY.addressLine2}
-                     </Link>
-                  </p>
-               </div>
-               <div className="contact-list mb-30">
-                  <h4>{t("header.phoneNumber")}</h4>
-                  <p>
-                     <Link href={`tel:${COMPANY.phoneTel}`}>{COMPANY.phone}</Link>
-                  </p>
-                  <p>
-                     <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-                        WhatsApp: {COMPANY.phone}
-                     </Link>
-                  </p>
-               </div>
-               <div className="contact-list mb-30">
-                  <h4>{t("header.emailAddress")}</h4>
-                  <p>
-                     <Link href={`mailto:${COMPANY.email}`}>{COMPANY.email}</Link>
-                  </p>
-               </div>
+               <ContactInfoList />
             </div>
             <div className="offCanvas__social-icon mt-30">
                <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">

@@ -73,14 +73,6 @@ const BlogDetailsPage = ({ slug }: { slug: string }) => {
                                        </li>
                                     ))}
                                  </ul>
-                                 <div className="ebt-blog-details-actions">
-                                    <Link className="tg-btn" href={post.ctaHref}>
-                                       {t("blogDetail.cta")}
-                                    </Link>
-                                    <Link className="tg-btn tg-btn-transparent" href="/blog">
-                                       {t("blogDetail.back")}
-                                    </Link>
-                                 </div>
                               </div>
                            </div>
                         </article>

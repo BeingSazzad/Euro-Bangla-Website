@@ -8,7 +8,6 @@ import { useT } from "@/i18n/LanguageProvider";
 import process_1 from "@/assets/img/chose/chose-2/thumb-1.jpg"
 import process_2 from "@/assets/img/chose/chose-2/thumb-2.jpg"
 import process_3 from "@/assets/img/destination/des-2.jpg"
-import shape from "@/assets/img/chose/chose-2/shape.png"
 
 interface DataType {
    id: number;
@@ -56,8 +55,7 @@ const process_data: DataType[] = [
 const Process = () => {
    const { t } = useT();
    return (
-      <div className="tg-chose-area ebt-process p-relative z-index-9 ebt-section">
-         <Image className="tg-chose-2-shape d-none d-lg-block" src={shape} alt="shape" />
+      <div className="tg-chose-area ebt-process p-relative z-index-1 ebt-section">
          <div className="container">
             <div className="col-12">
                <div className="tg-chose-section-title text-center mb-50">

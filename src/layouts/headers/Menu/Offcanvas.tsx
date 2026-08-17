@@ -4,6 +4,7 @@ import SiteLogo from "@/components/common/SiteLogo"
 import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import { useT } from "@/i18n/LanguageProvider";
+import ContactInfoList from "@/components/common/ContactInfoList";
 import { COMPANY, whatsappLink } from "@/data/company";
 import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons";
 
@@ -39,28 +40,7 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                   <MobileMenu />
                </div>
                <div className="offCanvas__side-info mb-25">
-                  <div className="contact-list mb-20">
-                     <h4>{t("header.officeAddress")}</h4>
-                     <p>
-                        <Link href={COMPANY.mapLink} target="_blank" rel="noopener noreferrer">
-                           {COMPANY.addressLine1}<br />
-                           {COMPANY.addressLine2}
-                        </Link>
-                     </p>
-                  </div>
-                  <div className="contact-list mb-20">
-                     <h4>{t("header.phoneNumber")}</h4>
-                     <p><Link href={`tel:${COMPANY.phoneTel}`}>{COMPANY.phone}</Link></p>
-                     <p>
-                        <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-                           WhatsApp: {COMPANY.phone}
-                        </Link>
-                     </p>
-                  </div>
-                  <div className="contact-list mb-20">
-                     <h4>{t("header.emailAddress")}</h4>
-                     <p><Link href={`mailto:${COMPANY.email}`}>{COMPANY.email}</Link></p>
-                  </div>
+                  <ContactInfoList />
                </div>
                <div className="social-links">
                   <ul className="list-wrap">

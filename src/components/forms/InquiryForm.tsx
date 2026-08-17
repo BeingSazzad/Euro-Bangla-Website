@@ -22,6 +22,7 @@ type Props = {
    defaultMessage?: string;
    simple?: boolean;
    compact?: boolean;
+   locked?: boolean;
 };
 
 const InquiryForm = ({
@@ -32,6 +33,7 @@ const InquiryForm = ({
    defaultMessage,
    simple = false,
    compact = false,
+   locked = false,
 }: Props) => {
    const { t } = useT();
    const params = useSearchParams();
@@ -39,17 +41,26 @@ const InquiryForm = ({
    const [error, setError] = useState("");
    const [record, setRecord] = useState<InquiryRecord | null>(null);
 
-   const initial = useMemo(
-      () => ({
+   const initial = useMemo(() => {
+      if (locked) {
+         return {
+            service: defaultService || "other",
+            destination: defaultDestination || "",
+            dates: defaultDates || "",
+            passengers: defaultPassengers || "",
+            message: defaultMessage || "",
+            from: "",
+         };
+      }
+      return {
          service: defaultService || params.get("service") || "flight",
          destination: defaultDestination || params.get("destination") || params.get("to") || "",
          dates: defaultDates || params.get("dates") || params.get("depart") || "",
          passengers: defaultPassengers || params.get("passengers") || params.get("pax") || "",
          message: defaultMessage || params.get("message") || "",
          from: params.get("from") || "",
-      }),
-      [defaultDates, defaultDestination, defaultMessage, defaultPassengers, defaultService, params]
-   );
+      };
+   }, [defaultDates, defaultDestination, defaultMessage, defaultPassengers, defaultService, locked, params]);
 
    const onSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -58,8 +69,8 @@ const InquiryForm = ({
       const name = String(form.get("name") || "").trim();
       const email = String(form.get("email") || "").trim();
       const phone = String(form.get("phone") || "").trim();
-      const service = String(form.get("service") || "other");
-      if (!name || !email || !phone) {
+      const service = String(form.get("service") || initial.service || "other");
+      if (!name || !phone || (!locked && !email)) {
          setError(t("inquiry.required"));
          return;
       }
@@ -84,13 +95,13 @@ const InquiryForm = ({
 
    if (record) {
       return (
-         <div className={`tg-contact-form tg-tour-about-review-form${compact ? " ebt-inq" : ""}`}>
+         <div className={`tg-contact-form tg-tour-about-review-form${compact ? " ebt-inq ebt-inq-success" : ""}`}>
             <h4 className="mb-10">{t("inquiry.success")}</h4>
             <p className="mb-10">
                {t("inquiry.refLabel")}: <strong>{record.ref}</strong>
             </p>
-            <p className="mb-25">{t("inquiry.emailHint")}</p>
-            <div className="d-flex flex-wrap" style={{ gap: 12 }}>
+            <p className={compact ? "mb-15" : "mb-25"}>{locked ? t("inquiry.quoteHint") : t("inquiry.emailHint")}</p>
+            <div className={compact ? "ebt-inq-success-actions" : "d-flex flex-wrap"} style={compact ? undefined : { gap: 12 }}>
                <a className="tg-btn" href={whatsappLink(buildInquiryWhatsApp(record))} target="_blank" rel="noreferrer">
                   {t("inquiry.whatsapp")}
                </a>
@@ -116,29 +127,58 @@ const InquiryForm = ({
             aria-hidden="true"
          />
          <input type="hidden" name="from" defaultValue={initial.from} />
-         {simple && <input type="hidden" name="service" value="other" />}
+         {simple && !locked && <input type="hidden" name="service" value="other" />}
+         {locked && (
+            <>
+               <input type="hidden" name="service" value={initial.service} />
+               <input type="hidden" name="destination" value={initial.destination} />
+               {initial.destination && (
+                  <p className="ebt-inq-package">
+                     <span>{t("inquiry.selectedPackage")}</span>
+                     <strong>{initial.destination}</strong>
+                  </p>
+               )}
+            </>
+         )}
          {compact ? (
             <>
-               <input className="input" name="name" type="text" placeholder={t("inquiry.name")} />
-               <input className="input" name="email" type="email" placeholder={t("inquiry.email")} />
-               <input className="input" name="phone" type="tel" placeholder={t("inquiry.phone")} />
-               <select className="input" name="service" defaultValue={initial.service}>
-                  {SERVICES.map((item) => (
-                     <option key={item} value={item}>
-                        {t(`inquiry.services.${item}`)}
-                     </option>
-                  ))}
-               </select>
-               <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
+               <input className="input" name="name" type="text" autoComplete="name" placeholder={t("inquiry.name")} required />
+               <input className="input" name="phone" type="tel" autoComplete="tel" placeholder={t("inquiry.phone")} required />
+               <input className="input" name="email" type="email" autoComplete="email" placeholder={locked ? `${t("inquiry.email")} (${t("inquiry.optionalNote")})` : t("inquiry.email")} required={!locked} />
+               {!locked && (
+                  <>
+                     <select className="input" name="service" defaultValue={initial.service}>
+                        {SERVICES.map((item) => (
+                           <option key={item} value={item}>
+                              {t(`inquiry.services.${item}`)}
+                           </option>
+                        ))}
+                     </select>
+                     <input className="input" name="destination" type="text" defaultValue={initial.destination} placeholder={t("inquiry.destination")} />
+                  </>
+               )}
                <div className="ebt-inq-split">
-                  <input className="input" name="dates" type="text" defaultValue={initial.dates} placeholder={t("inquiry.dates")} />
-                  <input className="input" name="passengers" type="text" defaultValue={initial.passengers} placeholder={t("inquiry.passengers")} />
+                  <input
+                     className="input"
+                     name="dates"
+                     type="text"
+                     defaultValue={initial.dates}
+                     placeholder={locked ? `${t("inquiry.dates")} (${t("inquiry.datesHint")})` : t("inquiry.dates")}
+                  />
+                  <input
+                     className="input"
+                     name="passengers"
+                     type="text"
+                     defaultValue={initial.passengers}
+                     placeholder={locked ? t("inquiry.passengersHint") : t("inquiry.passengers")}
+                  />
                </div>
-               <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={t("inquiry.message")} />
+               <textarea className="textarea" name="message" defaultValue={initial.message} placeholder={`${t("inquiry.message")} (${t("inquiry.optionalNote")})`} />
                {error && <p className="form_error">{error}</p>}
                <button type="submit" className="tg-btn">
-                  {t("inquiry.submit")}
+                  {locked ? t("inquiry.requestQuote") : t("inquiry.submit")}
                </button>
+               {locked && <p className="ebt-inq-note">{t("inquiry.requestHint")}</p>}
             </>
          ) : (
             <div className="row">

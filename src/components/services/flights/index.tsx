@@ -1,9 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import ServicePageShell from "@/components/common/ServicePageShell";
 import BannerFormFour from "@/components/common/banner-form/BannerFormFour";
-import InquiryForm from "@/components/forms/InquiryForm";
 import { useT } from "@/i18n/LanguageProvider";
 
 const FlightsPage = () => {
@@ -19,20 +17,7 @@ const FlightsPage = () => {
                </div>
             </div>
          </div>
-         <BannerFormFour />
-         <div className="tg-contact-area ebt-page-content">
-            <div className="container">
-               <div className="row justify-content-center">
-                  <div className="col-lg-8">
-                     <h3 className="mb-20">{t("inquiry.title")}</h3>
-                     <p className="mb-30">{t("inquiry.subtitle")}</p>
-                     <Suspense>
-                        <InquiryForm defaultService="flight" />
-                     </Suspense>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <BannerFormFour standalone />
       </ServicePageShell>
    );
 };

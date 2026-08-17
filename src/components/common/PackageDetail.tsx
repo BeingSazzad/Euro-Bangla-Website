@@ -1,9 +1,8 @@
 "use client";
 
 import { Suspense } from "react";
-import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
-import { Check, Clock3, Languages, MapPin, Users, X } from "lucide-react";
+import { Check, Clock3, MapPin, Users, X } from "lucide-react";
 import type { PackageItem } from "@/data/services";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
@@ -16,12 +15,6 @@ const uniquePhotos = (item: PackageItem): StaticImageData[] => {
       seen.add(img.src);
       return true;
    });
-};
-
-const listingHref = (service: string) => {
-   if (service === "hajj") return "/hajj-umrah";
-   if (service === "hotel") return "/hotels";
-   return "/tours";
 };
 
 const PackageDetail = ({
@@ -113,15 +106,6 @@ const PackageDetail = ({
                         <strong>{styleLabel}</strong>
                      </div>
                   </li>
-                  <li>
-                     <div className="ebt-pkg-meta-icon" aria-hidden="true">
-                        <Languages size={18} strokeWidth={1.75} />
-                     </div>
-                     <div>
-                        <span>{t("svc.languages")}</span>
-                        <strong>EN · BN · FR</strong>
-                     </div>
-                  </li>
                </ul>
             </div>
 
@@ -186,23 +170,6 @@ const PackageDetail = ({
                      </section>
                   )}
 
-                  {item.itinerary.length > 0 && (
-                     <section className="ebt-pkg-section">
-                        <h2>{t("svc.itinerary")}</h2>
-                        <ol className="ebt-pkg-itinerary">
-                           {item.itinerary.map((step) => (
-                              <li key={step.day}>
-                                 <span className="ebt-pkg-day">{t("svc.days")} {step.day}</span>
-                                 <div>
-                                    <h3>{tx(step.title, locale)}</h3>
-                                    <p>{tx(step.text, locale)}</p>
-                                 </div>
-                              </li>
-                           ))}
-                        </ol>
-                     </section>
-                  )}
-
                   {item.mapEmbed && (
                      <section className="ebt-pkg-section">
                         <h2>{t("svc.map")}</h2>
@@ -216,20 +183,12 @@ const PackageDetail = ({
                         />
                      </section>
                   )}
-
-                  <section className="ebt-pkg-section ebt-pkg-terms">
-                     <h2>{t("svc.terms")}</h2>
-                     <p>{tx(item.terms, locale)}</p>
-                     <Link className="tg-btn" href={listingHref(service)}>
-                        {t("home.seeAll")}
-                     </Link>
-                  </section>
                </div>
 
                <div className="col-lg-4">
                   <aside className="ebt-pkg-side">
+                     <p className="ebt-pkg-side-kicker">{t("inquiry.indicative")}</p>
                      <h2>{t("svc.bookPackage")}</h2>
-                     <p className="ebt-pkg-side-text">{t("svc.related")}</p>
                      <div className="ebt-pkg-side-price">
                         {t("svc.from")} <strong>{item.price.toLocaleString("en-US")}</strong>
                         {priceSuffix}
@@ -237,9 +196,9 @@ const PackageDetail = ({
                      <Suspense>
                         <InquiryForm
                            compact
+                           locked
                            defaultService={service === "hajj" ? "hajj" : service === "hotel" ? "hotel" : "tour"}
                            defaultDestination={title}
-                           defaultPassengers="1"
                         />
                      </Suspense>
                   </aside>

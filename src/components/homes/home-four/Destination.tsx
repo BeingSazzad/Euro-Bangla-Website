@@ -1,5 +1,7 @@
 "use client"
 import Image, { StaticImageData } from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import thumb_1 from "@/assets/img/destination/des.jpg"
 import thumb_2 from "@/assets/img/destination/des-2.jpg"
@@ -29,6 +31,47 @@ const destination_data: DataType[] = [
 
 const Destination = () => {
    const { t } = useT();
+   const scrollerRef = useRef<HTMLDivElement>(null);
+   const [canPrev, setCanPrev] = useState(false);
+   const [canNext, setCanNext] = useState(false);
+
+   const syncArrows = useCallback(() => {
+      const el = scrollerRef.current;
+      if (!el) return;
+      const max = el.scrollWidth - el.clientWidth;
+      setCanPrev(el.scrollLeft > 8);
+      setCanNext(max > 8 && el.scrollLeft < max - 8);
+   }, []);
+
+   const scrollByCard = (direction: -1 | 1) => {
+      const el = scrollerRef.current;
+      if (!el) return;
+      const card = el.querySelector(".ebt-dest-card") as HTMLElement | null;
+      const step = (card?.offsetWidth ?? 300) + 24;
+      el.scrollBy({ left: direction * step, behavior: "smooth" });
+   };
+
+   useEffect(() => {
+      const el = scrollerRef.current;
+      if (!el) return;
+
+      syncArrows();
+      el.addEventListener("scroll", syncArrows, { passive: true });
+      window.addEventListener("resize", syncArrows);
+
+      const onWheel = (event: WheelEvent) => {
+         if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+         event.preventDefault();
+         el.scrollLeft += event.deltaY;
+      };
+      el.addEventListener("wheel", onWheel, { passive: false });
+
+      return () => {
+         el.removeEventListener("scroll", syncArrows);
+         el.removeEventListener("wheel", onWheel);
+         window.removeEventListener("resize", syncArrows);
+      };
+   }, [syncArrows]);
 
    return (
       <div className="tg-destination-area ebt-section">
@@ -38,40 +81,66 @@ const Destination = () => {
                <h2 className="mb-15 wow fadeInUp" data-wow-delay=".5s" data-wow-duration=".7s">{t("home.destTitle")}</h2>
                <p className="text-capitalize wow fadeInUp mb-0" data-wow-delay=".6s" data-wow-duration=".8s">{t("home.destText")}</p>
             </div>
-            <div className="ebt-dest-scroll" role="region" aria-label={t("home.destTitle")} tabIndex={0}>
-               <div className="ebt-dest-track">
-                  {destination_data.map((item) => (
-                     <Link key={item.id} href={item.href} className="ebt-dest-card" aria-label={t(item.titleKey)}>
-                        <div className="tg-destination-item wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
-                           <div className="tg-destination-thumb fix p-relative">
-                              <span className="ebt-destination-media">
-                                 <Image
-                                    className="w-100"
-                                    src={item.thumb}
-                                    alt=""
-                                    sizes="300px"
-                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                 />
-                              </span>
-                              <div className="tg-listing-2-mask" aria-hidden="true">
-                                 <Image className="w-100" src={shape} alt="" />
+            <div className="ebt-dest-carousel">
+               <button
+                  type="button"
+                  className="ebt-dest-arrow ebt-dest-arrow--prev"
+                  onClick={() => scrollByCard(-1)}
+                  disabled={!canPrev}
+                  aria-label="Previous destinations"
+               >
+                  <ChevronLeft size={22} strokeWidth={2.25} aria-hidden="true" />
+               </button>
+               <div
+                  className="ebt-dest-scroll"
+                  ref={scrollerRef}
+                  role="region"
+                  aria-label={t("home.destTitle")}
+                  tabIndex={0}
+               >
+                  <div className="ebt-dest-track">
+                     {destination_data.map((item) => (
+                        <Link key={item.id} href={item.href} className="ebt-dest-card" aria-label={t(item.titleKey)}>
+                           <div className="tg-destination-item wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
+                              <div className="tg-destination-thumb fix p-relative">
+                                 <span className="ebt-destination-media">
+                                    <Image
+                                       className="w-100"
+                                       src={item.thumb}
+                                       alt=""
+                                       sizes="300px"
+                                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                    />
+                                 </span>
+                                 <div className="tg-listing-2-mask" aria-hidden="true">
+                                    <Image className="w-100" src={shape} alt="" />
+                                 </div>
+                              </div>
+                              <div className="tg-destination-content text-center">
+                                 <div className="tg-destination-meta">
+                                    <span>{t(item.titleKey)}</span>
+                                 </div>
+                                 <div className="tg-destination-tag">
+                                    <span>{item.tours} {t("home.destTour")}</span>
+                                    <span>{item.hotels} {t("home.destHotel")}</span>
+                                    <span>{item.activities} {t("home.destActivity")}</span>
+                                    <span>{item.restaurants} {t("home.destRestaurant")}</span>
+                                 </div>
                               </div>
                            </div>
-                           <div className="tg-destination-content text-center">
-                              <div className="tg-destination-meta">
-                                 <span>{t(item.titleKey)}</span>
-                              </div>
-                              <div className="tg-destination-tag">
-                                 <span>{item.tours} {t("home.destTour")}</span>
-                                 <span>{item.hotels} {t("home.destHotel")}</span>
-                                 <span>{item.activities} {t("home.destActivity")}</span>
-                                 <span>{item.restaurants} {t("home.destRestaurant")}</span>
-                              </div>
-                           </div>
-                        </div>
-                     </Link>
-                  ))}
+                        </Link>
+                     ))}
+                  </div>
                </div>
+               <button
+                  type="button"
+                  className="ebt-dest-arrow ebt-dest-arrow--next"
+                  onClick={() => scrollByCard(1)}
+                  disabled={!canNext}
+                  aria-label="Next destinations"
+               >
+                  <ChevronRight size={22} strokeWidth={2.25} aria-hidden="true" />
+               </button>
             </div>
          </div>
       </div>

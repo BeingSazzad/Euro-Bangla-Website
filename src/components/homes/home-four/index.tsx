@@ -2,6 +2,7 @@ import Hero from "./Hero"
 import Destination from "./Destination"
 import Listing from "./Listing"
 import Process from "./Process"
+import HomeVisa from "./HomeVisa"
 import HomeReviews from "./HomeReviews"
 import HomeFaq from "./HomeFaq"
 import HomeBlog from "./HomeBlog"
@@ -24,6 +25,7 @@ const HomeFour = () => {
         <Listing />
         <Cta />
         <Process />
+        <HomeVisa />
         <HomeReviews />
         <HomeFaq />
         <HomeBlog />

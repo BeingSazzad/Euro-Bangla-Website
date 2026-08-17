@@ -9,6 +9,12 @@ html,
 }
 
 .ebt-process {
+   overflow: hidden;
+
+   .tg-chose-2-shape {
+      display: none;
+   }
+
    .tg-chose-2-thumb,
    .tg-chose-2-content {
       height: 300px;
@@ -123,7 +129,7 @@ html,
 }
 
 .ebt-pkg-side .ebt-inq-split {
-   grid-template-columns: 1fr;
+   grid-template-columns: 1.4fr 0.8fr;
 }
 
 .ebt-about-collage {
@@ -144,12 +150,21 @@ html,
    width: 100% !important;
 }
 
-.ebt-review-text {
-   min-height: 0;
-}
-
 .ebt-reviews-slider {
    overflow: hidden;
+
+   .swiper-wrapper {
+      align-items: stretch;
+   }
+
+   .swiper-slide {
+      height: auto;
+      display: flex;
+   }
+}
+
+.ebt-review-card {
+   height: 100%;
 }
 
 .tg-footer-form {
@@ -359,6 +374,10 @@ html,
 
    .ebt-inq-split {
       grid-template-columns: 1fr;
+   }
+
+   .ebt-pkg-side .ebt-inq-split {
+      grid-template-columns: 1.4fr 0.8fr;
    }
 
    .tg-contact-form .input,
