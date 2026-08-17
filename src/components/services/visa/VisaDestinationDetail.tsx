@@ -1,10 +1,12 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { BadgeCheck, ChevronDown, Clock3, FileText, Info, Landmark, MapPin } from "lucide-react";
 import type { VisaDestination } from "@/data/visaDestinations";
 import { visaDocGroups, visaDocItemsFor } from "@/data/visaDestinations";
 import { COMPANY } from "@/data/company";
+import { iconProps } from "@/data/icons";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 import ServicePageShell from "@/components/common/ServicePageShell";
@@ -14,12 +16,18 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
    const { locale, t } = useT();
    const name = tx(dest.name, locale);
 
-   const summaryRows = [
-      { label: t("visaDetail.visaType"), value: tx(dest.visaType, locale) },
-      { label: t("visaDetail.processing"), value: tx(dest.processing, locale) },
-      { label: t("visaDetail.guidanceFee"), value: t("visaDetail.guidanceFeeValue") },
-      { label: t("visaDetail.embassyFees"), value: t("visaDetail.embassyFeesValue") },
+   const facts = [
+      { key: "type", icon: FileText, label: t("visaDetail.visaType"), value: tx(dest.visaType, locale) },
+      { key: "time", icon: Clock3, label: t("visaDetail.processing"), value: tx(dest.processing, locale) },
+      { key: "guide", icon: BadgeCheck, label: t("visaDetail.guidanceFee"), value: t("visaDetail.guidanceFeeValue") },
+      { key: "fees", icon: Landmark, label: t("visaDetail.embassyFees"), value: t("visaDetail.embassyFeesValue") },
    ];
+
+   const [collapsedDocs, setCollapsedDocs] = useState<Record<string, boolean>>({});
+
+   const docGroups = visaDocGroups
+      .map((group) => ({ ...group, items: visaDocItemsFor(dest, group.id) }))
+      .filter((group) => group.items.length > 0);
 
    return (
       <ServicePageShell
@@ -32,50 +40,90 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
       >
          <div className="ebt-visa-guide">
             <div className="container">
-               <h1 className="ebt-visa-guide-title">{name}</h1>
-               <p className="ebt-visa-guide-lead">{tx(dest.summary, locale)}</p>
-
                <div className="row">
                   <div className="col-xl-8 col-lg-8">
-                     <section className="ebt-visa-guide-block">
-                        <h2>{t("visaDetail.summary")}</h2>
-                        <dl className="ebt-visa-summary">
-                           {summaryRows.map((row) => (
-                              <div key={row.label} className="ebt-visa-summary-row">
-                                 <dt>{row.label}</dt>
-                                 <dd>{row.value}</dd>
-                              </div>
-                           ))}
-                        </dl>
-                        <p className="ebt-visa-office">
+                     <header className="ebt-visa-guide-head">
+                        <h1 className="ebt-visa-guide-title">{name}</h1>
+                        <p className="ebt-visa-guide-lead">{tx(dest.summary, locale)}</p>
+                     </header>
+
+                     <section className="ebt-visa-guide-block" aria-label={t("visaDetail.summary")}>
+                        <div className="ebt-visa-facts">
+                           {facts.map((fact) => {
+                              const Icon = fact.icon;
+                              return (
+                                 <article key={fact.key} className="ebt-visa-fact">
+                                    <span className="ebt-visa-fact-icon" aria-hidden="true">
+                                       <Icon {...iconProps("sm")} />
+                                    </span>
+                                    <div>
+                                       <p className="ebt-visa-fact-label">{fact.label}</p>
+                                       <p className="ebt-visa-fact-value">{fact.value}</p>
+                                    </div>
+                                 </article>
+                              );
+                           })}
+                        </div>
+                     </section>
+
+                     <p className="ebt-visa-office">
+                        <MapPin {...iconProps("sm")} />
+                        <span>
                            {t("visaDetail.submitInPerson")} {COMPANY.addressLine1}, {COMPANY.addressLine2}.{" "}
                            <Link href={`tel:${COMPANY.phoneTel}`}>{COMPANY.phone}</Link>
-                        </p>
-                     </section>
+                        </span>
+                     </p>
 
-                     <section className="ebt-visa-guide-block">
-                        <h2>{t("visaDetail.importantNotes")}</h2>
-                        <ul className="ebt-visa-notes">
-                           {dest.notes.map((line, index) => (
-                              <li key={index}>{tx(line, locale)}</li>
-                           ))}
-                        </ul>
-                     </section>
-
-                     <section className="ebt-visa-guide-block">
-                        <h2>{t("visaDetail.docsNeeded")}</h2>
-                        {visaDocGroups.map((group) => (
-                           <div key={group.id} className="ebt-visa-docs">
-                              <h3>{t(group.titleKey)}</h3>
-                              <ol>
-                                 {visaDocItemsFor(dest, group.id).map((item, index) => (
-                                    <li key={index}>{tx(item, locale)}</li>
+                     {dest.notes.length > 0 && (
+                        <section className="ebt-visa-guide-block">
+                           <div className="ebt-visa-notes-card">
+                              <h2>
+                                 <Info {...iconProps("sm")} />
+                                 {t("visaDetail.importantNotes")}
+                              </h2>
+                              <ul>
+                                 {dest.notes.map((line, index) => (
+                                    <li key={index}>{tx(line, locale)}</li>
                                  ))}
-                              </ol>
+                              </ul>
                            </div>
-                        ))}
-                        <p className="ebt-visa-docs-nb">{t("visaDetail.docsNb")}</p>
-                     </section>
+                        </section>
+                     )}
+
+                     {docGroups.length > 0 && (
+                        <section className="ebt-visa-guide-block">
+                           <h2 className="ebt-visa-docs-title">{t("visaDetail.docsNeeded")}</h2>
+                           <div className="ebt-visa-doc-stack">
+                              {docGroups.map((group) => {
+                                 const isOpen = !collapsedDocs[group.id];
+                                 return (
+                                    <article key={group.id} className={`ebt-visa-doc-card${isOpen ? " is-open" : ""}`}>
+                                       <h3>
+                                          <button
+                                             type="button"
+                                             className="ebt-visa-doc-toggle"
+                                             aria-expanded={isOpen}
+                                             aria-controls={`visa-docs-${group.id}`}
+                                             onClick={() =>
+                                                setCollapsedDocs((prev) => ({ ...prev, [group.id]: !prev[group.id] }))
+                                             }
+                                          >
+                                             <span>{tx(group.title, locale)}</span>
+                                             <ChevronDown {...iconProps("md")} aria-hidden="true" />
+                                          </button>
+                                       </h3>
+                                       <ol id={`visa-docs-${group.id}`} hidden={!isOpen}>
+                                          {group.items.map((item, itemIndex) => (
+                                             <li key={itemIndex}>{tx(item, locale)}</li>
+                                          ))}
+                                       </ol>
+                                    </article>
+                                 );
+                              })}
+                           </div>
+                           <p className="ebt-visa-docs-nb">{t("visaDetail.docsNb")}</p>
+                        </section>
+                     )}
                   </div>
 
                   <div className="col-xl-4 col-lg-4">
@@ -86,7 +134,6 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
                               compact
                               locked
                               hideIntro
-                              hideMessage
                               hint={t("visaDetail.assistHint")}
                               defaultService="visa"
                               defaultDestination={name}

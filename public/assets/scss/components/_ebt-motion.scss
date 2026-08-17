@@ -1,0 +1,153 @@
+@use '../utils' as *;
+
+/*=============================
+   Common hover motion
+   Small lifts and zooms only. Sticky bars, forms, and text fields stay still.
+=============================*/
+
+.ebt-site {
+   .ebt-btn {
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+      svg {
+         transition: transform 0.2s ease;
+      }
+
+      &:hover:not(:disabled):not(.is-loading):not(.ebt-btn--block) {
+         transform: translateY(-1px);
+      }
+
+      &:hover:not(:disabled):not(.is-loading):not(.ebt-btn--icon) svg {
+         transform: translateX(2px);
+      }
+
+      &:active:not(:disabled) {
+         transform: none;
+      }
+   }
+
+   .tg-btn {
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+         transform: translateY(-1px);
+      }
+
+      &:active {
+         transform: none;
+      }
+   }
+
+   .ebt-blog-card,
+   .ebt-visa-country,
+   .tg-listing-2-card-item.ebt-tour-card,
+   .ebt-review-card,
+   .ebt-visa-why-card,
+   .tg-chose-6-wrap,
+   .ebt-route-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+
+      &:hover {
+         transform: translateY(-3px);
+         box-shadow: var(--tg-shadow-1);
+      }
+   }
+
+   .ebt-blog-thumb img,
+   .ebt-visa-cta-media img {
+      transition: transform 0.4s ease;
+   }
+
+   .ebt-blog-card:hover .ebt-blog-thumb img,
+   .ebt-visa-cta:hover .ebt-visa-cta-media img {
+      transform: scale(1.04);
+   }
+
+   .ebt-blog-more,
+   .ebt-blog-title a,
+   .ebt-cookie-link {
+      transition: color 0.2s ease;
+   }
+
+   .tg-footer-social a,
+   .tgmobile__menu .social-links a,
+   .offCanvas__social-icon a {
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+
+      &:hover {
+         transform: translateY(-2px);
+      }
+   }
+
+   .ebt-whatsapp-float,
+   .scroll__top {
+      transition: transform 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+         transform: translateY(-2px) scale(1.06);
+      }
+   }
+
+   .ebt-visa-fact {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+         border-color: var(--tg-border-5);
+         box-shadow: var(--tg-shadow-1);
+      }
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .ebt-site {
+      .ebt-btn,
+      .tg-btn,
+      .ebt-blog-card,
+      .ebt-visa-country,
+      .tg-listing-2-card-item.ebt-tour-card,
+      .ebt-review-card,
+      .ebt-visa-why-card,
+      .tg-chose-6-wrap,
+      .ebt-route-card,
+      .tg-footer-social a,
+      .tgmobile__menu .social-links a,
+      .offCanvas__social-icon a,
+      .ebt-whatsapp-float,
+      .scroll__top,
+      .ebt-dest-card .ebt-dest-img,
+      .ebt-visa-shot-img,
+      .ebt-about-card img,
+      .ebt-visa-country-media img,
+      .ebt-blog-thumb img,
+      .ebt-visa-cta-media img,
+      .ebt-tour-card-media img {
+         transition: none;
+      }
+
+      .ebt-btn:hover,
+      .tg-btn:hover,
+      .ebt-blog-card:hover,
+      .ebt-visa-country:hover,
+      .tg-listing-2-card-item.ebt-tour-card:hover,
+      .ebt-review-card:hover,
+      .ebt-visa-why-card:hover,
+      .tg-chose-6-wrap:hover,
+      .ebt-route-card:hover,
+      .tg-footer-social a:hover,
+      .ebt-whatsapp-float:hover,
+      .scroll__top:hover,
+      .ebt-btn:hover svg {
+         transform: none;
+      }
+
+      .ebt-blog-card:hover .ebt-blog-thumb img,
+      .ebt-visa-cta:hover .ebt-visa-cta-media img,
+      .ebt-dest-card:hover .ebt-dest-img,
+      .ebt-visa-shot:hover .ebt-visa-shot-img,
+      .ebt-about-card:hover img,
+      .ebt-visa-country:hover .ebt-visa-country-media img,
+      .tg-listing-2-card-item.ebt-tour-card:hover .ebt-tour-card-media img {
+         transform: none;
+      }
+   }
+}

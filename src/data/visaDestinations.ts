@@ -25,10 +25,10 @@ export type VisaDestination = {
    docExtras?: Partial<Record<VisaDocGroupId, LText[]>>;
 };
 
-export const visaDocGroups: { id: VisaDocGroupId; titleKey: string; items: LText[] }[] = [
+export const visaDocGroups: { id: VisaDocGroupId; title: LText; items: LText[] }[] = [
    {
       id: "job",
-      titleKey: "visaDetail.docsJob",
+      title: day("Documents for job holders", "চাকরিজীবীদের ডকুমেন্ট", "Documents pour salariés"),
       items: [
          day("Passport with at least 6 months’ validity and two blank pages", "পাসপোর্ট — কমপক্ষে ৬ মাস মেয়াদ ও দুটি খালি পাতা", "Passeport valable 6 mois minimum, deux pages vierges"),
          day("Recent photos to the embassy or VFS specification", "দূতাবাস বা VFS স্পেক অনুযায়ী সাম্প্রতিক ছবি", "Photos récentes selon le spec consulat / VFS"),
@@ -40,7 +40,7 @@ export const visaDocGroups: { id: VisaDocGroupId; titleKey: string; items: LText
    },
    {
       id: "business",
-      titleKey: "visaDetail.docsBusiness",
+      title: day("Documents for business owners", "ব্যবসায়ীদের ডকুমেন্ট", "Documents pour chefs d’entreprise"),
       items: [
          day("Passport, photos and 6-month bank statements", "পাসপোর্ট, ছবি ও ৬ মাসের ব্যাংক স্টেটমেন্ট", "Passeport, photos et relevés sur 6 mois"),
          day("Valid trade licence", "বৈধ ট্রেড লাইসেন্স", "Licence commerciale valide"),
@@ -50,7 +50,7 @@ export const visaDocGroups: { id: VisaDocGroupId; titleKey: string; items: LText
    },
    {
       id: "student",
-      titleKey: "visaDetail.docsStudent",
+      title: day("Documents for students", "শিক্ষার্থীদের ডকুমেন্ট", "Documents pour étudiants"),
       items: [
          day("Passport and embassy-spec photos", "পাসপোর্ট ও দূতাবাসের স্পেক অনুযায়ী ছবি", "Passeport et photos selon le consulat"),
          day("Student ID and current enrolment letter", "স্টুডেন্ট আইডি ও চলতি ভর্তির চিঠি", "Carte étudiant et attestation d’inscription"),
@@ -60,7 +60,7 @@ export const visaDocGroups: { id: VisaDocGroupId; titleKey: string; items: LText
    },
    {
       id: "family",
-      titleKey: "visaDetail.docsFamily",
+      title: day("Documents for family and other relations", "পরিবার ও অন্যান্য সম্পর্কের ডকুমেন্ট", "Documents famille et autres liens"),
       items: [
          day("Relationship proof — marriage or birth certificate as relevant", "সম্পর্কের প্রমাণ — বিবাহ বা জন্ম সনদ", "Preuve de lien — mariage ou naissance"),
          day("Sponsor or host documents if you are visiting family", "পরিবার দেখতে গেলে স্পন্সর বা হোস্টের কাগজ", "Pièces du sponsor ou de l’hôte pour une visite famille"),

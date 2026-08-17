@@ -20,6 +20,8 @@ $colors: (
         'primary': #0047AB,
         'secondary': #05AB13,
         'secondary-dark': #048f10,
+        // Readable on white (AA). Use for labels and icons, not large fills.
+        'secondary-ink': #046c0f,
         'deep': #002F6C,
         'deep-2': #003C8A,
     ),
@@ -50,10 +52,11 @@ $colors: (
         '1': #f7fafc,
         '2': #f4f7fd,
         '3': #eef4ff,
+        'mint': #eef8ee,
     ),
-    // Feedback. Success reads as a darkened theme-secondary so message text
-    // clears AA on white; error darkens the bare `red` the old .form_error used,
-    // which only reached 4.0:1.
+    // 60-30-10: neutrals dominate, primary blue is brand / nav / main CTAs,
+    // secondary green is accent only (eyebrows, success, included, one search).
+    // Green text on white uses secondary-ink so contrast holds.
     'state': (
         'success': #046c0f,
         'error': #d92d20,

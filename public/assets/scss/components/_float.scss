@@ -277,7 +277,7 @@
    width: 56px;
    height: 56px;
    border-radius: 50%;
-   background: #05AB13;
+   background: var(--tg-brand-whatsapp);
    color: #fff;
    display: flex;
    align-items: center;
@@ -518,10 +518,10 @@
    }
 
    .tg-booking-form-search-btn .bk-search-button {
-      background: #05AB13;
+      background: var(--tg-theme-secondary);
 
       &:hover {
-         background: #048f10;
+         background: var(--tg-theme-secondary-dark);
       }
    }
 }
@@ -618,14 +618,14 @@
 }
 
 .ebt-cookie-link {
-   color: #0047AB;
+   color: var(--tg-theme-primary);
    text-decoration: underline;
    text-underline-offset: 2px;
    font-weight: 600;
    font-family: inherit;
 
    &:hover {
-      color: #05AB13;
+      color: var(--tg-theme-secondary-ink);
    }
 }
 
@@ -885,18 +885,7 @@ body:has(.ebt-cookie-banner) {
    flex-wrap: wrap;
    align-items: center;
    justify-content: center;
-   gap: 16px 22px;
    margin-top: 22px;
-}
-
-.ebt-home-visa-secondary {
-   color: #0047AB;
-   font-size: 15px;
-   font-weight: 700;
-
-   &:hover {
-      color: #003580;
-   }
 }
 
 .ebt-home-link-btn {
@@ -947,7 +936,7 @@ body:has(.ebt-cookie-banner) {
 .ebt-review-stars {
    display: flex;
    gap: 4px;
-   color: #05AB13;
+   color: var(--tg-theme-secondary);
    margin-bottom: 14px;
 }
 
@@ -1031,6 +1020,7 @@ body:has(.ebt-cookie-banner) {
 
    img {
       object-fit: cover;
+      transition: transform 0.4s ease;
    }
 }
 
@@ -1095,7 +1085,7 @@ body:has(.ebt-cookie-banner) {
    color: #0047AB;
 
    &:hover {
-      color: #05AB13;
+      color: var(--tg-theme-secondary-ink);
    }
 }
 
@@ -1277,83 +1267,108 @@ body:has(.ebt-cookie-banner) {
    color: #64748b;
 
    span {
-      color: var(--tg-theme-primary);
+      color: var(--tg-theme-secondary-ink);
       font-weight: 600;
    }
 }
 
 .ebt-visa-guide {
-   padding-top: var(--tg-space-32, 32px);
-   padding-bottom: var(--tg-space-64, 64px);
+   padding-top: var(--tg-space-40, 40px);
+   padding-bottom: var(--tg-space-80, 80px);
+}
+
+.ebt-visa-guide-head {
+   margin-bottom: var(--tg-space-24, 24px);
 }
 
 .ebt-visa-guide-title {
    font-family: var(--tg-ff-outfit);
+   font-size: var(--tg-fs-h2, 32px);
+   font-weight: var(--tg-fw-h2, 700);
+   line-height: var(--tg-lh-h2, 40px);
    color: var(--tg-ink-1, #0f172a);
-   margin: 0 0 10px;
+   margin: 0 0 8px;
    text-transform: none;
 }
 
 .ebt-visa-guide-lead {
-   max-width: 42rem;
-   margin: 0 0 var(--tg-space-32, 32px);
+   max-width: 40rem;
+   margin: 0;
    color: var(--tg-ink-3, #475569);
    font-size: var(--tg-fs-body-m, 16px);
    line-height: 1.65;
 }
 
 .ebt-visa-guide-block {
-   margin-bottom: var(--tg-space-40, 40px);
-
-   h2 {
-      font-family: var(--tg-ff-outfit);
-      font-size: var(--tg-fs-h4, 20px);
-      font-weight: 700;
-      line-height: var(--tg-lh-h4, 28px);
-      color: var(--tg-ink-1, #0f172a);
-      margin: 0 0 16px;
-      text-transform: none;
-   }
+   margin-bottom: var(--tg-space-24, 24px);
 }
 
-.ebt-visa-summary {
-   margin: 0;
-}
-
-.ebt-visa-summary-row {
+.ebt-visa-facts {
    display: grid;
-   grid-template-columns: 160px 1fr;
-   gap: 12px 20px;
-   padding: 12px 0;
-   border-bottom: 1px solid var(--tg-border-4, #e8eaf0);
-
-   dt {
-      margin: 0;
-      font-size: var(--tg-fs-body-s, 14px);
-      font-weight: 600;
-      color: var(--tg-ink-4, #64748b);
-   }
-
-   dd {
-      margin: 0;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--tg-ink-1, #0f172a);
-      line-height: 1.45;
-   }
+   grid-template-columns: 1fr 1fr;
+   gap: 12px;
 
    @media #{$xs} {
       grid-template-columns: 1fr;
-      gap: 4px;
    }
 }
 
-.ebt-visa-office {
-   margin: 16px 0 0;
-   max-width: 40rem;
-   color: var(--tg-ink-3, #475569);
+.ebt-visa-fact {
+   display: flex;
+   align-items: flex-start;
+   gap: 12px;
+   min-height: 100%;
+   padding: 16px;
+   border: 1px solid var(--tg-border-4, #e8eaf0);
+   border-radius: var(--tg-radius-md, 12px);
+   background: var(--tg-surface-1, #f7fafc);
+}
+
+.ebt-visa-fact-icon {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   flex: 0 0 32px;
+   width: 32px;
+   height: 32px;
+   border-radius: var(--tg-radius-sm, 8px);
+   background: var(--tg-surface-3, #eef4ff);
+   color: var(--tg-theme-primary, #0047AB);
+}
+
+.ebt-visa-fact-label {
+   margin: 0 0 4px;
+   font-size: var(--tg-fs-caption, 12px);
+   font-weight: 600;
+   letter-spacing: 0.01em;
+   color: var(--tg-ink-4, #64748b);
+}
+
+.ebt-visa-fact-value {
+   margin: 0;
    font-size: 15px;
-   line-height: 1.65;
+   font-weight: 600;
+   line-height: 1.4;
+   color: var(--tg-ink-1, #0f172a);
+}
+
+.ebt-visa-office {
+   display: flex;
+   align-items: flex-start;
+   gap: 10px;
+   margin: 0 0 var(--tg-space-24, 24px);
+   padding: 14px 16px;
+   border-radius: var(--tg-radius-md, 12px);
+   background: var(--tg-surface-3, #eef4ff);
+   color: var(--tg-ink-2, #334155);
+   font-size: var(--tg-fs-body-s, 14px);
+   line-height: 1.6;
+
+   svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--tg-theme-primary, #0047AB);
+   }
 
    a {
       font-weight: 600;
@@ -1361,51 +1376,186 @@ body:has(.ebt-cookie-banner) {
    }
 }
 
-.ebt-visa-notes {
-   margin: 0;
-   padding-left: 1.15rem;
-   max-width: 42rem;
+.ebt-visa-notes-card {
+   padding: 20px 22px 18px;
+   border: 1px solid var(--tg-border-4, #e8eaf0);
+   border-left: 3px solid var(--tg-theme-primary, #0047AB);
+   border-radius: var(--tg-radius-md, 12px);
+   background: var(--tg-common-white, #fff);
+
+   h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      font-family: var(--tg-ff-outfit);
+      font-size: var(--tg-fs-h5, 18px);
+      font-weight: 700;
+      line-height: var(--tg-lh-h5, 26px);
+      color: var(--tg-ink-1, #0f172a);
+      text-transform: none;
+
+      svg {
+         color: var(--tg-theme-primary, #0047AB);
+      }
+   }
+
+   ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+   }
 
    li {
+      position: relative;
+      padding-left: 16px;
       margin-bottom: 10px;
       color: var(--tg-ink-2, #334155);
+      font-size: var(--tg-fs-body-s, 14px);
       line-height: 1.65;
+
+      &:last-child {
+         margin-bottom: 0;
+      }
+
+      &::before {
+         content: "";
+         position: absolute;
+         left: 0;
+         top: 9px;
+         width: 6px;
+         height: 6px;
+         border-radius: 50%;
+         background: var(--tg-theme-primary, #0047AB);
+      }
    }
 }
 
-.ebt-visa-docs {
-   margin-bottom: 22px;
+.ebt-visa-docs-title {
+   font-family: var(--tg-ff-outfit);
+   font-size: var(--tg-fs-h4, 20px);
+   font-weight: 700;
+   line-height: var(--tg-lh-h4, 28px);
+   color: var(--tg-ink-1, #0f172a);
+   margin: 0 0 16px;
+   text-transform: none;
+}
 
-   h3 {
+.ebt-visa-doc-stack {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.ebt-visa-doc-card {
+   padding: 4px 20px 8px;
+   border: 1px solid var(--tg-border-4, #e8eaf0);
+   border-radius: var(--tg-radius-md, 12px);
+   background: var(--tg-common-white, #fff);
+
+   &.is-open {
+      padding-bottom: 16px;
+   }
+}
+
+.ebt-visa-doc-card h3 {
+   margin: 0;
+}
+
+.ebt-visa-doc-toggle {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 12px;
+   width: 100%;
+   margin: 0 -8px;
+   padding: 14px 8px;
+   border: 0;
+   background: transparent;
+   text-align: left;
+   cursor: pointer;
+
+   span {
       font-family: var(--tg-ff-outfit);
       font-size: var(--tg-fs-body-m, 16px);
       font-weight: 700;
+      line-height: 1.4;
       color: var(--tg-ink-1, #0f172a);
-      margin: 0 0 10px;
       text-transform: none;
    }
 
-   ol {
-      margin: 0;
-      padding-left: 1.2rem;
-      max-width: 42rem;
+   svg {
+      flex-shrink: 0;
+      color: var(--tg-theme-primary, #0047AB);
+      transition: transform 0.2s ease;
    }
 
+   &:focus-visible {
+      outline: 2px solid var(--tg-theme-primary, #0047AB);
+      outline-offset: 2px;
+      border-radius: var(--tg-radius-sm, 8px);
+   }
+}
+
+.ebt-visa-doc-card.is-open .ebt-visa-doc-toggle {
+   margin-bottom: 4px;
+   padding-bottom: 12px;
+   border-bottom: 1px solid var(--tg-border-4, #e8eaf0);
+
+   svg {
+      transform: rotate(180deg);
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .ebt-visa-doc-toggle svg {
+      transition: none;
+   }
+}
+
+.ebt-visa-doc-card ol {
+   margin: 0;
+   padding: 8px 0 0;
+   list-style: none;
+   counter-reset: visa-doc;
+
    li {
-      margin-bottom: 6px;
+      counter-increment: visa-doc;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
       color: var(--tg-ink-2, #334155);
+      font-size: var(--tg-fs-body-s, 14px);
       line-height: 1.55;
+
+      &:last-child {
+         margin-bottom: 0;
+      }
+
+      &::before {
+         content: counter(visa-doc);
+         flex: 0 0 22px;
+         width: 22px;
+         height: 22px;
+         margin-top: 1px;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 50%;
+         background: var(--tg-surface-3, #eef4ff);
+         color: var(--tg-theme-primary, #0047AB);
+         font-size: 11px;
+         font-weight: 700;
+         line-height: 1;
+      }
    }
 }
 
 .ebt-visa-docs-nb {
-   margin: 8px 0 0;
-   max-width: 42rem;
-   padding: 12px 0 0;
-   border-top: 1px solid var(--tg-border-4, #e8eaf0);
-   color: var(--tg-ink-1, #0f172a);
+   margin: 14px 0 0;
+   color: var(--tg-ink-4, #64748b);
    font-size: var(--tg-fs-body-s, 14px);
-   font-weight: 600;
+   font-weight: 400;
    line-height: 1.55;
 }
 
@@ -1438,6 +1588,7 @@ body:has(.ebt-cookie-banner) {
 
    @media #{$md,$sm,$xs} {
       position: static;
+      margin-top: 8px;
    }
 }
 
@@ -1596,6 +1747,7 @@ body:has(.ebt-cookie-banner) {
 
    img {
       object-fit: cover;
+      transition: transform 0.4s ease;
    }
 }
 
@@ -1822,25 +1974,6 @@ body:has(.ebt-cookie-banner) {
    }
 }
 
-.ebt-about-card-label {
-   position: absolute;
-   left: 12px;
-   right: 12px;
-   bottom: 12px;
-   z-index: 1;
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-   padding: 7px 12px;
-   border-radius: 999px;
-   background: rgba(255, 255, 255, 0.96);
-   color: #0047AB;
-   font-size: 13px;
-   font-weight: 600;
-   line-height: 1.3;
-   text-align: center;
-}
-
 .ebt-about-seal {
    margin: 0 auto;
    width: 140px;
@@ -1871,6 +2004,89 @@ body:has(.ebt-cookie-banner) {
 
 .ebt-about-copy .tg-btn {
    padding: 14px 28px;
+}
+
+.ebt-about-cta {
+   position: relative;
+   isolation: isolate;
+   overflow: hidden;
+   min-height: 420px;
+   display: flex;
+   align-items: center;
+   padding-top: var(--tg-space-96, 96px);
+   padding-bottom: var(--tg-space-96, 96px);
+
+   @media #{$md,$sm,$xs} {
+      min-height: 360px;
+      padding-top: var(--tg-space-64, 64px);
+      padding-bottom: var(--tg-space-64, 64px);
+   }
+}
+
+.ebt-about-cta-media {
+   position: absolute;
+   inset: 0;
+   z-index: 0;
+
+   img {
+      object-fit: cover;
+      object-position: center 60%;
+   }
+}
+
+.ebt-about-cta-fade {
+   position: absolute;
+   inset: 0 0 auto;
+   height: 88px;
+   z-index: 1;
+   background: linear-gradient(180deg, var(--tg-grey-5, #f8f8f8) 0%, rgba(248, 248, 248, 0) 100%);
+   pointer-events: none;
+}
+
+.ebt-about-cta-shade {
+   position: absolute;
+   inset: 0;
+   z-index: 1;
+   background: linear-gradient(180deg, rgba(15, 23, 42, 0.18) 0%, rgba(0, 40, 96, 0.55) 100%);
+   pointer-events: none;
+}
+
+.ebt-about-cta-inner {
+   position: relative;
+   z-index: 2;
+   max-width: 640px;
+   margin: 0 auto;
+   text-align: center;
+}
+
+.ebt-about-cta-kicker {
+   margin: 0 0 12px;
+   color: rgba(255, 255, 255, 0.88);
+   font-size: var(--tg-fs-label, 14px);
+   font-weight: 600;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+}
+
+.ebt-about-cta-title {
+   margin: 0 0 12px;
+   color: var(--tg-common-white, #fff);
+   font-size: var(--tg-fs-h2, 32px);
+   font-weight: var(--tg-fw-h2, 700);
+   line-height: var(--tg-lh-h2, 40px);
+   text-transform: none;
+}
+
+.ebt-about-cta-text {
+   margin: 0 auto 28px;
+   max-width: 36rem;
+   color: rgba(255, 255, 255, 0.9);
+   font-size: var(--tg-fs-body-m, 16px);
+   line-height: 1.65;
+}
+
+.ebt-about-cta .ebt-btn {
+   box-shadow: var(--tg-shadow-1, 0 8px 24px rgba(15, 23, 42, 0.06));
 }
 
 .ebt-tour-details {

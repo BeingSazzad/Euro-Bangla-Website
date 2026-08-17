@@ -94,8 +94,7 @@
    }
 
    .ebt-breadcrumb .tg-breadcrumb-title,
-   .ebt-tour-details .tg-tour-details-video-title,
-   .ebt-visa-guide-title {
+   .ebt-tour-details .tg-tour-details-video-title {
       font-size: var(--tg-fs-h1);
       line-height: var(--tg-lh-h1);
       font-weight: var(--tg-fw-h1);
@@ -134,8 +133,7 @@
       .ebt-visa-why-title,
       .ebt-visa-cta-title,
       .ebt-breadcrumb .tg-breadcrumb-title,
-      .ebt-tour-details .tg-tour-details-video-title,
-      .ebt-visa-guide-title {
+      .ebt-tour-details .tg-tour-details-video-title {
          font-size: var(--tg-fs-h3);
          line-height: var(--tg-lh-h3);
       }
@@ -143,8 +141,7 @@
 
    @media #{$md} {
       .ebt-breadcrumb .tg-breadcrumb-title,
-      .ebt-tour-details .tg-tour-details-video-title,
-      .ebt-visa-guide-title {
+      .ebt-tour-details .tg-tour-details-video-title {
          font-size: var(--tg-fs-h2);
          line-height: var(--tg-lh-h2);
       }
@@ -176,13 +173,12 @@
       border-radius: var(--tg-radius-md);
    }
 
-   /* Content cards share one hover: a border shift plus level 1. No lift, no
-      colour change. */
+   /* Cards lift 3px and pick up shadow-1. Photos zoom separately. */
    .ebt-blog-card,
    .ebt-visa-country,
    .tg-listing-2-card-item.ebt-tour-card {
       border-color: var(--tg-border-4);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
 
       &:hover {
          border-color: var(--tg-border-5);

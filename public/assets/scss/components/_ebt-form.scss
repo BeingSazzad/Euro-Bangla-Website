@@ -316,6 +316,129 @@ select.ebt-control {
    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08);
 }
 
+.ebt-inq-split-card {
+   display: grid;
+   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+   overflow: hidden;
+   border-radius: var(--tg-radius-xl, 24px);
+   background: var(--tg-common-white, #fff);
+   box-shadow: var(--tg-shadow-1, 0 8px 24px rgba(15, 23, 42, 0.06));
+   border: 1px solid var(--tg-border-4, #e8edf3);
+
+   .ebt-inq-card {
+      box-shadow: none;
+      border-radius: 0;
+      padding: 40px 36px 36px;
+   }
+
+   @media #{$lg,$md,$sm,$xs} {
+      grid-template-columns: 1fr;
+
+      .ebt-inq-card {
+         padding: 32px 24px 28px;
+      }
+   }
+}
+
+.ebt-inq-aside {
+   position: relative;
+   min-height: 560px;
+   color: var(--tg-common-white, #fff);
+
+   img {
+      object-fit: cover;
+      object-position: center 40%;
+   }
+
+   @media #{$lg,$md,$sm,$xs} {
+      min-height: 280px;
+   }
+}
+
+.ebt-inq-aside-shade {
+   position: absolute;
+   inset: 0;
+   z-index: 1;
+   background: linear-gradient(180deg, rgba(15, 23, 42, 0.28) 0%, rgba(0, 47, 108, 0.82) 100%);
+   pointer-events: none;
+}
+
+.ebt-inq-aside-copy {
+   position: relative;
+   z-index: 2;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-end;
+   height: 100%;
+   min-height: inherit;
+   padding: 36px 32px;
+
+   @media #{$lg,$md,$sm,$xs} {
+      padding: 24px 22px;
+   }
+}
+
+.ebt-inq-aside-kicker {
+   margin: 0 0 10px;
+   color: #b7f0bc;
+   font-size: var(--tg-fs-caption, 12px);
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+}
+
+.ebt-inq-aside-copy h2 {
+   margin: 0 0 10px;
+   color: var(--tg-common-white, #fff);
+   font-family: var(--tg-ff-outfit);
+   font-size: var(--tg-fs-h3, 24px);
+   font-weight: 700;
+   line-height: var(--tg-lh-h3, 32px);
+}
+
+.ebt-inq-aside-text {
+   margin: 0 0 22px;
+   max-width: 28rem;
+   color: rgba(255, 255, 255, 0.88);
+   font-size: var(--tg-fs-body-s, 14px);
+   line-height: 1.6;
+}
+
+.ebt-inq-aside-list {
+   margin: 0 0 22px;
+   padding: 0;
+   list-style: none;
+
+   li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 14px;
+      line-height: 1.45;
+
+      &:last-child {
+         margin-bottom: 0;
+      }
+
+      svg {
+         flex-shrink: 0;
+         margin-top: 2px;
+         color: #b7f0bc;
+      }
+
+      a {
+         color: inherit;
+         font-weight: 600;
+
+         &:hover {
+            color: #fff;
+         }
+      }
+   }
+}
+
 .ebt-inq-card-head {
    margin-bottom: 24px;
 

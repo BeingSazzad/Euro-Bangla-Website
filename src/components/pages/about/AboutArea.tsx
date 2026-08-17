@@ -1,11 +1,8 @@
 "use client"
-import Image from "next/image"
+import Image, { type StaticImageData } from "next/image"
 import Button from "@/components/common/Button"
 import Link from "next/link"
 import { useT } from "@/i18n/LanguageProvider"
-import type { Locale } from "@/i18n/locales"
-import { tx } from "@/data/localized"
-import { findHajj, findTour } from "@/data/services"
 
 import shape_1 from "@/assets/img/about/details/shape.png"
 import shape_2 from "@/assets/img/about/details/shape-2.png"
@@ -14,30 +11,15 @@ import europe from "@/assets/img/destination/des.jpg"
 import kaaba from "@/assets/img/chose/chose-2/thumb-2.jpg"
 import madinah from "@/assets/img/destination/des-4.jpg"
 
-const aboutCards = [
-   {
-      href: "/tours/europe-highlights",
-      image: europe,
-      item: findTour("europe-highlights"),
-      tall: false,
-   },
-   {
-      href: "/hajj-umrah/hajj-group-2026",
-      image: kaaba,
-      item: findHajj("hajj-group-2026"),
-      tall: false,
-   },
-   {
-      href: "/hajj-umrah/economy-umrah-14",
-      image: madinah,
-      item: findHajj("economy-umrah-14"),
-      tall: true,
-   },
-] as const;
+const aboutPhotos: { image: StaticImageData; tall?: boolean }[] = [
+   { image: europe },
+   { image: kaaba },
+   { image: madinah, tall: true },
+];
 
 const AboutArea = () => {
-   const { t, locale } = useT();
-   const [europeCard, hajjCard, umrahCard] = aboutCards;
+   const { t } = useT();
+   const [leftTop, leftBottom, rightTall] = aboutPhotos;
 
    return (
       <div className="tg-about-area p-relative z-index-1 ebt-section">
@@ -49,8 +31,8 @@ const AboutArea = () => {
                      <Image className="tg-about-details-map p-absolute" src={shape_2} alt="" />
                      <div className="ebt-about-collage-grid">
                         <div className="ebt-about-col">
-                           <AboutPhotoCard card={europeCard} locale={locale} />
-                           <AboutPhotoCard card={hajjCard} locale={locale} />
+                           <AboutPhoto image={leftTop.image} />
+                           <AboutPhoto image={leftBottom.image} />
                         </div>
                         <div className="ebt-about-col">
                            <div className="tg-chose-3-rounded ebt-about-seal p-relative">
@@ -64,7 +46,7 @@ const AboutArea = () => {
                               />
                               <Image className="tg-chose-3-star" src={shape_4} alt="" />
                            </div>
-                           <AboutPhotoCard card={umrahCard} locale={locale} />
+                           <AboutPhoto image={rightTall.image} tall />
                         </div>
                      </div>
                   </div>
@@ -73,8 +55,8 @@ const AboutArea = () => {
                   <div className="ebt-about-copy">
                      <div className="tg-chose-section-title">
                         <h5 className="tg-section-subtitle mb-15 wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".1s">{t("about.subtitle")}</h5>
-                        <h2 className="mb-20 text-capitalize wow fadeInUp" data-wow-delay=".4s" data-wow-duration=".9s">{t("about.title")}</h2>
-                        <p className="text-capitalize wow fadeInUp ebt-about-copy-text" data-wow-delay=".5s" data-wow-duration=".9s">{t("about.text")}</p>
+                        <h2 className="mb-20 wow fadeInUp" data-wow-delay=".4s" data-wow-duration=".9s">{t("about.title")}</h2>
+                        <p className="wow fadeInUp ebt-about-copy-text" data-wow-delay=".5s" data-wow-duration=".9s">{t("about.text")}</p>
                         <div className="tg-chose-btn wow fadeInUp" data-wow-delay=".8s" data-wow-duration=".9s">
                            <Link href="/inquiry" className="tg-btn tg-btn-switch-animation">
                               <Button text={t("about.book")} />
@@ -89,28 +71,10 @@ const AboutArea = () => {
    )
 }
 
-const AboutPhotoCard = ({
-   card,
-   locale,
-}: {
-   card: (typeof aboutCards)[number];
-   locale: Locale;
-}) => {
-   if (!card.item) return null;
-
-   return (
-      <Link
-         href={card.href}
-         className={`ebt-about-card${card.tall ? " ebt-about-card--tall" : ""}`}
-      >
-         <Image
-            src={card.image}
-            alt={tx(card.item.title, locale)}
-            sizes="(max-width: 768px) 50vw, 280px"
-         />
-         <span className="ebt-about-card-label">{tx(card.item.title, locale)}</span>
-      </Link>
-   );
-};
+const AboutPhoto = ({ image, tall = false }: { image: StaticImageData; tall?: boolean }) => (
+   <div className={`ebt-about-card${tall ? " ebt-about-card--tall" : ""}`}>
+      <Image src={image} alt="" sizes="(max-width: 768px) 50vw, 280px" />
+   </div>
+);
 
 export default AboutArea

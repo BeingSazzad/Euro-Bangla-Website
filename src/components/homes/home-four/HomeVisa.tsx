@@ -39,9 +39,6 @@ const HomeVisa = () => {
                <Link href="/visa" className="tg-btn tg-btn-switch-animation">
                   <Button text={t("home.visaCta")} />
                </Link>
-               <Link href="/inquiry?service=visa" className="ebt-home-visa-secondary">
-                  {t("home.visaInquire")}
-               </Link>
             </div>
          </div>
       </section>

@@ -338,8 +338,8 @@
             background: var(--tg-common-white);
             & .icon{
                 border-radius: 10px;
-                background: rgba(0, 71, 171, 0.08);
-                color: #0047AB;
+                background: var(--tg-surface-mint);
+                color: var(--tg-theme-secondary-ink);
                 width: 60px;
                 height: 60px;
                 text-align: center;

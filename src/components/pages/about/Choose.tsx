@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import { JSX } from "react";
-import { CalendarDays, Users, Award } from "lucide-react";
+import { CalendarDays, ClipboardCheck, Users } from "lucide-react";
 import { iconProps } from "@/data/icons";
 import { useT } from "@/i18n/LanguageProvider";
 
@@ -31,7 +31,7 @@ const choose_data: DataType[] = [
    },
    {
       id: 3,
-      icon: <Award {...chooseIcon} />,
+      icon: <ClipboardCheck {...chooseIcon} />,
       title: "about.award",
       desc: "about.awardDesc",
    },
