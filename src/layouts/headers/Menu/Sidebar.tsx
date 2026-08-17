@@ -1,5 +1,11 @@
+"use client"
+import { useEffect } from "react"
 import Link from "next/link"
+import { X } from "lucide-react"
 import SiteLogo from "@/components/common/SiteLogo"
+import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons"
+import { COMPANY, whatsappLink } from "@/data/company"
+import { useT } from "@/i18n/LanguageProvider"
 
 interface SidebarProps {
    sidebar: boolean;
@@ -7,39 +13,83 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
+   const { t } = useT();
+
+   useEffect(() => {
+      document.body.style.overflow = sidebar ? "hidden" : "";
+      const onKey = (event: KeyboardEvent) => {
+         if (event.key === "Escape") setSidebar(false);
+      };
+      if (sidebar) window.addEventListener("keydown", onKey);
+      return () => {
+         document.body.style.overflow = "";
+         window.removeEventListener("keydown", onKey);
+      };
+   }, [sidebar, setSidebar]);
+
+   const close = () => setSidebar(false);
+
    return (
       <>
-         <div className={`offCanvas__info ${sidebar ? "active" : ""}`}>
+         <div className={`offCanvas__info ${sidebar ? "active" : ""}`} role="dialog" aria-modal="true" aria-label={t("header.contactInfo")}>
             <div className="offCanvas__close-icon menu-close">
-               <button onClick={() => setSidebar(false)}><i className="fa-sharp fa-regular fa-xmark"></i></button>
+               <button type="button" onClick={close} aria-label={t("header.close")}>
+                  <X size={18} strokeWidth={2} aria-hidden="true" />
+               </button>
             </div>
             <div className="offCanvas__logo mb-30">
-               <Link href="/"><SiteLogo height={44} /></Link>
+               <Link href="/" onClick={close}><SiteLogo height={40} /></Link>
             </div>
             <div className="offCanvas__side-info mb-30">
                <div className="contact-list mb-30">
-                  <h4>Office Address</h4>
-                  <p>123/A, Miranda City Likaoli <br /> Prikano, Dope</p>
+                  <h4>{t("header.officeAddress")}</h4>
+                  <p>
+                     <Link href={COMPANY.mapLink} target="_blank" rel="noopener noreferrer">
+                        {COMPANY.addressLine1}<br />
+                        {COMPANY.addressLine2}
+                     </Link>
+                  </p>
                </div>
                <div className="contact-list mb-30">
-                  <h4>Phone Number</h4>
-                  <p>+0989 7876 9865 9</p>
-                  <p>+(090) 8765 86543 85</p>
+                  <h4>{t("header.phoneNumber")}</h4>
+                  <p>
+                     <Link href={`tel:${COMPANY.phoneTel}`}>{COMPANY.phone}</Link>
+                  </p>
+                  <p>
+                     <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+                        WhatsApp: {COMPANY.phone}
+                     </Link>
+                  </p>
                </div>
                <div className="contact-list mb-30">
-                  <h4>Email Address</h4>
-                  <p>info@example.com</p>
-                  <p>example.mail@hum.com</p>
+                  <h4>{t("header.emailAddress")}</h4>
+                  <p>
+                     <Link href={`mailto:${COMPANY.email}`}>{COMPANY.email}</Link>
+                  </p>
                </div>
             </div>
             <div className="offCanvas__social-icon mt-30">
-               <Link href="/"><i className="fab fa-facebook-f"></i></Link>
-               <Link href="/"><i className="fab fa-twitter"></i></Link>
-               <Link href="/"><i className="fab fa-google-plus-g"></i></Link>
-               <Link href="/"><i className="fab fa-instagram"></i></Link>
+               <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                  <WhatsAppIcon size={16} />
+               </Link>
+               {COMPANY.facebook !== "#" && (
+                  <Link href={COMPANY.facebook} aria-label="Facebook">
+                     <FacebookIcon size={16} />
+                  </Link>
+               )}
+               {COMPANY.instagram !== "#" && (
+                  <Link href={COMPANY.instagram} aria-label="Instagram">
+                     <InstagramIcon size={16} />
+                  </Link>
+               )}
+               {COMPANY.youtube !== "#" && (
+                  <Link href={COMPANY.youtube} aria-label="YouTube">
+                     <YoutubeIcon size={16} />
+                  </Link>
+               )}
             </div>
          </div>
-         <div onClick={() => setSidebar(false)} className={`offCanvas__overly ${sidebar ? "active" : ""}`}></div>
+         <div onClick={close} className={`offCanvas__overly ${sidebar ? "active" : ""}`} />
       </>
    )
 }

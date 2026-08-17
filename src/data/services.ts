@@ -4,7 +4,6 @@ import type { LText } from "./localized";
 import listing1 from "@/assets/img/listing/listing-1.jpg";
 import listing2 from "@/assets/img/listing/listing-2.jpg";
 import listing3 from "@/assets/img/listing/listing-3.jpg";
-import listing4 from "@/assets/img/listing/listing-4.jpg";
 import listing5 from "@/assets/img/listing/listing-5.jpg";
 import listing6 from "@/assets/img/listing/listing-6.jpg";
 import listing7 from "@/assets/img/listing/listing-8.jpg";

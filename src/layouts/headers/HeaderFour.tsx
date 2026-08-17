@@ -4,14 +4,18 @@ import Link from "next/link"
 import { useState } from "react";
 import UseSticky from "@/hooks/UseSticky";
 import Offcanvas from "./Menu/Offcanvas";
+import Sidebar from "./Menu/Sidebar";
 import SiteLogo from "@/components/common/SiteLogo";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import HeaderWhatsApp from "@/components/common/HeaderWhatsApp";
+import { useT } from "@/i18n/LanguageProvider";
 
 const HeaderFour = () => {
 
    const { sticky } = UseSticky();
+   const { t } = useT();
    const [offCanvas, setOffCanvas] = useState<boolean>(false);
+   const [sidebar, setSidebar] = useState<boolean>(false);
 
    return (
       <>
@@ -38,6 +42,19 @@ const HeaderFour = () => {
                         <div className="tg-menu-right-action tg-menu-right-action-2 d-flex align-items-center justify-content-end">
                            <LanguageSwitcher />
                            <HeaderWhatsApp className="ml-20 d-none d-xl-flex" />
+                           <div className="tg-header-menu-bar lh-1 p-relative pl-20 d-none d-xl-block">
+                              <button
+                                 type="button"
+                                 onClick={() => setSidebar(true)}
+                                 style={{ cursor: "pointer" }}
+                                 className="tgmenu-offcanvas-open-btn menu-tigger mobile-nav-black"
+                                 aria-label={t("header.contactInfo")}
+                              >
+                                 <span></span>
+                                 <span></span>
+                                 <span></span>
+                              </button>
+                           </div>
                            <div className="tg-header-menu-bar lh-1 p-relative pl-20 d-block d-xl-none">
                               <button onClick={() => setOffCanvas(true)} style={{ cursor: "pointer" }} className="tgmenu-offcanvas-open-btn mobile-nav-toggler mobile-nav-black">
                                  <span></span>
@@ -52,6 +69,7 @@ const HeaderFour = () => {
             </div>
          </header>
          <Offcanvas offCanvas={offCanvas} setOffCanvas={setOffCanvas} />
+         <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
       </>
    )
 }

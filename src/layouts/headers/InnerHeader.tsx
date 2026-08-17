@@ -4,18 +4,17 @@ import Link from "next/link"
 import { useState } from "react";
 import UseSticky from "@/hooks/UseSticky";
 import Offcanvas from "./Menu/Offcanvas";
+import Sidebar from "./Menu/Sidebar";
 import SiteLogo from "@/components/common/SiteLogo";
 import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 import HeaderWhatsApp from "@/components/common/HeaderWhatsApp";
+import { useT } from "@/i18n/LanguageProvider";
 
-/**
- * Inner pages share the same chrome as Home Four.
- * Template search modal + desktop sidebar remain available in Menu/
- * but are not shown in the live product UI.
- */
 const InnerHeader = () => {
    const { sticky } = UseSticky();
+   const { t } = useT();
    const [offCanvas, setOffCanvas] = useState<boolean>(false);
+   const [sidebar, setSidebar] = useState<boolean>(false);
 
    return (
       <>
@@ -40,8 +39,20 @@ const InnerHeader = () => {
                            <div className="tg-menu-right-action tg-menu-right-action-3 tg-menu-4-right-action d-flex align-items-center justify-content-end">
                               <LanguageSwitcher />
                               <HeaderWhatsApp className="ml-15 d-none d-xl-flex" />
-                              <div className="tg-header-menu-bar lh-1 p-relative ml-10">
-                                 <button onClick={() => setOffCanvas(true)} className="tgmenu-offcanvas-open-btn mobile-nav-toggler d-block d-xl-none">
+                              <div className="tg-header-menu-bar lh-1 p-relative ml-10 d-none d-xl-block">
+                                 <button
+                                    type="button"
+                                    onClick={() => setSidebar(true)}
+                                    className="tgmenu-offcanvas-open-btn menu-tigger"
+                                    aria-label={t("header.contactInfo")}
+                                 >
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                 </button>
+                              </div>
+                              <div className="tg-header-menu-bar lh-1 p-relative ml-10 d-block d-xl-none">
+                                 <button onClick={() => setOffCanvas(true)} className="tgmenu-offcanvas-open-btn mobile-nav-toggler">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -55,6 +66,7 @@ const InnerHeader = () => {
             </div>
          </header>
          <Offcanvas offCanvas={offCanvas} setOffCanvas={setOffCanvas} />
+         <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
       </>
    )
 }

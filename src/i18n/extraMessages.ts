@@ -15,6 +15,11 @@ export const extraMessages = {
       },
       header: {
          inquiry: "Inquiry",
+         contactInfo: "Contact info",
+         close: "Close",
+         officeAddress: "Office Address",
+         phoneNumber: "Phone Number",
+         emailAddress: "Email Address",
       },
       footer: {
          flights: "Flights",
@@ -254,6 +259,11 @@ export const extraMessages = {
       },
       header: {
          inquiry: "অনুসন্ধান",
+         contactInfo: "যোগাযোগ",
+         close: "বন্ধ করুন",
+         officeAddress: "অফিসের ঠিকানা",
+         phoneNumber: "ফোন নম্বর",
+         emailAddress: "ইমেইল ঠিকানা",
       },
       footer: {
          flights: "ফ্লাইট",
@@ -479,6 +489,11 @@ export const extraMessages = {
       },
       header: {
          inquiry: "Demande",
+         contactInfo: "Coordonnées",
+         close: "Fermer",
+         officeAddress: "Adresse du bureau",
+         phoneNumber: "Numéro de téléphone",
+         emailAddress: "Adresse e-mail",
       },
       footer: {
          flights: "Vols",
