@@ -326,6 +326,6 @@ select.ebt-control {
 
    .ebt-booking-toggle {
       min-height: var(--tg-control-h-sm);
-      @include text('button-s');
+      @include text('btn-s');
    }
 }
