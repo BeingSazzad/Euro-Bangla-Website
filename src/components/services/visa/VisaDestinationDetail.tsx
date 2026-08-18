@@ -1,17 +1,16 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
-import { BadgeCheck, ChevronDown, Clock3, FileText, Info, Landmark, MapPin } from "lucide-react";
+import { BadgeCheck, Clock3, FileText, Info, Landmark, MapPin } from "lucide-react";
 import type { VisaDestination } from "@/data/visaDestinations";
-import { visaDocGroups, visaDocItemsFor } from "@/data/visaDestinations";
 import { COMPANY } from "@/data/company";
 import { iconProps } from "@/data/icons";
 import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 import ServicePageShell from "@/components/common/ServicePageShell";
 import InquiryForm from "@/components/forms/InquiryForm";
-import VisaRequirementDownloads from "./VisaRequirementDownloads";
+import VisaRequirementCopy from "./VisaRequirementCopy";
 
 const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
    const { locale, t } = useT();
@@ -23,12 +22,6 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
       { key: "guide", icon: BadgeCheck, label: t("visaDetail.guidanceFee"), value: t("visaDetail.guidanceFeeValue") },
       { key: "fees", icon: Landmark, label: t("visaDetail.embassyFees"), value: t("visaDetail.embassyFeesValue") },
    ];
-
-   const [collapsedDocs, setCollapsedDocs] = useState<Record<string, boolean>>({});
-
-   const docGroups = visaDocGroups
-      .map((group) => ({ ...group, items: visaDocItemsFor(dest, group.id) }))
-      .filter((group) => group.items.length > 0);
 
    return (
       <ServicePageShell
@@ -91,42 +84,7 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
                         </section>
                      )}
 
-                     <VisaRequirementDownloads dest={dest} />
-
-                     {docGroups.length > 0 && (
-                        <section className="ebt-visa-guide-block">
-                           <h2 className="ebt-visa-docs-title">{t("visaDetail.docsNeeded")}</h2>
-                           <div className="ebt-visa-doc-stack">
-                              {docGroups.map((group) => {
-                                 const isOpen = !collapsedDocs[group.id];
-                                 return (
-                                    <article key={group.id} className={`ebt-visa-doc-card${isOpen ? " is-open" : ""}`}>
-                                       <h3>
-                                          <button
-                                             type="button"
-                                             className="ebt-visa-doc-toggle"
-                                             aria-expanded={isOpen}
-                                             aria-controls={`visa-docs-${group.id}`}
-                                             onClick={() =>
-                                                setCollapsedDocs((prev) => ({ ...prev, [group.id]: !prev[group.id] }))
-                                             }
-                                          >
-                                             <span>{tx(group.title, locale)}</span>
-                                             <ChevronDown {...iconProps("md")} aria-hidden="true" />
-                                          </button>
-                                       </h3>
-                                       <ol id={`visa-docs-${group.id}`} hidden={!isOpen}>
-                                          {group.items.map((item, itemIndex) => (
-                                             <li key={itemIndex}>{tx(item, locale)}</li>
-                                          ))}
-                                       </ol>
-                                    </article>
-                                 );
-                              })}
-                           </div>
-                           <p className="ebt-visa-docs-nb">{t("visaDetail.docsNb")}</p>
-                        </section>
-                     )}
+                     <VisaRequirementCopy dest={dest} />
                   </div>
 
                   <div className="col-xl-4 col-lg-4">

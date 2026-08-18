@@ -1497,59 +1497,46 @@ body:has(.ebt-cookie-banner) {
    }
 }
 
-.ebt-visa-downloads {
-   margin-top: 20px;
-   padding: 20px 22px 18px;
-   border: 1px solid var(--tg-border-4, #e8eaf0);
-   border-radius: var(--tg-radius-md, 12px);
-   background: #f8fafc;
-
+.ebt-visa-copy {
    h2 {
-      margin: 0 0 6px;
-      font-family: var(--tg-ff-outfit);
-      font-size: var(--tg-fs-h5, 18px);
+      margin: 0 0 16px;
+      font-size: var(--tg-fs-h4, 20px);
       font-weight: 700;
-      line-height: var(--tg-lh-h5, 26px);
+      line-height: 1.35;
       color: var(--tg-ink-1, #0f172a);
       text-transform: none;
    }
 
-   > p {
-      margin: 0 0 16px;
-      color: var(--tg-ink-4, #64748b);
-      font-size: 14px;
-      line-height: 1.55;
+   h3 {
+      margin: 22px 0 8px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--tg-ink-1, #0f172a);
+      text-transform: none;
    }
 
-   ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+   p {
+      margin: 0 0 12px;
+      color: var(--tg-ink-2, #334155);
+      font-size: 15px;
+      line-height: 1.65;
+   }
+
+   ul,
+   ol {
+      margin: 0 0 8px;
+      padding-left: 1.25em;
+      color: var(--tg-ink-2, #334155);
+      font-size: 15px;
+      line-height: 1.65;
    }
 
    li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      background: #fff;
-      border: 1px solid var(--tg-border-4, #e8eaf0);
-      border-radius: 10px;
+      margin-bottom: 6px;
 
-      span {
-         min-width: 0;
-         color: var(--tg-ink-1, #0f172a);
-         font-size: 14px;
-         font-weight: 600;
-         line-height: 1.4;
-      }
-
-      @media #{$xs} {
-         flex-wrap: wrap;
+      &:last-child {
+         margin-bottom: 0;
       }
    }
 }
@@ -1557,16 +1544,15 @@ body:has(.ebt-cookie-banner) {
 .ebt-visa-download-btn {
    display: inline-flex;
    align-items: center;
-   gap: 6px;
-   flex-shrink: 0;
-   margin: 0;
-   padding: 8px 12px;
+   gap: 8px;
+   margin-top: 8px;
+   padding: 10px 16px;
    border: 1px solid var(--tg-theme-primary, #0047AB);
    border-radius: 8px;
    background: #fff;
    color: var(--tg-theme-primary, #0047AB);
    font-family: inherit;
-   font-size: 13px;
+   font-size: 14px;
    font-weight: 600;
    line-height: 1;
    cursor: pointer;
@@ -1581,130 +1567,10 @@ body:has(.ebt-cookie-banner) {
    }
 }
 
-.ebt-visa-docs-title {
-   font-family: var(--tg-ff-outfit);
-   font-size: var(--tg-fs-h4, 20px);
-   font-weight: 700;
-   line-height: var(--tg-lh-h4, 28px);
-   color: var(--tg-ink-1, #0f172a);
-   margin: 0 0 16px;
-   text-transform: none;
-}
-
-.ebt-visa-doc-stack {
-   display: flex;
-   flex-direction: column;
-   gap: 12px;
-}
-
-.ebt-visa-doc-card {
-   padding: 4px 20px 8px;
-   border: 1px solid var(--tg-border-4, #e8eaf0);
-   border-radius: var(--tg-radius-md, 12px);
-   background: var(--tg-common-white, #fff);
-
-   &.is-open {
-      padding-bottom: 16px;
-   }
-}
-
-.ebt-visa-doc-card h3 {
-   margin: 0;
-}
-
-.ebt-visa-doc-toggle {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   gap: 12px;
-   width: 100%;
-   margin: 0 -8px;
-   padding: 14px 8px;
-   border: 0;
-   background: transparent;
-   text-align: left;
-   cursor: pointer;
-
-   span {
-      font-family: var(--tg-ff-outfit);
-      font-size: var(--tg-fs-body-m, 16px);
-      font-weight: 700;
-      line-height: 1.4;
-      color: var(--tg-ink-1, #0f172a);
-      text-transform: none;
-   }
-
-   svg {
-      flex-shrink: 0;
-      color: var(--tg-theme-primary, #0047AB);
-      transition: transform 0.2s ease;
-   }
-
-   &:focus-visible {
-      outline: 2px solid var(--tg-theme-primary, #0047AB);
-      outline-offset: 2px;
-      border-radius: var(--tg-radius-sm, 8px);
-   }
-}
-
-.ebt-visa-doc-card.is-open .ebt-visa-doc-toggle {
-   margin-bottom: 4px;
-   padding-bottom: 12px;
-   border-bottom: 1px solid var(--tg-border-4, #e8eaf0);
-
-   svg {
-      transform: rotate(180deg);
-   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-   .ebt-visa-doc-toggle svg {
-      transition: none;
-   }
-}
-
-.ebt-visa-doc-card ol {
-   margin: 0;
-   padding: 8px 0 0;
-   list-style: none;
-   counter-reset: visa-doc;
-
-   li {
-      counter-increment: visa-doc;
-      display: flex;
-      gap: 12px;
-      margin-bottom: 8px;
-      color: var(--tg-ink-2, #334155);
-      font-size: var(--tg-fs-body-s, 14px);
-      line-height: 1.55;
-
-      &:last-child {
-         margin-bottom: 0;
-      }
-
-      &::before {
-         content: counter(visa-doc);
-         flex: 0 0 22px;
-         width: 22px;
-         height: 22px;
-         margin-top: 1px;
-         display: inline-flex;
-         align-items: center;
-         justify-content: center;
-         border-radius: 50%;
-         background: var(--tg-surface-3, #eef4ff);
-         color: var(--tg-theme-primary, #0047AB);
-         font-size: 11px;
-         font-weight: 700;
-         line-height: 1;
-      }
-   }
-}
-
 .ebt-visa-docs-nb {
-   margin: 14px 0 0;
+   margin: 16px 0 12px;
    color: var(--tg-ink-4, #64748b);
-   font-size: var(--tg-fs-body-s, 14px);
+   font-size: 14px;
    font-weight: 400;
    line-height: 1.55;
 }

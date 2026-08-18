@@ -14,6 +14,12 @@ const day = (en: string, bn: string, fr: string): LText => ({ en, bn, fr });
 
 export type VisaDocGroupId = "job" | "business" | "student" | "family";
 
+/** Same shapes a dashboard text editor can save later (heading / paragraph / list). */
+export type VisaCopyBlock =
+   | { type: "heading"; text: LText }
+   | { type: "paragraph"; text: LText }
+   | { type: "list"; style: "bullet" | "number"; items: LText[] };
+
 export type VisaDestination = {
    id: string;
    name: LText;
@@ -22,6 +28,8 @@ export type VisaDestination = {
    image: StaticImageData;
    summary: LText;
    notes: LText[];
+   /** When an admin dashboard exists, this is the rich-text body. */
+   copy?: VisaCopyBlock[];
    docExtras?: Partial<Record<VisaDocGroupId, LText[]>>;
 };
 
@@ -253,4 +261,17 @@ export const findVisaDestination = (id: string) => visaDestinations.find((item) 
 export const visaDocItemsFor = (dest: VisaDestination, groupId: VisaDocGroupId) => {
    const base = visaDocGroups.find((group) => group.id === groupId)?.items ?? [];
    return [...base, ...(dest.docExtras?.[groupId] ?? [])];
+};
+
+export const visaCopyFor = (dest: VisaDestination): VisaCopyBlock[] => {
+   if (dest.copy?.length) return dest.copy;
+
+   return visaDocGroups.flatMap((group) => {
+      const items = visaDocItemsFor(dest, group.id);
+      if (!items.length) return [];
+      return [
+         { type: "heading" as const, text: group.title },
+         { type: "list" as const, style: "number" as const, items },
+      ];
+   });
 };
