@@ -32,12 +32,30 @@ const FooterThree = () => {
                               <p className="mb-20">{t("footer.about")}</p>
                               <div className="tg-footer-form mb-30">
                                  <form onSubmit={onNewsletter}>
-                                    <input type="email" placeholder={t("footer.emailPlaceholder")} />
-                                    <button className="tg-footer-form-btn" type="submit" aria-label="Submit">
+                                    <label className="ebt-sr-only" htmlFor="ebt-newsletter-email">
+                                       {t("footer.emailLabel")}
+                                    </label>
+                                    <input
+                                       id="ebt-newsletter-email"
+                                       name="email"
+                                       type="email"
+                                       required
+                                       autoComplete="email"
+                                       placeholder={t("footer.emailPlaceholder")}
+                                    />
+                                    <button
+                                       className="tg-footer-form-btn"
+                                       type="submit"
+                                       aria-label={t("footer.subscribe")}
+                                    >
                                        <ArrowRight {...iconProps("md")} color="white" />
                                     </button>
                                  </form>
-                                 {newsNote && <p className="mt-10 mb-0">{newsNote}</p>}
+                                 {newsNote && (
+                                    <p className="mt-10 mb-0" role="status">
+                                       {newsNote}
+                                    </p>
+                                 )}
                               </div>
                               {(COMPANY.facebook !== "#" || COMPANY.instagram !== "#" || COMPANY.youtube !== "#") && (
                                  <div className="tg-footer-social">

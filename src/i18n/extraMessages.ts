@@ -34,6 +34,8 @@ export const extraMessages = {
          terms: "Terms & Conditions",
          help: "Help",
          newsletterSoon: "Newsletter signup will be connected with the admin dashboard later.",
+         emailLabel: "Email address",
+         subscribe: "Subscribe to the newsletter",
       },
       search: {
          flight: "Flight",
@@ -331,6 +333,8 @@ export const extraMessages = {
          terms: "শর্তাবলি",
          help: "সহায়তা",
          newsletterSoon: "নিউজলেটার পরে অ্যাডমিন ড্যাশবোর্ডের সাথে যুক্ত হবে।",
+         emailLabel: "ইমেইল ঠিকানা",
+         subscribe: "নিউজলেটারে সাবস্ক্রাইব করুন",
       },
       search: {
          flight: "ফ্লাইট",
@@ -614,6 +618,8 @@ export const extraMessages = {
          terms: "Conditions générales",
          help: "Aide",
          newsletterSoon: "L’inscription newsletter sera branchée plus tard avec le tableau de bord admin.",
+         emailLabel: "Adresse e-mail",
+         subscribe: "S’abonner à la newsletter",
       },
       search: {
          flight: "Vol",
