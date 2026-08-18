@@ -24,7 +24,7 @@ import {
 import { useT } from "@/i18n/LanguageProvider";
 
 type TabKey = "flight" | "hotel" | "hajj";
-type TripType = "oneWay" | "round";
+type TripType = "oneWay" | "round" | "multi";
 type ScopeType = "domestic" | "international";
 
 const iconProps = { size: 20, strokeWidth: 1.75, "aria-hidden": true as const };
@@ -94,6 +94,38 @@ const ToggleGroup = ({
          >
             {option.label}
          </button>
+      ))}
+   </div>
+);
+
+const RadioGroup = ({
+   options,
+   value,
+   onChange,
+   name,
+   legend,
+}: {
+   options: { value: string; label: string }[];
+   value: string;
+   onChange: (value: string) => void;
+   name: string;
+   legend: string;
+}) => (
+   <div className="ebt-booking-radios" role="radiogroup" aria-label={legend}>
+      {options.map((option) => (
+         <label
+            key={option.value}
+            className={`ebt-booking-radio${value === option.value ? " is-checked" : ""}`}
+         >
+            <input
+               type="radio"
+               name={name}
+               value={option.value}
+               checked={value === option.value}
+               onChange={() => onChange(option.value)}
+            />
+            <span>{option.label}</span>
+         </label>
       ))}
    </div>
 );
@@ -430,7 +462,7 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
                            <div className="tg-booking-form-item">
                               <form onSubmit={goInquiry}>
                                  {active === "flight" && (
-                                    <div className="ebt-booking-options mb-20">
+                                    <div className="ebt-booking-options mb-15">
                                        <ToggleGroup
                                           name="scope"
                                           value={scope}
@@ -440,13 +472,15 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
                                              { value: "international", label: t("svc.international") },
                                           ]}
                                        />
-                                       <ToggleGroup
+                                       <RadioGroup
                                           name="trip"
+                                          legend={t("search.tripType")}
                                           value={trip}
                                           onChange={(value) => setTrip(value as TripType)}
                                           options={[
                                              { value: "oneWay", label: t("search.oneWay") },
                                              { value: "round", label: t("search.round") },
+                                             { value: "multi", label: t("search.multi") },
                                           ]}
                                        />
                                     </div>

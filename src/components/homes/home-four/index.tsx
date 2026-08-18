@@ -1,5 +1,4 @@
 import Hero from "./Hero"
-import Destination from "./Destination"
 import Listing from "./Listing"
 import Process from "./Process"
 import HomeVisa from "./HomeVisa"
@@ -21,7 +20,6 @@ const HomeFour = () => {
       <main>
         <Hero />
         <BannerFormFour />
-        <Destination />
         <Listing />
         <Cta />
         <Process />

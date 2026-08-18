@@ -7,11 +7,15 @@ import cardShape from "@/assets/img/listing/listing-2/shape.png"
 import Button from "@/components/common/Button"
 import { iconProps } from "@/data/icons"
 import { useT } from "@/i18n/LanguageProvider"
-import { tourPackages } from "@/data/services"
+import { hajjPackages, tourPackages } from "@/data/services"
 import { tx } from "@/data/localized"
 
 const Listing = () => {
    const { t, locale } = useT();
+   const featured = [
+      ...hajjPackages.map((item) => ({ item, href: `/hajj-umrah/${item.slug}` })),
+      ...tourPackages.map((item) => ({ item, href: `/tours/${item.slug}` })),
+   ];
 
    return (
       <div className="tg-listing-area tg-grey-bg ebt-section p-relative z-index-1">
@@ -25,13 +29,13 @@ const Listing = () => {
                   </div>
                </div>
             </div>
-            <div className="row align-items-stretch">
-               {tourPackages.map((item) => {
+            <div className="row align-items-stretch ebt-tour-grid">
+               {featured.map(({ item, href }) => {
                   const title = tx(item.title, locale);
 
                   return (
                      <div key={item.slug} className="col-xl-3 col-lg-4 col-md-6 d-flex wow fadeInUp" data-wow-delay=".3s" data-wow-duration=".6s">
-                        <Link href={`/tours/${item.slug}`} className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card mb-25 w-100" aria-label={title}>
+                        <Link href={href} className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card w-100" aria-label={title}>
                            <div className="tg-listing-card-thumb tg-listing-2-card-thumb ebt-tour-card-thumb fix p-relative">
                               <span className="ebt-tour-card-media">
                                  <Image
@@ -54,12 +58,12 @@ const Listing = () => {
                                  </div>
                               </div>
                               <h4 className="tg-listing-card-title">{title}</h4>
-                              <div className="tg-listing-card-duration-tour">
-                                 <span className="tg-listing-card-duration-map mb-0">
+                              <div className="ebt-tour-card-meta">
+                                 <span className="ebt-tour-card-meta-row">
                                     <MapPin {...iconProps("sm")} />
                                     {tx(item.location, locale)}
                                  </span>
-                                 <span className="tg-listing-card-duration-time">
+                                 <span className="ebt-tour-card-meta-row">
                                     <Clock3 {...iconProps("sm")} />
                                     {item.days} {t("svc.days")}
                                  </span>

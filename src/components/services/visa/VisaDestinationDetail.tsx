@@ -11,6 +11,7 @@ import { tx } from "@/data/localized";
 import { useT } from "@/i18n/LanguageProvider";
 import ServicePageShell from "@/components/common/ServicePageShell";
 import InquiryForm from "@/components/forms/InquiryForm";
+import VisaRequirementDownloads from "./VisaRequirementDownloads";
 
 const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
    const { locale, t } = useT();
@@ -89,6 +90,8 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
                            </div>
                         </section>
                      )}
+
+                     <VisaRequirementDownloads dest={dest} />
 
                      {docGroups.length > 0 && (
                         <section className="ebt-visa-guide-block">

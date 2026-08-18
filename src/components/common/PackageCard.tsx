@@ -23,7 +23,7 @@ const PackageCard = ({
    const title = tx(item.title, locale);
 
    return (
-      <Link href={href} className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card mb-25 w-100" aria-label={title}>
+      <Link href={href} className="tg-listing-card-item tg-listing-2-card-item ebt-tour-card w-100" aria-label={title}>
          <div className="tg-listing-card-thumb tg-listing-2-card-thumb ebt-tour-card-thumb fix p-relative">
             <span className="ebt-tour-card-media">
                <Image
@@ -46,14 +46,13 @@ const PackageCard = ({
                </div>
             </div>
             <h4 className="tg-listing-card-title">{title}</h4>
-            <p className="ebt-tour-card-summary">{tx(item.summary, locale)}</p>
-            <div className="tg-listing-card-duration-tour">
-               <span className="tg-listing-card-duration-map mb-0">
+            <div className="ebt-tour-card-meta">
+               <span className="ebt-tour-card-meta-row">
                   <MapPin {...iconProps("sm")} />
                   {tx(item.location, locale)}
                </span>
                {item.days > 1 && (
-                  <span className="tg-listing-card-duration-time">
+                  <span className="ebt-tour-card-meta-row">
                      <Clock3 {...iconProps("sm")} />
                      {item.days} {t("svc.days")}
                   </span>

@@ -230,17 +230,7 @@ const InquiryForm = ({
          {simple && !locked && <input type="hidden" name="service" value="other" />}
          {locked && <input type="hidden" name="service" value={initial.service} />}
          {hideMessage && <input type="hidden" name="message" value={initial.message} />}
-         {locked && !hideIntro && (
-            <>
-               {initial.destination && (
-                  <p className="ebt-inq-package">
-                     <span>{t("inquiry.selectedPackage")}</span>
-                     <strong>{initial.destination}</strong>
-                  </p>
-               )}
-               <p className="ebt-inq-lead">{t("inquiry.subtitle")}</p>
-            </>
-         )}
+         {locked && !hideIntro && <p className="ebt-inq-lead">{t("inquiry.subtitle")}</p>}
 
          <div className="ebt-form-grid">
             <Field name="name" label={t("inquiry.name")} required>

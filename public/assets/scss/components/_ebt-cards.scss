@@ -228,12 +228,10 @@
    }
 
    .ebt-tour-card .tg-listing-card-content {
-      gap: var(--tg-space-8);
-      padding: 0 var(--tg-space-20) var(--tg-space-20);
+      gap: 0;
+      padding: 0 20px 20px;
    }
 
-   /* Card body copy previously carried three near-identical greys (#64748b,
-      #475467, #475569); they collapse onto the ink ramp here. */
    .ebt-tour-card-summary {
       color: var(--tg-ink-4);
       @include text('body-s');
@@ -241,12 +239,20 @@
    }
 
    .ebt-tour-card .tg-listing-card-duration-wrap {
-      margin-top: auto;
-      padding-top: var(--tg-space-8);
-      gap: var(--tg-space-4);
+      gap: 8px;
+      margin: 0;
+      padding: 0;
 
       span {
          color: var(--tg-ink-3);
+      }
+   }
+
+   .ebt-tour-grid {
+      row-gap: 40px;
+
+      @media #{$md,$sm,$xs} {
+         row-gap: 32px;
       }
    }
 }

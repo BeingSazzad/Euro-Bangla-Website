@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
 import type { LText } from "./localized";
-import blog_1 from "@/assets/img/blog/blog-2/blog-1.jpg";
-import blog_2 from "@/assets/img/blog/blog-2/blog-2.jpg";
-import blog_3 from "@/assets/img/blog/blog-2/blog-3.jpg";
-import blog_4 from "@/assets/img/blog/blog-1.jpg";
-import blog_5 from "@/assets/img/blog/blog-2.jpg";
-import blog_6 from "@/assets/img/blog/blog-3.jpg";
+import umrahThumb from "@/assets/img/chose/chose-2/thumb-2.jpg";
+import visaThumb from "@/assets/img/blog/blog-visa-documents.png";
+import flightThumb from "@/assets/img/chose/chose-2/thumb-1.jpg";
+import europeThumb from "@/assets/img/listing/listing-5.jpg";
+import dubaiThumb from "@/assets/img/blog/blog-dubai-hotel.png";
+import busThumb from "@/assets/img/blog/blog-bus-ticket.png";
 
 const copy = (en: string, bn: string, fr: string): LText => ({ en, bn, fr });
 
@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
    {
       id: 1,
       slug: "umrah-preparation",
-      thumb: blog_1,
+      thumb: umrahThumb,
       tagKey: "home.blog1Tag",
       titleKey: "home.blog1Title",
       textKey: "home.blog1Text",
@@ -64,7 +64,7 @@ export const blogPosts: BlogPost[] = [
    {
       id: 2,
       slug: "visa-documents",
-      thumb: blog_2,
+      thumb: visaThumb,
       tagKey: "home.blog2Tag",
       titleKey: "home.blog2Title",
       textKey: "home.blog2Text",
@@ -99,7 +99,7 @@ export const blogPosts: BlogPost[] = [
    {
       id: 3,
       slug: "flight-inquiry-tips",
-      thumb: blog_3,
+      thumb: flightThumb,
       tagKey: "home.blog3Tag",
       titleKey: "home.blog3Title",
       textKey: "home.blog3Text",
@@ -134,7 +134,7 @@ export const blogPosts: BlogPost[] = [
    {
       id: 4,
       slug: "europe-family-tour",
-      thumb: blog_4,
+      thumb: europeThumb,
       tagKey: "home.blog4Tag",
       titleKey: "home.blog4Title",
       textKey: "home.blog4Text",
@@ -169,7 +169,7 @@ export const blogPosts: BlogPost[] = [
    {
       id: 5,
       slug: "dubai-hotel-quote",
-      thumb: blog_5,
+      thumb: dubaiThumb,
       tagKey: "home.blog5Tag",
       titleKey: "home.blog5Title",
       textKey: "home.blog5Text",
@@ -204,7 +204,7 @@ export const blogPosts: BlogPost[] = [
    {
       id: 6,
       slug: "bus-ticket-inquiry",
-      thumb: blog_6,
+      thumb: busThumb,
       tagKey: "home.blog6Tag",
       titleKey: "home.blog6Title",
       textKey: "home.blog6Text",

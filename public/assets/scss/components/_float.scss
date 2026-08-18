@@ -358,7 +358,8 @@
    display: flex;
    flex-wrap: wrap;
    align-items: center;
-   gap: 12px 18px;
+   justify-content: space-between;
+   gap: var(--tg-space-12) var(--tg-space-24);
 }
 
 .ebt-booking-toggles {
@@ -385,6 +386,71 @@
    &.is-active {
       background: #0047AB;
       color: #fff;
+   }
+}
+
+.ebt-booking-radios {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: var(--tg-space-8) var(--tg-space-24);
+}
+
+.ebt-booking-radio {
+   display: inline-flex;
+   align-items: center;
+   gap: var(--tg-space-8);
+   margin: 0;
+   min-height: 32px;
+   cursor: pointer;
+   user-select: none;
+
+   input[type="radio"] {
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 2px solid var(--tg-ink-5);
+      border-radius: var(--tg-radius-full);
+      background-color: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+
+      &:checked {
+         border-color: var(--tg-theme-primary);
+         background-color: transparent;
+         background-image: radial-gradient(
+            circle,
+            var(--tg-theme-primary) 0 4px,
+            transparent 4.5px
+         );
+      }
+
+      &:focus {
+         outline: none;
+      }
+
+      &:focus-visible {
+         @include focus-ring(2px);
+      }
+   }
+
+   span {
+      color: var(--tg-ink-4);
+      font-family: var(--tg-ff-body);
+      font-size: var(--tg-fs-body-s);
+      font-weight: 400;
+      line-height: 1.2;
+   }
+
+   &.is-checked span,
+   &:has(input:checked) span {
+      color: var(--tg-theme-primary);
+      font-weight: 700;
    }
 }
 
@@ -550,6 +616,10 @@
    .ebt-booking-toggle {
       padding: 9px 12px;
       font-size: 12px;
+   }
+
+   .ebt-booking-radios {
+      gap: var(--tg-space-8) var(--tg-space-16);
    }
 
    .ebt-booking-field {
@@ -1020,6 +1090,7 @@ body:has(.ebt-cookie-banner) {
 
    img {
       object-fit: cover;
+      object-position: center 28%;
       transition: transform 0.4s ease;
    }
 }
@@ -1265,11 +1336,6 @@ body:has(.ebt-cookie-banner) {
 .ebt-visa-country-meta {
    font-size: 13px;
    color: #64748b;
-
-   span {
-      color: var(--tg-theme-secondary-ink);
-      font-weight: 600;
-   }
 }
 
 .ebt-visa-guide {
@@ -1428,6 +1494,90 @@ body:has(.ebt-cookie-banner) {
          border-radius: 50%;
          background: var(--tg-theme-primary, #0047AB);
       }
+   }
+}
+
+.ebt-visa-downloads {
+   margin-top: 20px;
+   padding: 20px 22px 18px;
+   border: 1px solid var(--tg-border-4, #e8eaf0);
+   border-radius: var(--tg-radius-md, 12px);
+   background: #f8fafc;
+
+   h2 {
+      margin: 0 0 6px;
+      font-family: var(--tg-ff-outfit);
+      font-size: var(--tg-fs-h5, 18px);
+      font-weight: 700;
+      line-height: var(--tg-lh-h5, 26px);
+      color: var(--tg-ink-1, #0f172a);
+      text-transform: none;
+   }
+
+   > p {
+      margin: 0 0 16px;
+      color: var(--tg-ink-4, #64748b);
+      font-size: 14px;
+      line-height: 1.55;
+   }
+
+   ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+   }
+
+   li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      border: 1px solid var(--tg-border-4, #e8eaf0);
+      border-radius: 10px;
+
+      span {
+         min-width: 0;
+         color: var(--tg-ink-1, #0f172a);
+         font-size: 14px;
+         font-weight: 600;
+         line-height: 1.4;
+      }
+
+      @media #{$xs} {
+         flex-wrap: wrap;
+      }
+   }
+}
+
+.ebt-visa-download-btn {
+   display: inline-flex;
+   align-items: center;
+   gap: 6px;
+   flex-shrink: 0;
+   margin: 0;
+   padding: 8px 12px;
+   border: 1px solid var(--tg-theme-primary, #0047AB);
+   border-radius: 8px;
+   background: #fff;
+   color: var(--tg-theme-primary, #0047AB);
+   font-family: inherit;
+   font-size: 13px;
+   font-weight: 600;
+   line-height: 1;
+   cursor: pointer;
+
+   svg {
+      flex-shrink: 0;
+   }
+
+   &:hover {
+      background: var(--tg-theme-primary, #0047AB);
+      color: #fff;
    }
 }
 
@@ -1808,22 +1958,21 @@ body:has(.ebt-cookie-banner) {
    height: 100%;
 }
 
-.ebt-tour-card .tg-listing-card-content {
+.tg-listing-2-card-item.ebt-tour-card .tg-listing-card-content {
    display: flex;
    flex-direction: column;
    flex: 1 1 auto;
-   gap: var(--tg-space-8);
-   padding: 0 var(--tg-space-20) var(--tg-space-20);
+   gap: 0;
+   padding: 8px 20px 20px;
 }
 
-.ebt-tour-card .tg-listing-2-price-wrap {
+.tg-listing-2-card-item.ebt-tour-card .tg-listing-2-price-wrap {
    position: relative;
    z-index: 3;
-   margin-top: -18px;
-   margin-bottom: var(--tg-space-4);
+   margin: -26px 0 16px;
 }
 
-.ebt-tour-card .tg-listing-2-price {
+.tg-listing-2-card-item.ebt-tour-card .tg-listing-2-price {
    display: inline-flex;
    align-items: baseline;
    justify-content: center;
@@ -1839,48 +1988,37 @@ body:has(.ebt-cookie-banner) {
    }
 }
 
-.ebt-tour-card .tg-listing-card-title {
-   margin-bottom: 0;
+.tg-listing-2-card-item.ebt-tour-card .tg-listing-card-title {
+   margin: 0 !important;
    display: -webkit-box;
    -webkit-line-clamp: 2;
    -webkit-box-orient: vertical;
    overflow: hidden;
 }
 
-.ebt-tour-card-summary {
-   margin: 0;
-   color: #64748b;
+.ebt-tour-card-meta {
+   display: flex !important;
+   flex-direction: column !important;
+   align-items: flex-start;
+   gap: 10px !important;
+   margin: 14px 0 0 !important;
+   padding: 0 !important;
+}
+
+.ebt-tour-card-meta-row {
+   display: flex !important;
+   align-items: center;
+   gap: 8px;
+   margin: 0 !important;
+   padding: 0 !important;
+   color: var(--tg-ink-3, #475569);
    font-size: 14px;
-   line-height: 1.55;
-   display: -webkit-box;
-   -webkit-line-clamp: 2;
-   -webkit-box-orient: vertical;
-   overflow: hidden;
-}
+   line-height: 1.4;
 
-.ebt-tour-card .tg-listing-card-duration-wrap {
-   display: flex;
-   flex-direction: column;
-   gap: var(--tg-space-4);
-   margin-top: auto;
-   padding-top: var(--tg-space-8);
-
-   span {
-      display: inline-flex;
-      align-items: flex-start;
-      gap: 6px;
-      margin-bottom: 0;
-      color: #475467;
-      font-size: 13px;
-      line-height: 1.4;
-      white-space: normal;
-      overflow-wrap: anywhere;
-
-      svg {
-         flex-shrink: 0;
-         margin-right: 0;
-         color: #0047AB;
-      }
+   svg {
+      flex-shrink: 0;
+      margin: 0 !important;
+      color: var(--tg-theme-primary, #0047AB);
    }
 }
 

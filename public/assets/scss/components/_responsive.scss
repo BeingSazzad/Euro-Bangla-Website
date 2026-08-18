@@ -9,6 +9,16 @@ html,
    font-family: "Poppins", sans-serif;
 }
 
+.ebt-site .ebt-tour-grid {
+   row-gap: 40px;
+}
+
+@media (max-width: 991.98px) {
+   .ebt-site .ebt-tour-grid {
+      row-gap: 32px;
+   }
+}
+
 .ebt-process {
    overflow: hidden;
 
@@ -201,6 +211,10 @@ html,
 
 .ebt-booking-wrap .tg-booking-form-title {
    margin-left: 0;
+}
+
+.ebt-booking-wrap .ebt-booking-radios {
+   width: auto;
 }
 
 .ebt-booking-wrap .tg-booking-add-input-date .input,

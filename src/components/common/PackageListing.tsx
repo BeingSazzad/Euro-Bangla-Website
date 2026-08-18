@@ -27,7 +27,7 @@ const PackageListing = ({
                <h2 className="mb-15">{t(titleKey)}</h2>
                <p className="mb-0">{t(textKey)}</p>
             </div>
-            <div className="row align-items-stretch">
+            <div className="row align-items-stretch ebt-tour-grid">
                {items.map((item) => (
                   <div key={item.slug} className="col-xl-4 col-md-6 d-flex">
                      <PackageCard item={item} href={`${hrefBase}/${item.slug}`} priceSuffix={priceSuffix} />
