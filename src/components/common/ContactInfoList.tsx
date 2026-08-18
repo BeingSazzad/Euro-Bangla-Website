@@ -7,7 +7,7 @@ import { ICON_SIZE, iconProps } from "@/data/icons";
 import { WhatsAppIcon } from "@/components/common/SocialIcons";
 import { useT } from "@/i18n/LanguageProvider";
 
-const ContactInfoList = () => {
+const ContactInfoList = ({ showWhatsApp = true }: { showWhatsApp?: boolean }) => {
    const { t } = useT();
 
    return (
@@ -38,17 +38,19 @@ const ContactInfoList = () => {
                </span>
             </Link>
          </li>
-         <li>
-            <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="ebt-contact-item">
-               <span className="ebt-contact-icon" aria-hidden="true">
-                  <WhatsAppIcon size={ICON_SIZE.md} />
-               </span>
-               <span className="ebt-contact-copy">
-                  <strong>WhatsApp</strong>
-                  <span>{COMPANY.phone}</span>
-               </span>
-            </Link>
-         </li>
+         {showWhatsApp && (
+            <li>
+               <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="ebt-contact-item">
+                  <span className="ebt-contact-icon" aria-hidden="true">
+                     <WhatsAppIcon size={ICON_SIZE.md} />
+                  </span>
+                  <span className="ebt-contact-copy">
+                     <strong>WhatsApp</strong>
+                     <span>{COMPANY.phone}</span>
+                  </span>
+               </Link>
+            </li>
+         )}
          <li>
             <Link href={`mailto:${COMPANY.email}`} className="ebt-contact-item">
                <span className="ebt-contact-icon" aria-hidden="true">

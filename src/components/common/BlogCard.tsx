@@ -9,13 +9,14 @@ import { useT } from "@/i18n/LanguageProvider";
 
 const BlogCard = ({ post }: { post: BlogPost }) => {
    const { t } = useT();
+   const title = t(post.titleKey);
 
    return (
-      <article className="ebt-blog-card">
-         <Link href={post.href} className="ebt-blog-thumb">
-            <Image src={post.thumb} alt={t(post.titleKey)} fill sizes="(max-width: 768px) 100vw, 33vw" />
+      <Link href={post.href} className="ebt-blog-card" aria-label={title}>
+         <div className="ebt-blog-thumb">
+            <Image src={post.thumb} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" />
             <span className="ebt-blog-tag">{t(post.tagKey)}</span>
-         </Link>
+         </div>
          <div className="ebt-blog-body">
             <div className="ebt-blog-meta">
                <span>
@@ -27,15 +28,10 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
                   {t(post.readKey)}
                </span>
             </div>
-            <h3 className="ebt-blog-title">
-               <Link href={post.href}>{t(post.titleKey)}</Link>
-            </h3>
+            <h3 className="ebt-blog-title">{title}</h3>
             <p className="ebt-blog-text">{t(post.textKey)}</p>
-            <Link href={post.href} className="ebt-blog-more">
-               {t("svc.details")}
-            </Link>
          </div>
-      </article>
+      </Link>
    );
 };
 
