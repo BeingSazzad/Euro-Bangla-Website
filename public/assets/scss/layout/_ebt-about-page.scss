@@ -408,17 +408,6 @@
       transition: all 0.3s ease;
       overflow: hidden;
 
-      &::before {
-         content: '';
-         position: absolute;
-         top: 0;
-         left: 0;
-         right: 0;
-         height: 3px;
-         background: var(--tg-theme-primary);
-         opacity: 0.7;
-      }
-
       &:hover {
          transform: translateY(-6px);
          box-shadow: 0 16px 36px -12px rgba(0, 71, 171, 0.16);
@@ -433,15 +422,16 @@
    &-icon {
       position: relative;
       z-index: 1;
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: rgba(0, 71, 171, 0.08);
-      color: var(--tg-theme-primary);
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--tg-theme-primary);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
+      box-shadow: 0 6px 16px -4px rgba(0, 71, 171, 0.35);
       transition: transform 0.3s ease;
    }
 
