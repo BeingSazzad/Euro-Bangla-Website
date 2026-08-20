@@ -603,6 +603,39 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
                                        </>
                                     )}
 
+                                    {active === "bus" && (
+                                       <>
+                                          <DestinationField
+                                             title={t("search.from")}
+                                             name="from"
+                                             placeholder={t("search.cityFrom")}
+                                             options={BUS_DESTINATIONS}
+                                             value={from}
+                                             onChange={setFrom}
+                                          />
+                                          <DestinationField
+                                             title={t("search.to")}
+                                             name="to"
+                                             placeholder={t("search.cityTo")}
+                                             options={BUS_DESTINATIONS}
+                                             value={destination}
+                                             onChange={setDestination}
+                                          />
+                                          <DateField title={t("search.date")} name="dates" value={depart} onChange={setDepart} />
+                                          <GuestField
+                                             title={t("search.pax")}
+                                             rooms={rooms}
+                                             adults={adults}
+                                             childCount={children}
+                                             showRooms={false}
+                                             onRooms={setRooms}
+                                             onAdults={setAdults}
+                                             onChildren={setChildren}
+                                             doneLabel={t("search.ok") || "OK"}
+                                          />
+                                       </>
+                                    )}
+
                                     <div className="tg-booking-form-search-btn ebt-booking-submit">
                                        <button className="bk-search-button" type="submit">
                                           {t("search.inquire")}

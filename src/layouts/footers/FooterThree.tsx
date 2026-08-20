@@ -1,7 +1,6 @@
 "use client"
-import { FormEvent, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, MapPin, Phone, Clock } from "lucide-react"
+import { MapPin, Phone, Clock } from "lucide-react"
 import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons"
 import SiteLogo from "@/components/common/SiteLogo"
 import { useT } from "@/i18n/LanguageProvider"
@@ -10,12 +9,6 @@ import { ICON_SIZE, iconProps } from "@/data/icons"
 
 const FooterThree = () => {
    const { t } = useT();
-   const [newsNote, setNewsNote] = useState("");
-
-   const onNewsletter = (e: FormEvent) => {
-      e.preventDefault();
-      setNewsNote(t("footer.newsletterSoon"));
-   };
 
    return (
       <>

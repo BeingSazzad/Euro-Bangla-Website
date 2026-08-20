@@ -23,7 +23,7 @@ export const COMPANY = {
 } as const;
 
 export const whatsappLink = (numberOrText?: string, text?: string) => {
-   let num = COMPANY.whatsapp;
+   let num: string = COMPANY.whatsapp;
    let msg = "Hello Euro Bangla Travels, I would like help with a trip.";
 
    if (numberOrText) {

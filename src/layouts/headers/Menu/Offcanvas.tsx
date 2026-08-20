@@ -43,33 +43,31 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                <div className="offCanvas__side-info mb-25">
                   <ContactInfoList />
                </div>
-               {(COMPANY.facebook !== "#" || COMPANY.instagram !== "#" || COMPANY.youtube !== "#") && (
-                  <div className="social-links">
-                     <ul className="list-wrap">
-                        {COMPANY.facebook !== "#" && (
-                           <li>
-                              <Link href={COMPANY.facebook} aria-label="Facebook">
-                                 <FacebookIcon size={ICON_SIZE.sm} />
-                              </Link>
-                           </li>
-                        )}
-                        {COMPANY.instagram !== "#" && (
-                           <li>
-                              <Link href={COMPANY.instagram} aria-label="Instagram">
-                                 <InstagramIcon size={ICON_SIZE.sm} />
-                              </Link>
-                           </li>
-                        )}
-                        {COMPANY.youtube !== "#" && (
-                           <li>
-                              <Link href={COMPANY.youtube} aria-label="YouTube">
-                                 <YoutubeIcon size={ICON_SIZE.sm} />
-                              </Link>
-                           </li>
-                        )}
-                     </ul>
-                  </div>
-               )}
+               <div className="social-links">
+                  <ul className="list-wrap">
+                     {Boolean(COMPANY.facebook) && (
+                        <li>
+                           <Link href={COMPANY.facebook} aria-label="Facebook">
+                              <FacebookIcon size={ICON_SIZE.sm} />
+                           </Link>
+                        </li>
+                     )}
+                     {Boolean(COMPANY.instagram) && (
+                        <li>
+                           <Link href={COMPANY.instagram} aria-label="Instagram">
+                              <InstagramIcon size={ICON_SIZE.sm} />
+                           </Link>
+                        </li>
+                     )}
+                     {Boolean(COMPANY.youtube) && (
+                        <li>
+                           <Link href={COMPANY.youtube} aria-label="YouTube">
+                              <YoutubeIcon size={ICON_SIZE.sm} />
+                           </Link>
+                        </li>
+                     )}
+                  </ul>
+               </div>
             </nav>
          </div>
          <div onClick={() => setOffCanvas(false)} className="tgmobile__menu-backdrop"></div>

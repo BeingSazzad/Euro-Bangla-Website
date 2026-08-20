@@ -2,7 +2,6 @@
 import { useState } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
-import { useT } from "@/i18n/LanguageProvider"
 
 type Category = "all" | "hajj" | "tours" | "visa" | "team";
 
@@ -100,7 +99,6 @@ const categories: { key: Category; labelKey: string; defaultLabel: string }[] = 
 ];
 
 const AboutGallery = () => {
-   const { t } = useT();
    const [activeTab, setActiveTab] = useState<Category>("all");
    const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 

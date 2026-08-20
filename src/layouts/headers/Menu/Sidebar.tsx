@@ -46,17 +46,17 @@ const Sidebar = ({ sidebar, setSidebar }: SidebarProps) => {
                <ContactInfoList />
             </div>
             <div className="offCanvas__social-icon mt-30">
-               {COMPANY.facebook !== "#" && (
+               {Boolean(COMPANY.facebook) && (
                   <Link href={COMPANY.facebook} aria-label="Facebook">
                      <FacebookIcon size={ICON_SIZE.sm} />
                   </Link>
                )}
-               {COMPANY.instagram !== "#" && (
+               {Boolean(COMPANY.instagram) && (
                   <Link href={COMPANY.instagram} aria-label="Instagram">
                      <InstagramIcon size={ICON_SIZE.sm} />
                   </Link>
                )}
-               {COMPANY.youtube !== "#" && (
+               {Boolean(COMPANY.youtube) && (
                   <Link href={COMPANY.youtube} aria-label="YouTube">
                      <YoutubeIcon size={ICON_SIZE.sm} />
                   </Link>
