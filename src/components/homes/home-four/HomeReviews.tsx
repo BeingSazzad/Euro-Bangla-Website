@@ -12,34 +12,10 @@ import avatar_2 from "@/assets/img/testimonial/avatar-2.png";
 import avatar_3 from "@/assets/img/testimonial/avatar-3.png";
 
 const reviews = [
-   {
-      id: 1,
-      avatar: avatar_1,
-      nameKey: "home.review1Name",
-      roleKey: "home.review1Role",
-      textKey: "home.review1Text",
-   },
-   {
-      id: 2,
-      avatar: avatar_2,
-      nameKey: "home.review2Name",
-      roleKey: "home.review2Role",
-      textKey: "home.review2Text",
-   },
-   {
-      id: 3,
-      avatar: avatar_3,
-      nameKey: "home.review3Name",
-      roleKey: "home.review3Role",
-      textKey: "home.review3Text",
-   },
-   {
-      id: 4,
-      avatar: avatar_1,
-      nameKey: "home.review4Name",
-      roleKey: "home.review4Role",
-      textKey: "home.review4Text",
-   },
+   { id: 1, avatar: avatar_1, nameKey: "home.review1Name", roleKey: "home.review1Role", textKey: "home.review1Text" },
+   { id: 2, avatar: avatar_2, nameKey: "home.review2Name", roleKey: "home.review2Role", textKey: "home.review2Text" },
+   { id: 3, avatar: avatar_3, nameKey: "home.review3Name", roleKey: "home.review3Role", textKey: "home.review3Text" },
+   { id: 4, avatar: avatar_1, nameKey: "home.review4Name", roleKey: "home.review4Role", textKey: "home.review4Text" },
 ];
 
 const setting = {
@@ -72,8 +48,8 @@ const HomeReviews = () => {
                   <SwiperSlide key={item.id}>
                      <article className="ebt-review-card">
                         <div className="ebt-review-stars" aria-hidden="true">
-                           {Array.from({ length: 5 }).map((_, index) => (
-                              <Star key={index} size={ICON_SIZE.sm} strokeWidth={0} fill="currentColor" />
+                           {Array.from({ length: 5 }).map((_, i) => (
+                              <Star key={i} size={ICON_SIZE.sm} strokeWidth={0} fill="currentColor" />
                            ))}
                         </div>
                         <p className="ebt-review-text">{t(item.textKey)}</p>

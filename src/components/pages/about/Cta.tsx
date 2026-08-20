@@ -13,7 +13,7 @@ const Cta = () => {
          <div className="ebt-about-cta-media">
             <Image
                src="/assets/img/banner/banner-4/banner-4.png"
-               alt=""
+               alt="Euro Bangla Travels"
                fill
                sizes="100vw"
             />

@@ -2,10 +2,10 @@
 import { FormEvent, useState } from "react"
 import Link from "next/link"
 import { ArrowRight, MapPin, Phone, Clock } from "lucide-react"
-import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/common/SocialIcons"
+import { FacebookIcon, InstagramIcon, YoutubeIcon, WhatsAppIcon } from "@/components/common/SocialIcons"
 import SiteLogo from "@/components/common/SiteLogo"
 import { useT } from "@/i18n/LanguageProvider"
-import { COMPANY } from "@/data/company"
+import { COMPANY, whatsappLink } from "@/data/company"
 import { ICON_SIZE, iconProps } from "@/data/icons"
 
 const FooterThree = () => {
@@ -29,53 +29,47 @@ const FooterThree = () => {
                               <div className="tg-footer-logo mb-20">
                                  <Link href="/"><SiteLogo variant="white" /></Link>
                               </div>
-                              <p className="mb-20">{t("footer.about")}</p>
-                              <div className="tg-footer-form mb-30">
-                                 <form onSubmit={onNewsletter}>
-                                    <label className="ebt-sr-only" htmlFor="ebt-newsletter-email">
-                                       {t("footer.emailLabel")}
-                                    </label>
-                                    <input
-                                       id="ebt-newsletter-email"
-                                       name="email"
-                                       type="email"
-                                       required
-                                       autoComplete="email"
-                                       placeholder={t("footer.emailPlaceholder")}
-                                    />
-                                    <button
-                                       className="tg-footer-form-btn"
-                                       type="submit"
-                                       aria-label={t("footer.subscribe")}
+                              <p className="mb-25">{t("footer.about")}</p>
+                              <div className="ebt-footer-social-wrapper mb-30">
+                                 <div className="tg-footer-social d-flex align-items-center flex-wrap gap-2">
+                                    <Link
+                                       href={COMPANY.facebook}
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       aria-label="Euro Bangla Travels on Facebook"
+                                       className="ebt-footer-social-btn ebt-footer-social-btn--fb"
                                     >
-                                       <ArrowRight {...iconProps("md")} color="white" />
-                                    </button>
-                                 </form>
-                                 {newsNote && (
-                                    <p className="mt-10 mb-0" role="status">
-                                       {newsNote}
-                                    </p>
-                                 )}
-                              </div>
-                              {(COMPANY.facebook !== "#" || COMPANY.instagram !== "#" || COMPANY.youtube !== "#") && (
-                                 <div className="tg-footer-social">
-                                    {COMPANY.facebook !== "#" && (
-                                       <Link href={COMPANY.facebook} aria-label="Facebook">
-                                          <FacebookIcon size={ICON_SIZE.sm} />
-                                       </Link>
-                                    )}
-                                    {COMPANY.instagram !== "#" && (
-                                       <Link href={COMPANY.instagram} aria-label="Instagram">
-                                          <InstagramIcon size={ICON_SIZE.sm} />
-                                       </Link>
-                                    )}
-                                    {COMPANY.youtube !== "#" && (
-                                       <Link href={COMPANY.youtube} aria-label="YouTube">
-                                          <YoutubeIcon size={ICON_SIZE.sm} />
-                                       </Link>
-                                    )}
+                                       <FacebookIcon size={ICON_SIZE.sm} />
+                                    </Link>
+                                    <Link
+                                       href={COMPANY.instagram}
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       aria-label="Euro Bangla Travels on Instagram"
+                                       className="ebt-footer-social-btn ebt-footer-social-btn--insta"
+                                    >
+                                       <InstagramIcon size={ICON_SIZE.sm} />
+                                    </Link>
+                                    <Link
+                                       href={whatsappLink(COMPANY.whatsapp1, "Hello Euro Bangla Travels, I would like travel assistance.")}
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       aria-label="Chat on WhatsApp with Euro Bangla Travels"
+                                       className="ebt-footer-social-btn ebt-footer-social-btn--wa"
+                                    >
+                                       <WhatsAppIcon size={ICON_SIZE.sm} />
+                                    </Link>
+                                    <Link
+                                       href={COMPANY.youtube}
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       aria-label="Euro Bangla Travels on YouTube"
+                                       className="ebt-footer-social-btn ebt-footer-social-btn--yt"
+                                    >
+                                       <YoutubeIcon size={ICON_SIZE.sm} />
+                                    </Link>
                                  </div>
-                              )}
+                              </div>
                            </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6">

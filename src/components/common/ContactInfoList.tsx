@@ -39,17 +39,40 @@ const ContactInfoList = ({ showWhatsApp = true }: { showWhatsApp?: boolean }) =>
             </Link>
          </li>
          {showWhatsApp && (
-            <li>
-               <Link href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="ebt-contact-item">
-                  <span className="ebt-contact-icon" aria-hidden="true">
-                     <WhatsAppIcon size={ICON_SIZE.md} />
-                  </span>
-                  <span className="ebt-contact-copy">
-                     <strong>WhatsApp</strong>
-                     <span>{COMPANY.phone}</span>
-                  </span>
-               </Link>
-            </li>
+            <>
+               <li>
+                  <Link
+                     href={whatsappLink(COMPANY.whatsapp1, "Hello Euro Bangla Travels, I have a tour or ticket inquiry.")}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="ebt-contact-item"
+                  >
+                     <span className="ebt-contact-icon ebt-contact-icon--wa" aria-hidden="true">
+                        <WhatsAppIcon size={ICON_SIZE.md} />
+                     </span>
+                     <span className="ebt-contact-copy">
+                        <strong>WhatsApp ({COMPANY.whatsapp1Label})</strong>
+                        <span>{COMPANY.whatsapp1Display}</span>
+                     </span>
+                  </Link>
+               </li>
+               <li>
+                  <Link
+                     href={whatsappLink(COMPANY.whatsapp2, "Hello Euro Bangla Travels, I need customer support.")}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="ebt-contact-item"
+                  >
+                     <span className="ebt-contact-icon ebt-contact-icon--wa" aria-hidden="true">
+                        <WhatsAppIcon size={ICON_SIZE.md} />
+                     </span>
+                     <span className="ebt-contact-copy">
+                        <strong>WhatsApp ({COMPANY.whatsapp2Label})</strong>
+                        <span>{COMPANY.whatsapp2Display}</span>
+                     </span>
+                  </Link>
+               </li>
+            </>
          )}
          <li>
             <Link href={`mailto:${COMPANY.email}`} className="ebt-contact-item">

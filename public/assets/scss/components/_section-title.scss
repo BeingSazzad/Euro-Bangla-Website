@@ -6,9 +6,13 @@
 .tg-section{
 	&-subtitle{
 		font-family: var(--tg-ff-body);
-		font-weight: 700;
-		text-transform: capitalize;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 		color: var(--tg-theme-primary);
+		display: inline-block;
+		margin-bottom: 12px;
 	}
 	&-su{
 		&-subtitle{

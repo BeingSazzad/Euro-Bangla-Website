@@ -1,8 +1,10 @@
 import BreadCrumb from "@/components/common/BreadCrumb"
 import FooterThree from "@/layouts/footers/FooterThree"
 import InnerHeader from "@/layouts/headers/InnerHeader"
-import AboutArea from "./AboutArea"
-import Choose from "./Choose"
+import AboutOrigin from "./AboutOrigin"
+import AboutTimeline from "./AboutTimeline"
+import AboutStats from "./AboutStats"
+import AboutGallery from "./AboutGallery"
 import Cta from "./Cta"
 
 const About = () => {
@@ -11,8 +13,10 @@ const About = () => {
          <InnerHeader />
          <main>
             <BreadCrumb title="page.about" sub_title="page.about" />
-            <AboutArea />
-            <Choose />
+            <AboutOrigin />
+            <AboutTimeline />
+            <AboutStats />
+            <AboutGallery />
             <Cta />
          </main>
          <FooterThree />

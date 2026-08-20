@@ -15,6 +15,7 @@ import {
    Plane,
    Building2,
    Landmark,
+   Bus,
    MapPin,
    CalendarDays,
    Users,
@@ -23,7 +24,7 @@ import {
 } from "lucide-react";
 import { useT } from "@/i18n/LanguageProvider";
 
-type TabKey = "flight" | "hotel" | "hajj";
+type TabKey = "flight" | "hotel" | "hajj" | "bus";
 type TripType = "oneWay" | "round" | "multi";
 type ScopeType = "domestic" | "international";
 
@@ -33,12 +34,14 @@ const icons: Record<TabKey, JSX.Element> = {
    flight: <Plane {...iconProps} />,
    hotel: <Building2 {...iconProps} />,
    hajj: <Landmark {...iconProps} />,
+   bus: <Bus {...iconProps} />,
 };
 
 const tabs: { key: TabKey; title: string }[] = [
    { key: "flight", title: "search.flight" },
    { key: "hotel", title: "search.hotel" },
    { key: "hajj", title: "search.hajj" },
+   { key: "bus", title: "search.bus" },
 ];
 
 const DESTINATIONS = [
@@ -61,6 +64,20 @@ const DESTINATIONS = [
 ];
 
 const HAJJ_PACKAGES = ["Umrah", "Hajj", "Family Umrah", "Group Umrah"];
+
+const BUS_DESTINATIONS = [
+   "Dhaka",
+   "Chattogram",
+   "Cox's Bazar",
+   "Sylhet",
+   "Rajshahi",
+   "Bogura",
+   "Khulna",
+   "Barishal",
+   "Rangpur",
+   "Benapole",
+   "Kolkata",
+];
 
 const formatDate = (value: Date | Date[] | undefined) => {
    const date = Array.isArray(value) ? value[0] : value;

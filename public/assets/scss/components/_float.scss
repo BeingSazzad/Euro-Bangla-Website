@@ -1006,12 +1006,13 @@ body:has(.ebt-cookie-banner) {
 .ebt-review-stars {
    display: flex;
    gap: 4px;
-   color: var(--tg-theme-secondary);
+   color: #f59e0b;
    margin-bottom: 14px;
 }
 
 .ebt-review-text {
    flex: 1 1 auto;
+   font-family: var(--tg-ff-body);
    font-size: 15px;
    line-height: 1.65;
    color: #334155;
@@ -1028,17 +1029,19 @@ body:has(.ebt-cookie-banner) {
 .ebt-review-avatar {
    border-radius: 50%;
    object-fit: cover;
+   flex-shrink: 0;
 }
 
 .ebt-review-name {
-   font-family: var(--tg-ff-outfit);
-   font-size: 16px;
+   font-family: var(--tg-ff-body);
+   font-size: 15px;
    font-weight: 700;
    color: #0f172a;
    margin-bottom: 2px;
 }
 
 .ebt-review-role {
+   font-family: var(--tg-ff-body);
    font-size: 13px;
    color: #64748b;
 }
@@ -1061,7 +1064,7 @@ body:has(.ebt-cookie-banner) {
 
    .swiper-pagination-bullet-active {
       width: 24px;
-      background: #0047AB;
+      background: var(--tg-theme-primary);
    }
 }
 
@@ -2425,25 +2428,32 @@ body:has(.ebt-cookie-banner) {
    padding: 0;
    display: flex;
    flex-direction: column;
-   gap: 6px;
+   gap: 4px;
 }
 
 .ebt-contact-item {
    display: flex;
    align-items: flex-start;
    gap: 14px;
-   padding: 12px 10px;
-   border-radius: 12px;
+   padding: 12px 4px;
    color: inherit;
    text-decoration: none;
-   transition: background 0.2s ease;
+   transition: all 0.2s ease;
+   border-bottom: 1px solid #f1f5f9;
+
+   &:last-child {
+      border-bottom: none;
+   }
 
    &:hover {
-      background: #f4f7fd;
-
-      .ebt-contact-icon {
+      .ebt-contact-icon:not(.ebt-contact-icon--wa) {
          background: #0047AB;
-         color: #fff;
+         color: #ffffff;
+      }
+
+      .ebt-contact-icon--wa {
+         background: #25D366;
+         color: #ffffff;
       }
 
       .ebt-contact-copy span {
@@ -2456,39 +2466,46 @@ body:has(.ebt-cookie-banner) {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   flex: 0 0 42px;
-   width: 42px;
-   height: 42px;
+   flex: 0 0 40px;
+   width: 40px;
+   height: 40px;
    border-radius: 10px;
    background: #eef4ff;
    color: #0047AB;
    line-height: 0;
-   transition: background 0.2s ease, color 0.2s ease;
+   transition: all 0.2s ease;
+
+   &--wa {
+      background: rgba(37, 211, 102, 0.12);
+      color: #25D366;
+   }
 }
 
 .ebt-contact-copy {
    display: flex;
    flex-direction: column;
-   gap: 3px;
+   gap: 2px;
    min-width: 0;
    padding-top: 1px;
 
    strong {
       display: block;
-      font-family: var(--tg-ff-outfit);
+      font-family: var(--tg-ff-body);
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      font-weight: 500;
+      letter-spacing: normal;
       color: #64748b;
       text-transform: none;
    }
 
    span {
       display: block;
+      font-family: var(--tg-ff-body);
       font-size: 15px;
       font-weight: 600;
       line-height: 1.45;
       color: #0f172a;
       word-break: break-word;
+      transition: color 0.2s ease;
    }
 }
