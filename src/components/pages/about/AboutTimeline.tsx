@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import { JSX } from "react"
-import { Rocket, Globe, Users, Landmark, Monitor, TrendingUp } from "lucide-react"
+import { Rocket, Globe, Users, Landmark, TrendingUp } from "lucide-react"
 import { iconProps } from "@/data/icons"
 import { useT } from "@/i18n/LanguageProvider"
 
@@ -19,7 +19,6 @@ const milestones: Milestone[] = [
    { year: "2015", icon: <Globe {...tlIcon} />, titleKey: "about.tl2015Title", descKey: "about.tl2015Desc" },
    { year: "2018", icon: <Users {...tlIcon} />, titleKey: "about.tl2018Title", descKey: "about.tl2018Desc" },
    { year: "2021", icon: <Landmark {...tlIcon} />, titleKey: "about.tl2021Title", descKey: "about.tl2021Desc" },
-   { year: "2024", icon: <Monitor {...tlIcon} />, titleKey: "about.tl2024Title", descKey: "about.tl2024Desc" },
    { year: "Today", icon: <TrendingUp {...tlIcon} />, titleKey: "about.tlTodayTitle", descKey: "about.tlTodayDesc" },
 ];
 
