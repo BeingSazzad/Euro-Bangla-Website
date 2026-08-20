@@ -327,7 +327,7 @@
       }
    }
 
-   /* Team photo grid */
+   /* Team photo scrollable row */
    &-photos {
       display: flex;
       gap: 16px;
@@ -335,16 +335,11 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 10px;
-      scrollbar-width: thin;
+      scrollbar-width: none; // Firefox
+      -ms-overflow-style: none; // IE/Edge
 
       &::-webkit-scrollbar {
-         height: 5px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-         background: #cbd5e1;
-         border-radius: 99px;
+         display: none; // Chrome, Safari, Opera
       }
    }
 
