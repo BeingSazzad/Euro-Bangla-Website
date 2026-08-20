@@ -337,11 +337,18 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
+      cursor: grab;
       scrollbar-width: none; // Firefox
       -ms-overflow-style: none; // IE/Edge
 
       &::-webkit-scrollbar {
          display: none; // Chrome, Safari, Opera
+      }
+
+      &.is-dragging {
+         cursor: grabbing;
+         scroll-snap-type: none;
+         user-select: none;
       }
    }
 
