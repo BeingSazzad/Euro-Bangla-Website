@@ -36,7 +36,7 @@ export const blogPosts: BlogPost[] = [
       dateKey: "home.blog1Date",
       readKey: "home.blog1Read",
       href: "/blog/umrah-preparation",
-      ctaHref: "/inquiry?service=hajj",
+      ctaHref: "/contact?service=hajj",
       body: [
          copy(
             "A clear Umrah inquiry starts with a valid passport, preferred travel month and how many people will travel together. We use that to check group seats, hotel distance from Haram and visa timing.",
@@ -71,7 +71,7 @@ export const blogPosts: BlogPost[] = [
       dateKey: "home.blog2Date",
       readKey: "home.blog2Read",
       href: "/blog/visa-documents",
-      ctaHref: "/inquiry?service=visa",
+      ctaHref: "/contact?service=visa",
       body: [
          copy(
             "Visa files often stall on bank statements, photo size, or an invitation letter that does not match the embassy checklist. We review these before you book an appointment.",
@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
       dateKey: "home.blog3Date",
       readKey: "home.blog3Read",
       href: "/blog/flight-inquiry-tips",
-      ctaHref: "/inquiry?service=flight",
+      ctaHref: "/contact?service=flight",
       body: [
          copy(
             "For a useful flight quote, tell us one way or round trip, cities, dates and how many passengers. Cabin class helps if you already know it.",
@@ -141,7 +141,7 @@ export const blogPosts: BlogPost[] = [
       dateKey: "home.blog4Date",
       readKey: "home.blog4Read",
       href: "/blog/europe-family-tour",
-      ctaHref: "/inquiry?service=tour",
+      ctaHref: "/contact?service=tour",
       body: [
          copy(
             "Europe family tours work best when you name the cities, travel month and whether you want a group departure or a private plan.",
@@ -176,7 +176,7 @@ export const blogPosts: BlogPost[] = [
       dateKey: "home.blog5Date",
       readKey: "home.blog5Read",
       href: "/blog/dubai-hotel-quote",
-      ctaHref: "/inquiry?service=hotel",
+      ctaHref: "/contact?service=hotel",
       body: [
          copy(
             "Dubai hotel quotes change with room type, dates and breakfast. Share check-in, check-out and how many rooms you need.",
@@ -211,7 +211,7 @@ export const blogPosts: BlogPost[] = [
       dateKey: "home.blog6Date",
       readKey: "home.blog6Read",
       href: "/blog/bus-ticket-inquiry",
-      ctaHref: "/inquiry?service=bus",
+      ctaHref: "/contact?service=bus",
       body: [
          copy(
             "A bus ticket inquiry only needs from/to cities, travel date and passenger count. We check domestic and selected international coach routes.",
@@ -241,3 +241,4 @@ export const blogPosts: BlogPost[] = [
 export const homeBlogPosts = blogPosts.slice(0, 3);
 
 export const findBlog = (slug: string) => blogPosts.find((item) => item.slug === slug);
+

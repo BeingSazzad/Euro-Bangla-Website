@@ -67,7 +67,7 @@ const galleryItems: GalleryItem[] = [
       category: "team",
       title: "Dedicated Client Service Team",
       subtitle: "Visa processing and personalized travel consultation",
-      location: "Dhanmondi Office, Dhaka",
+      location: "Paris Head Office, France",
       year: "2024",
    },
    {

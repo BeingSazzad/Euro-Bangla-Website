@@ -25,7 +25,7 @@ const Cta = () => {
                <p className="ebt-about-cta-kicker">{t("about.ctaSubtitle")}</p>
                <h2 className="ebt-about-cta-title">{t("about.ctaTitle")}</h2>
                <p className="ebt-about-cta-text">{t("about.ctaText")}</p>
-               <EbtButtonLink href="/inquiry" variant="on-brand" size="lg">
+               <EbtButtonLink href="/contact" variant="on-brand" size="lg">
                   {t("about.bookTrip")}
                   <ArrowRight {...iconProps("sm")} />
                </EbtButtonLink>
@@ -36,3 +36,4 @@ const Cta = () => {
 }
 
 export default Cta
+

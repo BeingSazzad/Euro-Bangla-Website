@@ -18,7 +18,7 @@ const Cta = () => {
                      <h4 className="tg-banner-subtitle mb-10">{t("home.ctaSmall")}</h4>
                      <h2 className="tg-banner-title mb-25">{t("home.ctaDiscount")}</h2>
                      <div className="tg-banner-btn">
-                        <Link href="/inquiry" className="tg-btn tg-btn-switch-animation">
+                        <Link href="/contact" className="tg-btn tg-btn-switch-animation">
                            <Button text={t("home.seeDetails")} />
                         </Link>
                      </div>
@@ -42,3 +42,4 @@ const Cta = () => {
 }
 
 export default Cta
+

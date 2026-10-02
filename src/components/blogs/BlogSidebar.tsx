@@ -75,7 +75,7 @@ export const BlogSidebar = ({
             <div className="ebt-help-card-inner">
                <h4 className="ebt-help-title">Need Travel Help?</h4>
                <p className="ebt-help-desc">
-                  Our consultants in Dhanmondi are ready to guide your visa, tickets and packages.
+                  Our consultants in Paris are ready to guide your visa, tickets and packages.
                </p>
                <Link
                   href={whatsappLink("Hello Euro Bangla Travels, I have an inquiry from the blog.")}

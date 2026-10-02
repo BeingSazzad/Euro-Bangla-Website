@@ -96,7 +96,7 @@ const FaqArea = () => {
                         <h3 className="ebt-faq-cta-title mb-10">{t("faq.helpTitle")}</h3>
                         <p className="ebt-faq-cta-text mb-25">{t("faq.helpText")}</p>
                         <div className="ebt-faq-cta-actions">
-                           <EbtButtonLink variant="primary" size="lg" href="/inquiry">
+                           <EbtButtonLink variant="primary" size="lg" href="/contact">
                               {t("faq.startInquiry")}
                            </EbtButtonLink>
                            <EbtButtonLink
@@ -121,3 +121,4 @@ const FaqArea = () => {
 };
 
 export default FaqArea;
+

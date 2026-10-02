@@ -449,7 +449,7 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
          .filter(Boolean)
          .join(" - ");
       if (dates) query.set("dates", dates);
-      router.push(`/inquiry?${query.toString()}`);
+      router.push(`/contact?${query.toString()}`);
    };
 
    return (
@@ -655,3 +655,4 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
 };
 
 export default BannerFormFour;
+

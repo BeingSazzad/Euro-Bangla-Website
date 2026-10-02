@@ -38,7 +38,7 @@ const BusPage = () => {
                               <EbtButtonLink
                                  variant="primary"
                                  className="ebt-route-card-cta"
-                                 href={`/inquiry?service=bus&from=${encodeURIComponent(tx(route.from, locale))}&to=${encodeURIComponent(tx(route.to, locale))}`}
+                                 href={`/contact?service=bus&from=${encodeURIComponent(tx(route.from, locale))}&to=${encodeURIComponent(tx(route.to, locale))}`}
                               >
                                  {t("svc.quote")}
                               </EbtButtonLink>
@@ -54,3 +54,4 @@ const BusPage = () => {
 };
 
 export default BusPage;
+

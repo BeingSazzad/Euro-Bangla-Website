@@ -90,7 +90,7 @@ const Process = () => {
                            <div className="tg-chose-2-icon mb-20">
                               {item.icon}
                            </div>
-                           <h4 className="tg-chose-2-title mb-15"><Link href="/inquiry">{item.title ? t(item.title) : ""}</Link></h4>
+                           <h4 className="tg-chose-2-title mb-15"><Link href="/contact">{item.title ? t(item.title) : ""}</Link></h4>
                            <p>{item.desc ? t(item.desc) : ""}</p>
                         </div>
                      </div>
@@ -103,3 +103,4 @@ const Process = () => {
 }
 
 export default Process
+

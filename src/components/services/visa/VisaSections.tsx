@@ -103,8 +103,8 @@ export const VisaWhy = () => {
 export const VisaCta = ({ destination }: { destination?: string }) => {
    const { t } = useT();
    const href = destination
-      ? `/inquiry?service=visa&destination=${encodeURIComponent(destination)}`
-      : "/inquiry?service=visa";
+      ? `/contact?service=visa&destination=${encodeURIComponent(destination)}`
+      : "/contact?service=visa";
 
    return (
       <section className="ebt-visa-cta ebt-section">
@@ -130,3 +130,4 @@ export const VisaCta = ({ destination }: { destination?: string }) => {
       </section>
    );
 };
+

@@ -1,0 +1,349 @@
+@use '../utils' as *;
+
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR CONTACT LIST  (offcanvas panel)
+   ═══════════════════════════════════════════════════════════ */
+
+.ebt-sbl-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.ebt-sbl-section-label {
+   font-size: 10px;
+   font-weight: 800;
+   text-transform: uppercase;
+   letter-spacing: 0.1em;
+   color: #94a3b8;
+   padding: 14px 0 4px;
+   margin: 0;
+
+   &:first-child { padding-top: 0; }
+}
+
+/* WhatsApp rows — dark pill */
+.ebt-sbl-wa-row {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   padding: 10px 14px;
+   background: #d9f7e8;
+   border: 1.5px solid #b7f0d4;
+   border-radius: 10px;
+   color: #065f46;
+   font-size: 14px;
+   font-weight: 700;
+   text-decoration: none;
+   transition: background 0.15s ease, border-color 0.15s ease;
+
+   svg { flex-shrink: 0; color: #128C7E; }
+
+   &:hover { background: #c3f0d8; border-color: #128C7E; color: #065f46; }
+}
+
+/* Regular rows (call, email, address) */
+.ebt-sbl-row {
+   display: flex;
+   align-items: flex-start;
+   gap: 10px;
+   padding: 8px 2px;
+   color: #1e293b;
+   text-decoration: none;
+   transition: color 0.15s ease;
+
+   &:hover { color: #2563eb; }
+}
+
+.ebt-sbl-icon {
+   display: inline-flex;
+   align-items: center;
+   color: #64748b;
+   flex-shrink: 0;
+   margin-top: 1px;
+}
+
+.ebt-sbl-val {
+   font-size: 14px;
+   font-weight: 600;
+   line-height: 1.5;
+   color: inherit;
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   EURO BANGLA — CONTACT PAGE  (minimal, UX-first)
+   ═══════════════════════════════════════════════════════════ */
+
+.ebt-contact-page {
+   padding-top: 80px;
+   padding-bottom: 100px;
+
+   @media #{$sm,$xs} { padding-top: 48px; padding-bottom: 64px; }
+}
+
+/* ── Page Header ─────────────────────────────────────────── */
+.ebt-cp-header {
+   max-width: 560px;
+   margin-bottom: 52px;
+}
+
+.ebt-cp-heading {
+   font-size: clamp(28px, 4vw, 40px);
+   font-weight: 800;
+   color: #0f172a;
+   letter-spacing: -0.02em;
+   margin: 0 0 10px;
+   line-height: 1.15;
+}
+
+.ebt-cp-sub {
+   font-size: 16px;
+   color: #64748b;
+   line-height: 1.6;
+   margin: 0;
+}
+
+/* ── Two-Column Grid ─────────────────────────────────────── */
+.ebt-cp-grid {
+   display: grid;
+   grid-template-columns: 480px 1fr;
+   gap: 48px;
+   align-items: stretch;  /* both columns same height */
+
+   @media (max-width: 1199px) { grid-template-columns: 1fr 1fr; gap: 36px; }
+   @media #{$md}              { grid-template-columns: 1fr; gap: 40px; }
+   @media #{$sm,$xs}          { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ── LEFT — Details ──────────────────────────────────────── */
+.ebt-cp-details {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+
+   /* Map grows to fill remaining height → equalises both columns */
+   .ebt-cp-map { flex: 1; min-height: 200px; }
+}
+
+
+/* 2-column cards grid — WA + phone cards all same size */
+.ebt-cp-cards-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 10px;
+
+   @media #{$xs} { grid-template-columns: 1fr; }
+}
+
+/* Phone rows + WhatsApp rows — same side-by-side card style */
+.ebt-cp-list-phones {
+   display: flex;
+   gap: 10px;
+   padding: 14px 0;
+   border-bottom: 1px solid #f1f5f9;
+
+   @media #{$xs} { flex-direction: column; }
+}
+
+.ebt-cp-call-btn {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   padding: 14px 16px;
+   background: #fff;
+   border: 1.5px solid #e5e9f0;
+   border-radius: 14px;
+   text-decoration: none;
+   transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+
+   &:hover {
+      border-color: #0047AB;
+      box-shadow: 0 4px 16px rgba(0,71,171,0.10);
+      transform: translateY(-2px);
+   }
+   &:active { transform: translateY(0); }
+}
+
+.ebt-cp-call-icon {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 40px;
+   height: 40px;
+   border-radius: 10px;
+   background: #dce8f7;
+   color: #0047AB;
+   flex-shrink: 0;
+
+   /* WhatsApp green — official brand color */
+   &--wa {
+      background: #d9f7e8;
+      color: #128C7E;
+   }
+}
+
+.ebt-cp-call-body {
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+}
+
+.ebt-cp-call-num {
+   font-size: 14px;
+   font-weight: 700;
+   color: #0f172a;
+   letter-spacing: 0.01em;
+   line-height: 1.4;
+}
+
+/* Contact rows list */
+.ebt-cp-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+
+   li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f1f5f9;
+
+      &:first-child { padding-top: 0; }
+      &:last-child  { border-bottom: none; padding-bottom: 0; }
+
+      > div {
+         display: flex;
+         flex-direction: column;
+         gap: 2px;
+         min-width: 0;
+      }
+   }
+}
+
+.ebt-cp-list-icon {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 40px;
+   height: 40px;
+   border-radius: 10px;
+   background: #dce8f7;
+   color: #0047AB;
+   border: 1.5px solid #c0d4ef;
+   flex-shrink: 0;
+}
+
+.ebt-cp-list-label {
+   font-size: 10.5px;
+   font-weight: 800;
+   text-transform: uppercase;
+   letter-spacing: 0.08em;
+   color: #0047AB;   /* brand blue */
+   margin-bottom: 2px;
+}
+
+.ebt-cp-list-val {
+   font-size: 15px;
+   font-weight: 600;
+   color: #1e293b;
+   text-decoration: none;
+   word-break: break-word;
+   transition: color 0.15s ease;
+
+   &:hover { color: #0047AB; }
+}
+
+
+
+/* Map — grows to fill remaining left-column height */
+.ebt-cp-map {
+   border-radius: 16px;
+   overflow: hidden;
+   border: 1.5px solid #e2e8f0;
+   display: flex;
+   flex-direction: column;
+
+   iframe {
+      display: block;
+      width: 100%;
+      flex: 1;
+      min-height: 180px;
+      border: none;
+   }
+}
+
+/* ── RIGHT — Form Panel ──────────────────────────────────── */
+.ebt-cp-form-panel {
+   background: #ffffff;
+   border: 1.5px solid #e2e8f0;
+   border-radius: 20px;
+   padding: 36px 32px;
+   box-shadow: 0 4px 24px -6px rgba(15, 23, 42, 0.07);
+
+   @media #{$sm,$xs} { padding: 24px 18px; border-radius: 16px; }
+}
+
+.ebt-cp-form-heading {
+   font-size: 22px;
+   font-weight: 800;
+   color: #0f172a;
+   margin: 0 0 8px;
+}
+
+.ebt-cp-form-sub {
+   font-size: 14px;
+   color: #64748b;
+   margin: 0 0 28px;
+   line-height: 1.6;
+}
+
+/* ── Social Icons ────────────────────────────────────────── */
+.ebt-cp-social {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.ebt-cp-social-label {
+   font-size: 10.5px;
+   font-weight: 800;
+   text-transform: uppercase;
+   letter-spacing: 0.09em;
+   color: #0047AB;
+   white-space: nowrap;
+}
+
+.ebt-cp-social-icons {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.ebt-cp-social-btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 38px;
+   height: 38px;
+   border-radius: 10px;
+   background: #f1f5f9;
+   color: #475569;
+   border: 1.5px solid #e2e8f0;
+   text-decoration: none;
+   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+
+   &:hover { transform: translateY(-2px); }
+
+   &--fb:hover { background: #1877F2; color: #fff; border-color: #1877F2; }
+   &--ig:hover { background: #E1306C; color: #fff; border-color: #E1306C; }
+   &--yt:hover { background: #FF0000; color: #fff; border-color: #FF0000; }
+   &--wa:hover { background: #25D366; color: #fff; border-color: #25D366; }
+}
