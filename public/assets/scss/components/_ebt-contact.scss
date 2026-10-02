@@ -305,45 +305,4 @@
    line-height: 1.6;
 }
 
-/* ── Social Icons ────────────────────────────────────────── */
-.ebt-cp-social {
-   display: flex;
-   align-items: center;
-   gap: 12px;
-}
 
-.ebt-cp-social-label {
-   font-size: 10.5px;
-   font-weight: 800;
-   text-transform: uppercase;
-   letter-spacing: 0.09em;
-   color: #0047AB;
-   white-space: nowrap;
-}
-
-.ebt-cp-social-icons {
-   display: flex;
-   align-items: center;
-   gap: 8px;
-}
-
-.ebt-cp-social-btn {
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-   width: 38px;
-   height: 38px;
-   border-radius: 10px;
-   background: #f1f5f9;
-   color: #475569;
-   border: 1.5px solid #e2e8f0;
-   text-decoration: none;
-   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
-
-   &:hover { transform: translateY(-2px); }
-
-   &--fb:hover { background: #1877F2; color: #fff; border-color: #1877F2; }
-   &--ig:hover { background: #E1306C; color: #fff; border-color: #E1306C; }
-   &--yt:hover { background: #FF0000; color: #fff; border-color: #FF0000; }
-   &--wa:hover { background: #25D366; color: #fff; border-color: #25D366; }
-}
