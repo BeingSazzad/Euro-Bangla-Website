@@ -1,46 +1,34 @@
 "use client"
 import Image from "next/image"
-import Link from "next/link"
-import { CheckCircle2, Award, Sparkles, MapPin, Building2, ShieldCheck, Quote, ArrowRight } from "lucide-react"
+import { CheckCircle2, Award, Sparkles } from "lucide-react"
 import { useT } from "@/i18n/LanguageProvider"
-import { COMPANY } from "@/data/company"
 
 const AboutOrigin = () => {
    const { t } = useT();
 
    const highlights = [
-      {
-         title: "Transparent & Upfront Fares",
-         desc: "Itemized airline bookings and hotel reservations with zero hidden fees or speculative markups.",
-      },
-      {
-         title: "Specialized Pilgrimage Leadership",
-         desc: "Dedicated Mutawwif guidance, vetted Makkah and Madinah hotel blocks, and respectful care.",
-      },
-      {
-         title: "Licensed Paris Office",
-         desc: "Drop by our physical office at 65 Rue Louis Blanc, 75010 Paris for face-to-face consultation.",
-      },
+      { title: "Honest Guidance", desc: "Transparent advice & personalized travel planning" },
+      { title: "Quality Service", desc: "Curated luxury, holiday & holy pilgrimage packages" },
+      { title: "Complete Trust", desc: "Serving thousands of happy travelers since 2012" },
    ];
 
    return (
-      <section id="heritage" className="ebt-about-origin">
+      <section id="origin" className="ebt-about-origin ebt-section">
          <div className="container">
             <div className="row align-items-center g-5">
-               {/* Left Visual Column */}
                <div className="col-lg-6">
                   <div className="ebt-about-origin-img-wrap">
                      <div className="ebt-about-origin-img-inner">
                         <Image
                            src="/assets/img/about/origin-travel.jpg"
-                           alt="Euro Bangla Travels origin and heritage in Paris"
-                           width={680}
-                           height={520}
-                           sizes="(max-width: 991px) 100vw, 50vw"
+                           alt="Euro Bangla Travels origin and heritage"
+                           width={650}
+                           height={480}
+                           sizes="(max-width: 768px) 100vw, 50vw"
                            className="ebt-origin-main-img"
                            priority
                         />
-                        <div className="ebt-origin-glow" />
+                        <div className="ebt-origin-glow"></div>
                      </div>
 
                      {/* Top Floating Badge */}
@@ -50,39 +38,35 @@ const AboutOrigin = () => {
                         </div>
                         <div>
                            <span className="badge-title">12+ Years</span>
-                           <span className="badge-sub">Of Trusted Service</span>
+                           <span className="badge-sub">Of Excellence</span>
                         </div>
                      </div>
 
-                     {/* Bottom Floating Badge */}
+                     {/* Main Bottom Floating Badge */}
                      <div className="ebt-about-origin-year-badge">
                         <div className="badge-icon-sparkle">
                            <Sparkles size={20} />
                         </div>
                         <div>
-                           <span className="year">{t("about.originYear") || "2012"}</span>
-                           <span className="caption">{t("about.originYearCaption") || "Established in Paris, France"}</span>
+                           <span className="year">{t("about.originYear")}</span>
+                           <span className="caption">{t("about.originYearCaption")}</span>
                         </div>
                      </div>
                   </div>
                </div>
 
-               {/* Right Storytelling Column */}
                <div className="col-lg-6">
                   <div className="ebt-about-origin-content">
-                     <span className="tg-section-subtitle mb-15">{t("about.originKicker") || "OUR HERITAGE & FOUNDATIONS"}</span>
+                     <h5 className="tg-section-subtitle mb-15">{t("about.originKicker")}</h5>
                      <h2 className="ebt-about-origin-title">
-                        Rooted in Paris, Dedicated to <span>Global Excellence</span>
+                        {t("about.originTitle")}{" "}
+                        <span>{t("about.originTitleHighlight")}</span>
                      </h2>
-                     <p className="ebt-about-origin-text">
-                        Established in 2012 in the heart of Paris at <strong>65 Rue Louis Blanc, 75010</strong>, Euro Bangla Travels was founded with a singular conviction: to provide the Bangladeshi and European travel community with an agency built on absolute transparency, cultural empathy, and unwavering dependability.
-                     </p>
-                     <p className="ebt-about-origin-text">
-                        Over the past decade, we have grown from a modest neighborhood office into an internationally recognized full-service travel partner — guiding thousands of pilgrims to Makkah and Madinah, issuing verified airline tickets worldwide, and facilitating European leisure tours.
-                     </p>
+                     <p className="ebt-about-origin-text">{t("about.originText1")}</p>
+                     <p className="ebt-about-origin-text">{t("about.originText2")}</p>
 
                      {/* Key Highlights Grid */}
-                     <div className="ebt-about-origin-highlights mt-30 mb-35">
+                     <div className="ebt-about-origin-highlights">
                         {highlights.map((h, i) => (
                            <div key={i} className="ebt-origin-highlight-item">
                               <div className="highlight-icon">
@@ -95,18 +79,12 @@ const AboutOrigin = () => {
                            </div>
                         ))}
                      </div>
-
-                     {/* Paris Office Link Strip */}
-                     <div className="ebt-origin-office-strip">
-                        <MapPin size={18} className="strip-icon" />
-                        <span>Visit us in Paris: <Link href={COMPANY.mapLink} target="_blank" rel="noopener noreferrer">{COMPANY.address}</Link></span>
-                     </div>
                   </div>
                </div>
             </div>
          </div>
       </section>
-   );
-};
+   )
+}
 
-export default AboutOrigin;
+export default AboutOrigin

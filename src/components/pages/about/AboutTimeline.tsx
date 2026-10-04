@@ -2,56 +2,34 @@
 import Image from "next/image"
 import Link from "next/link"
 import { JSX, useRef, useState, MouseEvent, WheelEvent } from "react"
-import { Rocket, Globe, Users, Landmark, TrendingUp, ArrowRight, Camera, Sparkles } from "lucide-react"
+import { Rocket, Globe, Users, Landmark, TrendingUp } from "lucide-react"
+import { iconProps } from "@/data/icons"
 import { useT } from "@/i18n/LanguageProvider"
 
 interface Milestone {
    year: string;
    icon: JSX.Element;
-   title: string;
-   desc: string;
+   titleKey: string;
+   descKey: string;
 }
 
+const tlIcon = iconProps("md");
+
 const milestones: Milestone[] = [
-   {
-      year: "2012",
-      icon: <Rocket size={20} />,
-      title: "Started Our Journey in Paris",
-      desc: "Euro Bangla Travels was founded at 65 Rue Louis Blanc, 75010 Paris, to deliver trusted, honest diaspora travel support.",
-   },
-   {
-      year: "2015",
-      icon: <Globe size={20} />,
-      title: "Direct Airline Ticketing",
-      desc: "Secured direct global carrier ticketing and expanded international visa consultation for worldwide destinations.",
-   },
-   {
-      year: "2018",
-      icon: <Users size={20} />,
-      title: "15,000+ Happy Travelers",
-      desc: "Surpassed a major milestone of serving over 15,000 satisfied passengers and community pilgrims with distinction.",
-   },
-   {
-      year: "2021",
-      icon: <Landmark size={20} />,
-      title: "Hajj & Umrah Leadership",
-      desc: "Established VIP pilgrimage partnerships with vetted hotels in Makkah & Madinah and dedicated group guides.",
-   },
-   {
-      year: "Today",
-      icon: <TrendingUp size={20} />,
-      title: "Expanding Horizons",
-      desc: "Continuously innovating with digital booking convenience while honoring our physical presence in Paris.",
-   },
+   { year: "2012", icon: <Rocket {...tlIcon} />, titleKey: "about.tl2012Title", descKey: "about.tl2012Desc" },
+   { year: "2015", icon: <Globe {...tlIcon} />, titleKey: "about.tl2015Title", descKey: "about.tl2015Desc" },
+   { year: "2018", icon: <Users {...tlIcon} />, titleKey: "about.tl2018Title", descKey: "about.tl2018Desc" },
+   { year: "2021", icon: <Landmark {...tlIcon} />, titleKey: "about.tl2021Title", descKey: "about.tl2021Desc" },
+   { year: "Today", icon: <TrendingUp {...tlIcon} />, titleKey: "about.tlTodayTitle", descKey: "about.tlTodayDesc" },
 ];
 
-const photoShowcase = [
-   { src: "/assets/img/about/about.jpg", tag: "Paris Head Office" },
-   { src: "/assets/img/chose/chose-2/thumb-2.jpg", tag: "Makkah Al-Mukarramah" },
-   { src: "/assets/img/destination/des.jpg", tag: "Santorini Tour" },
-   { src: "/assets/img/destination/des-4.jpg", tag: "Madinah Munawwarah" },
-   { src: "/assets/img/destination/des-2.jpg", tag: "Swiss Alps Vacation" },
-   { src: "/assets/img/about/about-4.jpg", tag: "12-Year Celebration" },
+const teamPhotos = [
+   "/assets/img/about/about.jpg",
+   "/assets/img/about/about-2.jpg",
+   "/assets/img/about/about-3.jpg",
+   "/assets/img/about/about-4.jpg",
+   "/assets/img/about/details/thumb-1.jpg",
+   "/assets/img/about/details/thumb-2.jpg",
 ];
 
 const AboutTimeline = () => {
@@ -87,85 +65,58 @@ const AboutTimeline = () => {
    };
 
    return (
-      <section className="ebt-about-timeline">
+      <section className="ebt-about-timeline ebt-section">
          <div className="container">
-            {/* Header */}
-            <div className="row justify-content-center text-center mb-55">
-               <div className="col-xl-8 col-lg-9">
-                  <span className="tg-section-subtitle mb-15">CHRONICLES OF GROWTH</span>
-                  <h2 className="ebt-timeline-title">
-                     Milestones of <span>Trust & Heritage</span>
-                  </h2>
-                  <p className="ebt-timeline-subtitle">
-                     From our foundational steps in 2012 to our standing today as a premier diaspora travel agency, every milestone has been paved with customer trust.
-                  </p>
-               </div>
+            <div className="text-center mb-45">
+               <h5 className="tg-section-subtitle mb-15">{t("about.timelineKicker")}</h5>
+               <h2 className="ebt-about-timeline-title">Milestones of Trust & Growth</h2>
             </div>
 
-            {/* Modern Milestone Nodes */}
-            <div className="ebt-milestone-track mb-60">
-               {milestones.map((m, idx) => (
-                  <div key={m.year} className="ebt-milestone-card">
-                     <div className="milestone-top-row">
-                        <div className="milestone-icon-circle">{m.icon}</div>
-                        <span className="milestone-year-pill">{m.year}</span>
+            <div className="ebt-about-timeline-track">
+               {milestones.map((m) => (
+                  <div key={m.year} className="ebt-about-timeline-node">
+                     <div className="ebt-about-timeline-icon">{m.icon}</div>
+                     <div>
+                        <div className="ebt-about-timeline-year">{m.year}</div>
+                        <div className="ebt-about-timeline-node-title">{t(m.titleKey)}</div>
+                        <p className="ebt-about-timeline-node-desc">{t(m.descKey)}</p>
                      </div>
-                     <h4 className="milestone-card-title">{m.title}</h4>
-                     <p className="milestone-card-desc">{m.desc}</p>
                   </div>
                ))}
             </div>
 
-            {/* Travel Moments Photo Carousel */}
-            <div className="ebt-photo-carousel-wrap">
-               <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-30 px-2">
-                  <div>
-                     <h4 className="photo-carousel-heading">Snapshots of Moments & Memories</h4>
-                     <p className="photo-carousel-sub mb-0">Drag horizontally to view highlights from our tours, pilgrimages, and celebrations.</p>
+            <div
+               ref={scrollRef}
+               onWheel={handleWheel}
+               onMouseDown={onMouseDown}
+               onMouseLeave={onMouseLeave}
+               onMouseUp={onMouseUp}
+               onMouseMove={onMouseMove}
+               className={`ebt-about-timeline-photos ${isDragging ? "is-dragging" : ""}`}
+            >
+               {teamPhotos.map((src, i) => (
+                  <div key={i} className="ebt-about-timeline-photo">
+                     <Image
+                        src={src}
+                        alt=""
+                        width={240}
+                        height={180}
+                        draggable={false}
+                        sizes="(max-width: 768px) 50vw, 16vw"
+                        style={{ width: "100%", height: "100%", userSelect: "none" }}
+                     />
                   </div>
-                  <Link href="/gallery" className="gallery-quick-link">
-                     <Camera size={16} />
-                     <span>View All Photos</span>
-                     <ArrowRight size={14} />
-                  </Link>
-               </div>
+               ))}
+            </div>
 
-               <div
-                  ref={scrollRef}
-                  onWheel={handleWheel}
-                  onMouseDown={onMouseDown}
-                  onMouseLeave={onMouseLeave}
-                  onMouseUp={onMouseUp}
-                  onMouseMove={onMouseMove}
-                  className={`ebt-modern-photos-strip ${isDragging ? "is-dragging" : ""}`}
-               >
-                  {photoShowcase.map((item, i) => (
-                     <div key={i} className="ebt-photo-card">
-                        <Image
-                           src={item.src}
-                           alt={item.tag}
-                           width={280}
-                           height={200}
-                           draggable={false}
-                           sizes="(max-width: 768px) 60vw, 22vw"
-                           className="ebt-photo-img"
-                        />
-                        <div className="ebt-photo-tag">
-                           <span>{item.tag}</span>
-                        </div>
-                     </div>
-                  ))}
-               </div>
-
-               <div className="text-center mt-35">
-                  <Link href="/gallery" className="tg-btn tg-btn-switch-animation">
-                     Explore Full Photo Gallery <ArrowRight size={18} />
-                  </Link>
-               </div>
+            <div className="text-center mt-35">
+               <Link href="/gallery" className="tg-btn tg-btn-switch-animation">
+                  View All Photos
+               </Link>
             </div>
          </div>
       </section>
-   );
-};
+   )
+}
 
-export default AboutTimeline;
+export default AboutTimeline

@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import React from "react";
 import { Download, Briefcase, Building2, GraduationCap, Users, FileText, CheckCircle2 } from "lucide-react";
 import type { VisaDestination } from "@/data/visaDestinations";
 import { visaCopyFor } from "@/data/visaDestinations";
@@ -24,7 +24,7 @@ const VisaRequirementCopy = ({ dest }: { dest: VisaDestination }) => {
 
    if (blocks.length === 0) return null;
 
-   const renderedElements: ReactNode[] = [];
+   const renderedElements: React.ReactNode[] = [];
    for (let i = 0; i < blocks.length; i++) {
       const block = blocks[i];
       if (block.type === "heading") {
