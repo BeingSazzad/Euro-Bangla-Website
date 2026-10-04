@@ -90,22 +90,8 @@ const galleryItems: GalleryItem[] = [
    },
 ];
 
-const categories: { key: Category; labelKey: string; defaultLabel: string }[] = [
-   { key: "all", labelKey: "gallery.filterAll", defaultLabel: "All Photos" },
-   { key: "hajj", labelKey: "gallery.filterHajj", defaultLabel: "Hajj & Umrah" },
-   { key: "tours", labelKey: "gallery.filterTours", defaultLabel: "Tours & Holidays" },
-   { key: "visa", labelKey: "gallery.filterVisa", defaultLabel: "Visa & Events" },
-   { key: "team", labelKey: "gallery.filterTeam", defaultLabel: "Our Team" },
-];
-
 const AboutGallery = () => {
-   const [activeTab, setActiveTab] = useState<Category>("all");
    const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
-
-   const filteredItems =
-      activeTab === "all"
-         ? galleryItems
-         : galleryItems.filter((item) => item.category === activeTab);
 
    return (
       <section className="ebt-gallery-section ebt-section" id="gallery">
@@ -113,7 +99,7 @@ const AboutGallery = () => {
             {/* Section Heading */}
             <div className="row justify-content-center">
                <div className="col-xl-8 col-lg-9 text-center">
-                  <div className="ebt-gallery-head mb-40">
+                  <div className="ebt-gallery-head mb-45">
                      <h5 className="tg-section-subtitle mb-15">Our Moments & Memories</h5>
                      <h2 className="ebt-gallery-title">
                         Moments That Tell <span>Our Story</span>
@@ -122,26 +108,12 @@ const AboutGallery = () => {
                         From spiritual pilgrimages to world explorations and client milestones — glimpses of journeys crafted with trust since 2012.
                      </p>
                   </div>
-
-                  {/* Filter Pills */}
-                  <div className="ebt-gallery-filters mb-45">
-                     {categories.map((cat) => (
-                        <button
-                           key={cat.key}
-                           type="button"
-                           className={`ebt-gallery-filter-btn ${activeTab === cat.key ? "is-active" : ""}`}
-                           onClick={() => setActiveTab(cat.key)}
-                        >
-                           {cat.defaultLabel}
-                        </button>
-                     ))}
-                  </div>
                </div>
             </div>
 
             {/* Gallery Grid */}
             <div className="row g-4 ebt-gallery-grid">
-               {filteredItems.map((item) => (
+               {galleryItems.map((item) => (
                   <div key={item.id} className="col-lg-4 col-md-6 col-sm-6">
                      <div
                         className="ebt-gallery-card"
