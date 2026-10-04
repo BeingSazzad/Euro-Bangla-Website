@@ -74,6 +74,7 @@ const FooterThree = () => {
                                  <li><Link href="/tours">{t("footer.tours")}</Link></li>
                                  <li><Link href="/hotels">{t("footer.hotels")}</Link></li>
                                  <li><Link href="/visa">{t("footer.visa")}</Link></li>
+                                 <li><Link href="/gallery">{t("footer.gallery") || "Gallery"}</Link></li>
                               </ul>
                            </div>
                         </div>

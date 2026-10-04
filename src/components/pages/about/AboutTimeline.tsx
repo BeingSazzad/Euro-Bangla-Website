@@ -107,6 +107,12 @@ const AboutTimeline = () => {
                   </div>
                ))}
             </div>
+
+            <div className="text-center mt-35">
+               <a href="#gallery" className="tg-btn tg-btn-switch-animation">
+                  View Photo Gallery
+               </a>
+            </div>
          </div>
       </section>
    )

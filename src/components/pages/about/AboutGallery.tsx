@@ -108,7 +108,7 @@ const AboutGallery = () => {
          : galleryItems.filter((item) => item.category === activeTab);
 
    return (
-      <section className="ebt-gallery-section ebt-section">
+      <section className="ebt-gallery-section ebt-section" id="gallery">
          <div className="container">
             {/* Section Heading */}
             <div className="row justify-content-center">
