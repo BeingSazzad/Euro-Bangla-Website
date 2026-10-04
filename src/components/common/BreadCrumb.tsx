@@ -18,8 +18,8 @@ const BreadCrumb = ({ sub_title, title, raw = false, parentHref, parentKey, bann
    const titleLabel = raw ? title : t(title);
    const crumbLabel = raw ? sub_title : t(sub_title);
    const parentLabel = parentKey ? t(parentKey) : null;
-   const resolvedParent = parentHref || (raw ? "/visa" : "");
-   const resolvedParentLabel = parentLabel || (raw ? t("nav.visa") : "");
+   const resolvedParent = parentHref || "";
+   const resolvedParentLabel = parentLabel || "";
 
    return (
       <div className="tg-breadcrumb-area tg-breadcrumb-spacing-5 ebt-breadcrumb fix p-relative z-index-1 include-bg" style={{ backgroundImage: `url(${bannerSrc || "/assets/img/breadcrumb/breadcrumb.jpg"})` }}>
