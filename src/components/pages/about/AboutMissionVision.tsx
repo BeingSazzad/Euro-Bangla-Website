@@ -1,11 +1,8 @@
 "use client"
 import Image from "next/image"
-import { Compass, Globe, ShieldCheck, HeartHandshake, CheckCircle2, Award, Sparkles, MapPin, PhoneCall, Check } from "lucide-react"
-import { useT } from "@/i18n/LanguageProvider"
-import { COMPANY } from "@/data/company"
+import { Compass, Globe, ShieldCheck, HeartHandshake, Award, MapPin, PhoneCall, Check } from "lucide-react"
 
 const AboutMissionVision = () => {
-   const { t } = useT();
 
    const missionPillars = [
       "Guaranteed transparent fares with zero hidden booking surcharges",
