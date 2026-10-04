@@ -44,7 +44,7 @@ const AboutMissionVision = () => {
    ];
 
    return (
-      <section className="ebt-mission-vision ebt-section">
+      <section className="ebt-mission-vision">
          <div className="container">
             {/* Section Header */}
             <div className="row justify-content-center text-center mb-55">

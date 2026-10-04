@@ -1,7 +1,8 @@
-import BreadCrumb from "@/components/common/BreadCrumb"
-import FooterThree from "@/layouts/footers/FooterThree"
 import InnerHeader from "@/layouts/headers/InnerHeader"
+import FooterThree from "@/layouts/footers/FooterThree"
+import AboutHero from "./AboutHero"
 import AboutOrigin from "./AboutOrigin"
+import AboutAdvantage from "./AboutAdvantage"
 import AboutTimeline from "./AboutTimeline"
 import AboutStats from "./AboutStats"
 import AboutMissionVision from "./AboutMissionVision"
@@ -11,9 +12,10 @@ const About = () => {
    return (
       <>
          <InnerHeader />
-         <main>
-            <BreadCrumb title="page.about" sub_title="page.about" />
+         <main className="ebt-about-main">
+            <AboutHero />
             <AboutOrigin />
+            <AboutAdvantage />
             <AboutTimeline />
             <AboutStats />
             <AboutMissionVision />
@@ -25,3 +27,4 @@ const About = () => {
 }
 
 export default About
+
