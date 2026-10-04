@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
 import { JSX, useRef, useState, MouseEvent, WheelEvent } from "react"
 import { Rocket, Globe, Users, Landmark, TrendingUp } from "lucide-react"
 import { iconProps } from "@/data/icons"
@@ -109,9 +110,9 @@ const AboutTimeline = () => {
             </div>
 
             <div className="text-center mt-35">
-               <a href="#gallery" className="tg-btn tg-btn-switch-animation">
-                  View Photo Gallery
-               </a>
+               <Link href="/gallery" className="tg-btn tg-btn-switch-animation">
+                  View All Photos
+               </Link>
             </div>
          </div>
       </section>

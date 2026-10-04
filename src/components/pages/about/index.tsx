@@ -4,7 +4,7 @@ import InnerHeader from "@/layouts/headers/InnerHeader"
 import AboutOrigin from "./AboutOrigin"
 import AboutTimeline from "./AboutTimeline"
 import AboutStats from "./AboutStats"
-import AboutGallery from "./AboutGallery"
+import AboutMissionVision from "./AboutMissionVision"
 import Cta from "./Cta"
 
 const About = () => {
@@ -16,7 +16,7 @@ const About = () => {
             <AboutOrigin />
             <AboutTimeline />
             <AboutStats />
-            <AboutGallery />
+            <AboutMissionVision />
             <Cta />
          </main>
          <FooterThree />

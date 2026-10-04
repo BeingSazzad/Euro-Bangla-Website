@@ -60,16 +60,10 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
                         </div>
                      </section>
 
-                     <p className="ebt-visa-office">
-                        <MapPin {...iconProps("sm")} />
-                        <span>
-                           {t("visaDetail.submitInPerson")} {COMPANY.addressLine1}, {COMPANY.addressLine2}.{" "}
-                           <Link href={`tel:${COMPANY.phoneTel}`}>{COMPANY.phone}</Link>
-                        </span>
-                     </p>
+                     <VisaRequirementCopy dest={dest} />
 
                      {dest.notes.length > 0 && (
-                        <section className="ebt-visa-guide-block">
+                        <section className="ebt-visa-guide-block mt-30">
                            <div className="ebt-visa-notes-card">
                               <h2>
                                  <Info {...iconProps("sm")} />
@@ -84,7 +78,13 @@ const VisaDestinationDetail = ({ dest }: { dest: VisaDestination }) => {
                         </section>
                      )}
 
-                     <VisaRequirementCopy dest={dest} />
+                     <p className="ebt-visa-office mt-20">
+                        <MapPin {...iconProps("sm")} />
+                        <span>
+                           {t("visaDetail.submitInPerson")} {COMPANY.addressLine1}, {COMPANY.addressLine2}.{" "}
+                           <Link href={`tel:${COMPANY.phoneTel}`}>{COMPANY.phone}</Link>
+                        </span>
+                     </p>
                   </div>
 
                   <div className="col-xl-4 col-lg-4">
