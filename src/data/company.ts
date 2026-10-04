@@ -9,8 +9,12 @@ export const COMPANY = {
    wa1Tel: "33758803516",
    wa2: "+33 7 53 90 18 13",
    wa2Tel: "33753901813",
+   whatsapp1: "+33 7 58 80 35 16",
+   whatsapp2: "+33 7 53 90 18 13",
 
    // Direct call numbers
+   phone:       "+33 9 60 41 94 87",
+   phoneTel:    "+33960419487",
    landline:    "+33 9 60 41 94 87",
    landlineTel: "+33960419487",
    mobile:      "+33 6 95 71 82 64",
@@ -34,7 +38,7 @@ export const COMPANY = {
 
 /** Build a wa.me link. Pass a number string or a message. */
 export const whatsappLink = (numOrMsg?: string, msg?: string) => {
-   let num = COMPANY.wa1Tel;
+   let num: string = COMPANY.wa1Tel;
    let text = "Hello Euro Bangla Travels, I would like help with a trip.";
    if (numOrMsg) {
       if (/^\+?\d{10,16}/.test(numOrMsg)) {

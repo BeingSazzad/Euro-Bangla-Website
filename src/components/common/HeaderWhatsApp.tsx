@@ -23,14 +23,14 @@ const HeaderWhatsApp = ({ className = "" }: { className?: string }) => {
          href={whatsappLink(`Hello ${COMPANY.name}, I need travel help.`)}
          target="_blank"
          rel="noreferrer"
-         aria-label={`${t("wa.label")} ${COMPANY.phone}`}
+         aria-label={`${t("wa.label")} ${COMPANY.wa1}`}
       >
          <span className="tg-header-whatsapp-icon">
             <WhatsAppIcon />
          </span>
          <span className="tg-header-whatsapp-text">
             <span className="tg-header-whatsapp-label">{t("wa.label")}</span>
-            <span className="tg-header-whatsapp-number">{COMPANY.phone}</span>
+            <span className="tg-header-whatsapp-number">{COMPANY.wa1}</span>
          </span>
       </Link>
    );
