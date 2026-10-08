@@ -72,7 +72,7 @@ const FooterThree = () => {
                                  <li><Link href="/">{t("footer.home")}</Link></li>
                                  <li><Link href="/hajj-umrah">{t("footer.hajj")}</Link></li>
                                  <li><Link href="/tours">{t("footer.tours")}</Link></li>
-                                 <li><Link href="/hotels">{t("footer.hotels")}</Link></li>
+                                 <li><Link href="/gallery">{t("footer.gallery")}</Link></li>
                                  <li><Link href="/visa">{t("footer.visa")}</Link></li>
                               </ul>
                            </div>

@@ -14,6 +14,13 @@
 
 .tg-listing-area {
    overflow: hidden;
+
+   &.ebt-section {
+      padding-top: 45px;
+      @media #{$md,$sm,$xs} {
+         padding-top: 35px;
+      }
+   }
 }
 
 .tg-banner-area.tg-banner-space {
@@ -1070,6 +1077,22 @@ body:has(.ebt-cookie-banner) {
 
 .ebt-home-faq {
    background: #fff;
+
+   &.ebt-section {
+      padding-bottom: 40px;
+      @media #{$md,$sm,$xs} {
+         padding-bottom: 30px;
+      }
+   }
+}
+
+.ebt-home-blog {
+   &.ebt-section {
+      padding-top: 40px;
+      @media #{$md,$sm,$xs} {
+         padding-top: 30px;
+      }
+   }
 }
 
 .ebt-blog-card {

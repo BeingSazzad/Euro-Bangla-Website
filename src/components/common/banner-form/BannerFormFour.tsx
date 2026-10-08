@@ -453,7 +453,7 @@ const BannerFormFour = ({ standalone = false }: { standalone?: boolean }) => {
    };
 
    return (
-      <div className={`tg-booking-form-area tg-booking-4-form-area tg-grey-bg pb-80${standalone ? " ebt-booking-page" : ""}`}>
+      <div className={`tg-booking-form-area tg-booking-4-form-area tg-grey-bg pb-20${standalone ? " ebt-booking-page" : ""}`}>
          <div className="container">
             <div className="row">
                <div className="col-lg-12">

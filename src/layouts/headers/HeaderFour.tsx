@@ -35,7 +35,7 @@ const HeaderFour = () => {
                      <div className="col-xl-2 col-5">
                         <div className="logo tg-header-logo ebt-header-logo text-center p-relative z-index-1">
                            <span className="tg-header-logo-bg d-none d-xl-block"></span>
-                           <Link href="/"><SiteLogo priority /></Link>
+                           <Link href="/"><SiteLogo height={68} priority /></Link>
                         </div>
                      </div>
                      <div className="col-xl-5 col-7">

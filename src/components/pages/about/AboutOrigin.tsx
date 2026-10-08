@@ -20,8 +20,8 @@ const AboutOrigin = () => {
                   <div className="ebt-about-origin-img-wrap">
                      <div className="ebt-about-origin-img-inner">
                         <Image
-                           src="/assets/img/about/origin-travel.jpg"
-                           alt="Euro Bangla Travels origin and heritage"
+                           src="/assets/img/about/eurobangla-team.webp"
+                           alt="Euro Bangla Travels Paris team and office"
                            width={650}
                            height={480}
                            sizes="(max-width: 768px) 100vw, 50vw"

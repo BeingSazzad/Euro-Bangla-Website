@@ -60,14 +60,14 @@ const ContactArea = () => {
                      <Link href={whatsappLink(COMPANY.wa1)} target="_blank" rel="noopener noreferrer" className="ebt-cp-call-btn">
                         <span className="ebt-cp-call-icon ebt-cp-call-icon--wa"><WA /></span>
                         <span className="ebt-cp-call-body">
-                           <span className="ebt-cp-list-label">WhatsApp · IMO</span>
+                           <span className="ebt-cp-list-label">WhatsApp / IMO</span>
                            <span className="ebt-cp-call-num">{COMPANY.wa1}</span>
                         </span>
                      </Link>
                      <Link href={whatsappLink(COMPANY.wa2)} target="_blank" rel="noopener noreferrer" className="ebt-cp-call-btn">
                         <span className="ebt-cp-call-icon ebt-cp-call-icon--wa"><WA /></span>
                         <span className="ebt-cp-call-body">
-                           <span className="ebt-cp-list-label">WhatsApp · IMO</span>
+                           <span className="ebt-cp-list-label">WhatsApp / IMO</span>
                            <span className="ebt-cp-call-num">{COMPANY.wa2}</span>
                         </span>
                      </Link>
