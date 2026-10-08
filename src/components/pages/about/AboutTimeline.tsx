@@ -24,12 +24,14 @@ const milestones: Milestone[] = [
 ];
 
 const teamPhotos = [
-   "/assets/img/about/about.jpg",
-   "/assets/img/about/about-2.jpg",
-   "/assets/img/about/about-3.jpg",
-   "/assets/img/about/about-4.jpg",
-   "/assets/img/about/details/thumb-1.jpg",
-   "/assets/img/about/details/thumb-2.jpg",
+   "/assets/img/gallery/gallery-10.webp",
+   "/assets/img/gallery/gallery-1.webp",
+   "/assets/img/gallery/gallery-12.webp",
+   "/assets/img/gallery/gallery-15.webp",
+   "/assets/img/gallery/gallery-4.webp",
+   "/assets/img/gallery/gallery-7.webp",
+   "/assets/img/gallery/gallery-17.webp",
+   "/assets/img/gallery/gallery-2.webp",
 ];
 
 const AboutTimeline = () => {
