@@ -254,27 +254,21 @@ const AboutGallery = () => {
 
                   {/* Filter Tabs */}
                   <div className="ebt-gallery-filters mb-45">
-                     {categories.map((cat) => {
-                        const count =
-                           cat.key === "all"
-                              ? galleryItems.length
-                              : galleryItems.filter((it) => it.category === cat.key).length;
-                        return (
-                           <button
-                              key={cat.key}
-                              type="button"
-                              className={`ebt-gallery-filter-btn ${
-                                 activeCategory === cat.key ? "is-active" : ""
-                              }`}
-                              onClick={() => {
-                                 setActiveCategory(cat.key);
-                                 setSelectedIndex(null);
-                              }}
-                           >
-                              {cat.label} ({count})
-                           </button>
-                        );
-                     })}
+                     {categories.map((cat) => (
+                        <button
+                           key={cat.key}
+                           type="button"
+                           className={`ebt-gallery-filter-btn ${
+                              activeCategory === cat.key ? "is-active" : ""
+                           }`}
+                           onClick={() => {
+                              setActiveCategory(cat.key);
+                              setSelectedIndex(null);
+                           }}
+                        >
+                           {cat.label}
+                        </button>
+                     ))}
                   </div>
                </div>
             </div>
