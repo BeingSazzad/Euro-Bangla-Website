@@ -51,7 +51,7 @@ const HomeFaq = () => {
                      })}
                   </div>
 
-                  <div className="text-center mt-35">
+                  <div className="text-center mt-25">
                      <Link className="ebt-home-link-btn" href="/faq">
                         {t("home.faqMore")}
                      </Link>

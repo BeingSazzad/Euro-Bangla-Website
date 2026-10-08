@@ -12,7 +12,7 @@ const HomeBlog = () => {
    return (
       <section className="ebt-home-blog ebt-section">
          <div className="container">
-            <div className="text-center mb-45">
+            <div className="text-center mb-35">
                <h5 className="tg-section-subtitle mb-15">{t("home.blogSubtitle")}</h5>
                <h2 className="ebt-home-block-title mb-12">{t("home.blogTitle")}</h2>
                <p className="ebt-home-block-text mb-0">{t("home.blogText")}</p>

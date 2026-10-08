@@ -31,6 +31,34 @@
       }
    }
 
+   // Reduced gap between booking form and popular packages
+   .tg-listing-area.ebt-section {
+      padding-top: var(--tg-space-32);
+      padding-bottom: var(--tg-space-64);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-24);
+         padding-bottom: var(--tg-space-48);
+      }
+   }
+
+   // Reduced gap between FAQ and Blog
+   .ebt-home-faq.ebt-section {
+      padding-bottom: var(--tg-space-40);
+
+      @media #{$md,$sm,$xs} {
+         padding-bottom: var(--tg-space-32);
+      }
+   }
+
+   .ebt-home-blog.ebt-section {
+      padding-top: var(--tg-space-40);
+
+      @media #{$md,$sm,$xs} {
+         padding-top: var(--tg-space-32);
+      }
+   }
+
    .ebt-section-sm.pb-0 {
       padding-bottom: 0;
    }

@@ -22,7 +22,7 @@ const Listing = () => {
          <div className="container">
             <div className="row">
                <div className="col-12">
-                  <div className="tg-listing-section-title text-center mb-50">
+                  <div className="tg-listing-section-title text-center mb-35">
                      <h5 className="tg-section-subtitle wow fadeInUp" data-wow-delay=".4s" data-wow-duration=".6s">{t("home.listingSubtitle")}</h5>
                      <h2 className="mb-15 wow fadeInUp" data-wow-delay=".5s" data-wow-duration=".7s">{t("home.listingTitle")}</h2>
                      <p className="text-capitalize wow fadeInUp mb-0" data-wow-delay=".6s" data-wow-duration=".8s">{t("home.listingText")}</p>
