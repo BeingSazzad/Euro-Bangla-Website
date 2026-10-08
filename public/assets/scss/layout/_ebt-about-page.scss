@@ -749,66 +749,6 @@
          display: block;
       }
    }
-
-   .ebt-lightbox-meta {
-      padding: 20px 24px;
-      background: var(--tg-common-white);
-
-      .ebt-lightbox-tags {
-         display: flex;
-         align-items: center;
-         gap: 8px;
-         margin-bottom: 8px;
-      }
-
-      .ebt-lightbox-cat {
-         background: rgba(0, 71, 171, 0.1);
-         color: var(--tg-theme-primary);
-         font-size: 12px;
-         font-weight: 600;
-         padding: 3px 10px;
-         border-radius: var(--tg-radius-sm);
-         text-transform: uppercase;
-         letter-spacing: 0.5px;
-      }
-
-      .ebt-lightbox-year-tag {
-         background: var(--tg-grey-3);
-         color: var(--tg-ink-3);
-         font-size: 12px;
-         font-weight: 600;
-         padding: 3px 10px;
-         border-radius: var(--tg-radius-sm);
-      }
-
-      .ebt-lightbox-title {
-         font-size: var(--tg-fs-h4);
-         font-weight: 700;
-         color: var(--tg-ink-1);
-         margin-bottom: 6px;
-      }
-
-      .ebt-lightbox-desc {
-         font-size: var(--tg-fs-body-s);
-         color: var(--tg-ink-3);
-         margin-bottom: 12px;
-         line-height: 1.5;
-      }
-
-      .ebt-lightbox-details {
-         display: flex;
-         align-items: center;
-         gap: 16px;
-         font-size: 13px;
-         color: var(--tg-ink-4);
-
-         span {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-         }
-      }
-   }
 }
 
 @keyframes ebtFadeIn {
