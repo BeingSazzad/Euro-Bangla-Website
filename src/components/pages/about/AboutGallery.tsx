@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
-import { X, ChevronLeft, ChevronRight, MapPin, Calendar, Camera } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react"
 
 type Category = "all" | "tours" | "events" | "team";
 
@@ -244,10 +244,6 @@ const AboutGallery = () => {
             <div className="row justify-content-center">
                <div className="col-xl-8 col-lg-9 text-center">
                   <div className="ebt-gallery-head mb-40">
-                     <div className="d-inline-flex align-items-center gap-2 mb-15">
-                        <Camera size={18} className="text-primary" />
-                        <h5 className="tg-section-subtitle mb-0">Our Moments & Memories</h5>
-                     </div>
                      <h2 className="ebt-gallery-title">
                         Moments That Tell <span>Our Story</span>
                      </h2>
@@ -299,26 +295,16 @@ const AboutGallery = () => {
                         }}
                      >
                         <div className="ebt-gallery-media">
-                           <div className="ebt-gallery-badge-wrap">
-                              <span className="ebt-gallery-cat-badge">{item.categoryLabel}</span>
-                              <span className="ebt-gallery-year-badge">{item.year}</span>
-                           </div>
                            <Image
                               src={item.src}
-                              alt={item.title}
+                              alt="Euro Bangla Travels Photo"
                               width={600}
                               height={450}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                               className="ebt-gallery-img"
                            />
-                           <div className="ebt-gallery-overlay">
-                              <div className="ebt-gallery-overlay-content">
-                                 <h4 className="ebt-gallery-item-title">{item.title}</h4>
-                                 <p className="ebt-gallery-item-location">
-                                    <MapPin size={13} className="d-inline mr-5" />
-                                    {item.location}
-                                 </p>
-                              </div>
+                           <div className="ebt-gallery-hover-icon">
+                              <Maximize2 size={22} />
                            </div>
                         </div>
                      </div>
@@ -380,26 +366,6 @@ const AboutGallery = () => {
                         height={900}
                         priority
                      />
-                  </div>
-
-                  {/* Meta Details */}
-                  <div className="ebt-lightbox-meta">
-                     <div className="ebt-lightbox-tags">
-                        <span className="ebt-lightbox-cat">{activeItem.categoryLabel}</span>
-                        <span className="ebt-lightbox-year-tag">{activeItem.year}</span>
-                     </div>
-                     <h3 className="ebt-lightbox-title">{activeItem.title}</h3>
-                     <p className="ebt-lightbox-desc">{activeItem.subtitle}</p>
-                     <div className="ebt-lightbox-details">
-                        <span>
-                           <MapPin size={15} className="text-primary" />
-                           {activeItem.location}
-                        </span>
-                        <span>
-                           <Calendar size={15} className="text-primary" />
-                           {activeItem.year}
-                        </span>
-                     </div>
                   </div>
                </div>
             </div>
