@@ -2,8 +2,6 @@
 import { Poppins } from "next/font/google";
 import "../styles/index.css";
 import "../../public/assets/scss/main.scss";
-import { Provider } from "react-redux";
-import store from "@/redux/store";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 const poppins = Poppins({
@@ -35,11 +33,9 @@ export default function RootLayout({
         <link rel="icon" href="/icons/icon-192.png" type="image/png" sizes="192x192" />
       </head>
       <body className={`${poppins.className} ebt-site`} suppressHydrationWarning={true}>
-        <Provider store={store}>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
-        </Provider>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )
